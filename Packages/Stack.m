@@ -9,6 +9,9 @@ StackDrop::usage="";
 StackPop::usage="";
 
 
+StackPeek::usage="";
+
+
 Begin["`Private`"];
 
 
@@ -25,7 +28,7 @@ Begin["`Private`"];
 StackQueue//ClearAll;
 StackQueue[]:=StackQueue[Null, 0];
 unconstructedQ=Function[Null, System`Private`EntryQ[Unevaluated[#]], HoldFirst];
-q:StackQueue[l_List, ct_]?unconstructedQ:=
+q:StackQueue[l:_List|Null, ct_]?unconstructedQ:=
 System`Private`SetNoEntry[Unevaluated@q]
 
 
@@ -68,11 +71,11 @@ StackPush[StackQueue[data_, ct_], push_]:=
 
 
 
-StackDrop[s:StackQueue[data_, 0], n_Integer?Positive]]:=
-  s;
+StackDrop[s:StackQueue[data_, 0], n_Integer?Positive]:=
+  {Null, s};
 StackDrop[StackQueue[data_, ct_], n_Integer?Positive]:=
   If[ct>=n,
-    {Most@Flatten@data, n-1},
+    {Most@Flatten@data, newStack[Null, 0]},
     With[{pos=ConstantArray[2, n]},
       {
         Flatten@Delete[data, pos],
@@ -88,6 +91,20 @@ StackPop[s:StackQueue[data_, ct_]]:=
       },
     {Null, s}
     ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*Peek*)
+
+
+
+Peek[StackQueue[data_, ct_], n_Integer?Positive:1]:=
+  If[ct>=n,
+    Most@Flatten@data,
+    With[{pos=ConstantArray[2, n]},
+      Flatten@Delete[data, pos]
+      ]
+    ];
 
 
 (* ::Subsubsection::Closed:: *)

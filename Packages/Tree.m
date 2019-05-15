@@ -42,8 +42,13 @@ Begin["`Private`"];
 
 
 
+(* ::Subsubsubsection::Closed:: *)
+(*Tree*)
+
+
+
 Tree//ClearAll;
-Tree[]:=Tree[{}];
+Tree[]:=Tree[{{}, {}}];
 unconstructedQ=
   Function[Null, System`Private`EntryQ[Unevaluated[#]], HoldFirst];
 q:Tree[l_List]?unconstructedQ:=
@@ -55,6 +60,12 @@ newTree[list_]:=
     Unevaluated[Tree[list]]
 
 
+(* ::Subsubsubsection::Closed:: *)
+(*TreeNode*)
+
+
+
+TreeNode//Clear
 TreeNode[]:=TreeNode[{}(* data field *), {}(*children field *)];
 n:TreeNode[data_List, children_List]?unconstructedQ:=
 System`Private`SetNoEntry[Unevaluated@n]
@@ -69,7 +80,14 @@ newNode[data_, children_]:=
 
 
 (* basic destructors *)
+TreeQ//Clear
 TreeQ[q_Tree]:=System`Private`NoEntryQ[q];
+TreeQ[_]:=False;
+
+
+TreeNodeQ//Clear
+TreeNodeQ[q_TreeNode]:=System`Private`NoEntryQ[q];
+TreeNodeQ[_]:=False
 
 
 (* ::Subsubsection::Closed:: *)
@@ -77,6 +95,9 @@ TreeQ[q_Tree]:=System`Private`NoEntryQ[q];
 
 
 
+treePosSpec//Clear
+treePosSpec[{}|None]:=
+  {};
 treePosSpec[pos:{__Integer}]:=
   Prepend[Riffle[pos, 2], 2];
 treePosSpec[i_Integer]:=
@@ -97,16 +118,21 @@ treeHasDepth[t_, posSpec_]:=
 
 
 
+Tree::nochild="Tree doesn't have children at node `` and position ``";
+TreeNode::nohild="TreeNode doesn't have children at node `` and position ``";
+
+
 (* ::Subsubsubsection::Closed:: *)
 (*treeChildren*)
 
 
 
+treeChildren//Clear
 treeChildren[
   head_,
   obj_,
   list_, 
-  pos:{__Integer}|_Integer,
+  pos:{___Integer}|_Integer|None,
   children_
   ]:=
   Module[
@@ -117,17 +143,18 @@ treeChildren[
       },
     c=
       Quiet[
-        Check[list[[Sequence@@ps]], 
+        Check[
+          list[[Sequence@@ps]],
           $failed,
           Part::partw], 
         Part::partw
         ];
     If[c=!=$failed,
       c,
-      Message[head::partw, pos, obj];
-      Failure["BadPart", <|
-        "MessageTemplate":>head::partw,
-        "MessageParameters":>{pos, obj}
+      Message[head::nochild, pos, children];
+      Failure["NoChild", <|
+        "MessageTemplate":>head::nochild,
+        "MessageParameters":>{pos, children, obj}
         |>
         ]
       ]
@@ -139,9 +166,10 @@ treeChildren[
 
 
 
+TreeChildren//Clear
 TreeChildren[
   n:Tree[t_], 
-  pos:{__Integer}|_Integer,
+  pos:{___Integer}|_Integer:1,
   children:{___Integer}|_Integer|_Span|All:All
   ]:=
   With[{l=treeChildren[Tree, n, t, pos, children]},
@@ -156,7 +184,7 @@ TreeChildren[
     ];
 TreeChildren[
   n:TreeNode[d_, t_], 
-  pos:{__Integer}|_Integer,
+  pos:{___Integer}|_Integer:1,
   children:{___Integer}|_Integer|_Span|All:All
   ]:=
   With[{l=treeChildren[TreeNode, n, t, pos, children]},
@@ -172,6 +200,34 @@ TreeChildren[
 
 
 (* ::Subsubsection::Closed:: *)
+(*ChildCount*)
+
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*TreeChildCount*)
+
+
+
+TreeChildCount//Clear
+TreeChildCount[
+  n:Tree[t_], 
+  pos:{___Integer}|_Integer|None:None
+  ]:=
+  With[{l=treeChildren[Tree, n, t, pos, All]},
+    If[ListQ@l, Length@l, l]
+    ];
+TreeChildCount[
+  n:TreeNode[d_, t_], 
+  pos:{___Integer}|_Integer|None:None,
+  children:{___Integer}|_Integer|_Span|All:All
+  ]:=
+  With[{l=treeChildren[TreeNode, n, {d, t}, pos, All]},
+    If[ListQ@l, Length@l, l]
+    ];
+
+
+(* ::Subsubsection::Closed:: *)
 (*Insert*)
 
 
@@ -181,14 +237,21 @@ TreeChildren[
 
 
 
+treeInsert//Clear
 treeInsert[
   head_,
   obj_,
   list_, 
   node:{data_List, children_List}, 
-  pos:{__Integer}|_Integer
+  pos:{___Integer}|_Integer|None,
+  where:_Integer
   ]:=
-  Module[{c, $failed, ps=treePosSpec[pos]},
+  Module[
+    {
+      c, 
+      $failed, 
+      ps=Join[treePosSpec[pos], {2, where}]
+      },
     c=
       Quiet[
         Check[
@@ -199,9 +262,9 @@ treeInsert[
         Insert::ins
         ];
     If[c===$failed,
-      Message[head::partw, pos, obj];
-      Failure["BadPart", <|
-        "MessageTemplate":>head::partw,
+      Message[head::nonode, pos];
+      Failure["NoNode", <|
+        "MessageTemplate":>head::nonode,
         "MessageParameters":>{pos, obj}
         |>
         ],
@@ -213,9 +276,10 @@ treeInsert[
   obj_,
   list_, 
   TreeNode[data_List, children_List], 
-  pos:{__Integer}|_Integer
+  pos:{___Integer}|_Integer|None,
+  where:_Integer
   ]:=
-  treeInsert[head, obj, list, {data, children}, pos];
+  treeInsert[head, obj, list, {data, children}, pos, where];
 
 
 (* ::Subsubsubsection::Closed:: *)
@@ -223,28 +287,105 @@ treeInsert[
 
 
 
+TreeInsert//Clear
 TreeInsert[
   n:Tree[t_], 
   node:{data_List, children_List}|_TreeNode?TreeNodeQ, 
-  pos:{__Integer}|_Integer
+  pos:{___Integer}|_Integer|None:None,
+  where:_Integer:-1
   ]:=
-  With[{l=treeInsert[Tree, n, t, node, pos]},
+  With[{l=treeInsert[Tree, n, t, node, pos, where]},
     If[ListQ@l, newTree[l], l]
     ];
 TreeInsert[
   n:TreeNode[d_, t_], 
   node:{data_List, children_List}|_TreeNode?TreeNodeQ, 
-  pos:{__Integer}|_Integer
+  pos:{___Integer}|_Integer|None:None,
+  where:_Integer:-1
   ]:=
-  With[{l=treeInsert[TreeNode, n, t, node, pos]},
-    If[ListQ@l, newNode[data, l], l]
+  With[{l=treeInsert[TreeNode, n, {d, t}, node, pos, where]},
+    If[ListQ@l, newNode[d, l], l]
     ];
 TreeInsert[
   n:_Tree|_TreeNode, 
   data_, 
-  pos:{__Integer}|_Integer
+  pos:{___Integer}|_Integer|None:None,
+  where:_Integer:-1
   ]:=
-  TreeInsert[n, {data, {}}, pos]
+  TreeInsert[n, {{data}, {}}, pos, where]
+
+
+(* ::Subsubsection::Closed:: *)
+(*InsertData*)
+
+
+
+Tree::nonode="Tree doesn't have a node at ``";
+TreeNode::nohild="TreeNode doesn't have a node at ``";
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*treeInsertData*)
+
+
+
+treeInsertData//Clear
+treeInsertData[
+  head_,
+  obj_,
+  list_, 
+  data_, 
+  pos:{___Integer}|_Integer|None,
+  where:_Integer
+  ]:=
+  Module[{c, $failed, 
+    ps=Join[treePosSpec[pos], {1, where}]
+    },
+    c=
+      Quiet[
+        Check[
+          Insert[list, data, ps],
+          $failed,
+          Insert::ins
+          ],
+        Insert::ins
+        ];
+    If[c===$failed,
+      Message[head::nonode, pos];
+      Failure["NoNode", <|
+        "MessageTemplate":>head::nonode,
+        "MessageParameters":>{pos, obj}
+        |>
+        ],
+      c
+      ]
+    ];
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*TreeInsertData*)
+
+
+
+TreeInsertData//Clear;
+TreeInsertData[
+  n:Tree[t_], 
+  data_, 
+  pos:{___Integer}|_Integer|None:None,
+  where:_Integer:-1
+  ]:=
+  With[{l=treeInsertData[Tree, n, t, data, pos, where]},
+    If[ListQ@l, newTree[l], l]
+    ];
+TreeInsertData[
+  n:TreeNode[d_, t_], 
+  data_,
+  pos:{___Integer}|_Integer|None:None,
+  where:_Integer:-1
+  ]:=
+  With[{l=treeInsert[TreeNode, n, {d, t}, data, pos, where]},
+    If[ListQ@l, newNode[d, l], l]
+    ];
 
 
 (* ::Subsubsection::Closed:: *)
@@ -261,11 +402,13 @@ treePop[
   head_,
   obj_,
   list_, 
-  pos:{__Integer}|_Integer
+  pos:{___Integer}|_Integer|None,
+  where:_Integer
   ]:=
   Module[
     {
-      ps=treePosSpec[pos],
+      ps=
+        Join[treePosSpec[pos], {2, where}],
       $failed,
       c
       },
@@ -278,10 +421,10 @@ treePop[
         ];
     If[c=!=$failed,
       {c, Delete[list, ps]},
-      Message[head::partw, pos, obj];
+      Message[head::nochild, pos, where];
       Failure["BadPart", <|
         "MessageTemplate":>head::partw,
-        "MessageParameters":>{pos, obj}
+        "MessageParameters":>{pos, where, obj}
         |>
         ]
       ]
@@ -293,19 +436,93 @@ treePop[
 
 
 
+TreePop//Clear
 TreePop[
   n:Tree[t_], 
-  pos:{__Integer}|_Integer
+  pos:{___Integer}|_Integer|None:None,
+  where:_Integer:-1
   ]:=
-  With[{l=treePop[Tree, n, t, pos]},
+  With[{l=treePop[Tree, n, t, pos, where]},
     If[ListQ@l, {newNode@@l[[1]], newTree[l[[2]]]}, l]
     ];
 TreePop[
   n:TreeNode[d_, t_], 
-  pos:{__Integer}|_Integer
+  pos:{___Integer}|_Integer|None:None,
+  where:_Integer:-1
   ]:=
-  With[{l=treePop[TreeNode, n, t, pos]},
-    If[ListQ@l, {newNode@@l[[1]], newTree[l[[2]]]}, l]
+  With[{l=treePop[TreeNode, n, {d, t}, pos, where]},
+    If[ListQ@l, {newNode@@l[[1]], newNode@@l[[2]]}, l]
+    ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*PopData*)
+
+
+
+Tree::nodata="Tree doesn't have data at node `` and position ``";
+TreeNode::nodata="TreeNode doesn't have data at node `` and position ``";
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*treePopData*)
+
+
+
+treePopData//Clear
+treePopData[
+  head_,
+  obj_,
+  list_, 
+  pos:{___Integer}|_Integer|None,
+  where:_Integer
+  ]:=
+  Module[
+    {
+      ps=Join[treePosSpec[pos], {1, where}],
+      $failed,
+      c
+      },
+    c=
+      Quiet[
+        Check[list[[Sequence@@ps]], 
+          $failed,
+          Part::partw], 
+        Part::partw
+        ];
+    If[c=!=$failed,
+      {c, Delete[list, ps]},
+      Message[head::nodata, pos, where];
+      Failure["NoData", <|
+        "MessageTemplate":>head::nodata,
+        "MessageParameters":>{pos, where, obj}
+        |>
+        ]
+      ]
+    ];
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*TreePopData*)
+
+
+
+TreePopData//Clear
+TreePopData[
+  n:Tree[t_], 
+  pos:{___Integer}|_Integer|None:None,
+  where:_Integer:-1
+  ]:=
+  With[{l=treePopData[Tree, n, t, pos, where]},
+    If[ListQ@l, {l[[1]], newTree[l[[2]]]}, l]
+    ];
+TreePopData[
+  n:TreeNode[d_, t_], 
+  pos:{___Integer}|_Integer|None:None,
+  where:_Integer:-1
+  ]:=
+  With[{l=treePopData[TreeNode, n, {d, t}, pos, where]},
+    If[ListQ@l, {l[[1]], newNode@@l[[2]]}, l]
     ]
 
 
@@ -314,20 +531,72 @@ TreePop[
 
 
 
+(* ::Subsubsubsection::Closed:: *)
+(*Tree*)
+
+
+
 Format[q_Tree?TreeQ, StandardForm]:=
-RawBoxes@
-BoxForm`ArrangeSummaryBox[
-Tree,
-q,
-None,
-{
-BoxForm`MakeSummaryItem[{"", ""}, StandardForm]
-},
-{},
-StandardForm
-];
+  RawBoxes@
+    BoxForm`ArrangeSummaryBox[
+      Tree,
+      q,
+      None,
+      {
+        BoxForm`MakeSummaryItem[
+          {
+            "Root:", 
+              Quiet@Check[Replace[TreePopData[q], {a_, _}:>a], None, Tree::nodata]
+            }, 
+          StandardForm
+          ],
+        BoxForm`MakeSummaryItem[
+          {
+            "Children:", 
+              Quiet@Check[TreeChildCount[q], 0, Tree::nochild]
+            }, 
+          StandardForm
+          ]
+        },
+      {},
+      StandardForm
+      ];
 Format[q_Tree?Tree, TextForm]:=
-"Tree[<>]"
+  "Tree[<>]"
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*Node*)
+
+
+
+Format[q_TreeNode?TreeNodeQ, StandardForm]:=
+  RawBoxes@
+    BoxForm`ArrangeSummaryBox[
+      TreeNode,
+      q,
+      None,
+      {
+        BoxForm`MakeSummaryItem[
+          {
+            "Root:", 
+              Quiet@Check[Replace[TreePopData[q], {a_, _}:>a], None, TreeNode::nodata]
+            }, 
+          StandardForm
+          ],
+        BoxForm`MakeSummaryItem[
+          {
+            "Children:", 
+              Quiet@Check[TreeChildCount[q], 0, TreeNode::nochild]
+            }, 
+          StandardForm
+          ]
+        },
+      {},
+      StandardForm
+      ];
+Format[q_TreeNode?TreeNodeQ, TextForm]:=
+  "TreeNode[<>]"
 
 
 End[];

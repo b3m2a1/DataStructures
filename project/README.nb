@@ -1,0 +1,55 @@
+Notebook[{Cell[BoxData[RowBox[{"<|", "\[IndentingNewLine]", 
+      RowBox[{"\"ExportOptions\"", "\[Rule]", "\[IndentingNewLine]", 
+        RowBox[{"{", RowBox[{"\"Directory\"", "\[Rule]", "\"..\""}], "}"}]}], 
+      "\[IndentingNewLine]", "|>"}]], "Metadata", 
+   CellChangeTimes -> {{3.732830406695567*^9, 3.732830432925774*^9}, 
+    {3.7328323350873213*^9, 3.7328323409624166*^9}}], 
+  Cell[CellGroupData[{Cell["DataStructures", "Section", 
+      CellChangeTimes -> {{3.71293841054522*^9, 3.712938421466749*^9}, 
+       {3.712938914585651*^9, 3.712938915534898*^9}, {3.7668948796389027*^9, 
+       3.766894881928067*^9}}], 
+     Cell[TextData[{Cell[BoxData[TemplateBox[{"version", 
+            "http://img.shields.io/badge/version-1.0.0-orange.svg", 
+            "https://github.com/b3m2a1/DataStructures/PacletInfo.m"}, 
+           "MarkdownLinkedImageLink"]]], " ", 
+        Cell[BoxData[TemplateBox[{"license", 
+            "http://img.shields.io/badge/license-MIT-blue.svg", 
+            "https://opensource.org/licenses/MIT"}, 
+           "MarkdownLinkedImageLink"]]]}], "Text", CellChangeTimes -> 
+       {3.732843180303953*^9, {3.732843319602983*^9, 3.732843353258875*^9}, 
+        {3.732843412794588*^9, 3.732843412794701*^9}, {3.7328442368519287*^9, 
+        3.732844236852051*^9}, {3.732846682467456*^9, 3.732846685849126*^9}, 
+        {3.732846977968954*^9, 3.7328469779692*^9}, {3.7328475500110483*^9, 
+        3.732847550011239*^9}, {3.7328476122538357*^9, 3.732847638675231*^9}, 
+        {3.739288570682428*^9, 3.739288577475281*^9}, {3.766894894072879*^9, 
+        3.766894894072953*^9}}], Cell["The DataStructures package is intended \
+to make it easier to work with common data structures by providing efficient \
+implementations of some of the big ones that can be used directly in \
+Mathematica", "Text", CellChangeTimes -> {{3.712938427698472*^9, 
+        3.712938432754331*^9}, 3.7129389313072557*^9, {3.7129406941654243*^9, 
+        3.7129407586081657*^9}, {3.712940795481729*^9, 
+        3.7129407992712727*^9}, {3.7668950782828217*^9, 
+        3.7668951223742228*^9}}]}, Open]]}, WindowSize -> {808, 755}, 
+ WindowMargins -> {{224, Automatic}, {Automatic, 22}}, 
+ FrontEndVersion -> 
+  "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
+ StyleDefinitions -> Notebook[
+   {Cell[StyleData[StyleDefinitions -> FrontEnd`FileName[{"BTools"}, 
+        "MarkdownNotebook.nb", CharacterEncoding -> "UTF-8"]]], 
+    Cell[BoxData[RowBox[{"SSNew", "[", RowBox[{"\"HiddenSection\"", ",", 
+          "\"Section\""}], "]"}]], "Input", CellChangeTimes -> 
+      {{3.712937945363078*^9, 3.712937960253202*^9}}], 
+    Cell[CellGroupData[{Cell[StyleData["HiddenSection", StyleDefinitions -> 
+          StyleData["Section"]], CellBracketOptions -> 
+         {"Color" -> GrayLevel[0.5]}, FontColor -> GrayLevel[0.5]], 
+       Cell[BoxData[RowBox[{"SSEdit", "[", RowBox[{"\"HiddenSection\"", ",", 
+             RowBox[{"{", "\[IndentingNewLine]", RowBox[{RowBox[{"FontColor", 
+                   "\[Rule]", "Gray"}], ",", "\[IndentingNewLine]", 
+                 RowBox[{"CellBracketOptions", "\[Rule]", RowBox[{"{", 
+                     "\[IndentingNewLine]", RowBox[{"\"Color\"", "\[Rule]", 
+                       "Gray"}], "\[IndentingNewLine]", "}"}]}]}], 
+               "\[IndentingNewLine]", "}"}]}], "]"}]], "Input", 
+        CellChangeTimes -> {{3.71293797195337*^9, 3.712938000386712*^9}}]}, 
+      Open]]}, Visible -> False, FrontEndVersion -> 
+    "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
+   StyleDefinitions -> "PrivateStylesheetFormatting.nb"]]
