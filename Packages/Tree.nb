@@ -1,0 +1,322 @@
+Notebook[{Cell[CellGroupData[{Cell["Tree", "CodeSection"], 
+     Cell[BoxData[RowBox[{RowBox[{RowBox[{"Tree", "::", "usage"}], "=", 
+           "\"A Tree data structure\""}], ";"}]], "CodeInput"], 
+     Cell[BoxData[RowBox[{RowBox[{RowBox[{"TreeNode", "::", "usage"}], "=", 
+           "\"A TreeNode object which exists as a symbolic wrapper on node \
+data\""}], ";"}]], "CodeInput"], 
+     Cell[BoxData[{RowBox[{RowBox[{RowBox[{"TreeData", "::", "usage"}], "=", 
+            "\"Extracts data from a node\""}], ";"}], "\n", 
+        RowBox[{RowBox[{RowBox[{"TreeChildren", "::", "usage"}], "=", 
+            "\"Pulls children out of a node\""}], ";"}], "\n", 
+        RowBox[{RowBox[{RowBox[{"TreeChildCount", "::", "usage"}], "=", 
+            "\"Counts the number of leaves in the tree\""}], ";"}]}], 
+      "CodeInput"], Cell[BoxData[
+       {RowBox[{RowBox[{RowBox[{"TreeInsert", "::", "usage"}], "=", 
+            "\"Inserts a node into a tree\""}], ";"}], "\n", 
+        RowBox[{RowBox[{RowBox[{"TreePop", "::", "usage"}], "=", 
+            "\"Pops a node (and children) from a tree\""}], ";"}]}], 
+      "CodeInput"], Cell[BoxData[
+       {RowBox[{RowBox[{RowBox[{"TreeInsertData", "::", "usage"}], "=", 
+            "\"Inserts into the data field of each node\""}], ";"}], "\n", 
+        RowBox[{RowBox[{RowBox[{"TreePopData", "::", "usage"}], "=", 
+            "\"Deletes from the data field of each node\""}], ";"}]}], 
+      "CodeInput"], Cell[CellGroupData[
+       {Cell[BoxData[RowBox[{RowBox[{"Begin", "[", "\"`Private`\"", "]"}], 
+            ";"}]], "InputSection"], Cell["\[LeftCeiling]\n\tWe\
+\[CloseCurlyQuote]ll use a linked-list implementation to get efficient \
+sub-tree-ing\n\tThis will feel rather like our Stack implementation, \
+honestly... but rather than introducing pushes and pops \
+we\[CloseCurlyQuote]ll introduce tree insertion, deletion, rearrangement, and \
+walking\n\[RightFloor]", "Text", Evaluatable -> True]}, Open]], 
+     Cell[CellGroupData[{Cell["\[LeftCeiling]Tree\[RightFloor]", 
+         "CodeSubsection", Evaluatable -> True], 
+        Cell[CellGroupData[{Cell["\[LeftCeiling]Constructor\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[BoxData[{RowBox[{RowBox[{"Tree", "//", "ClearAll"}], ";"}], 
+              "\[IndentingNewLine]", RowBox[{RowBox[{RowBox[{"Tree", "[", 
+                    "]"}], ":=", RowBox[{"Tree", "[", RowBox[{"{", "}"}], 
+                    "]"}]}], ";"}], "\n", RowBox[{RowBox[{"unconstructedQ", 
+                  "=", "\n", "  ", RowBox[{"Function", "[", RowBox[{"Null", 
+                      ",", " ", RowBox[{"System`Private`EntryQ", "[", 
+                        RowBox[{"Unevaluated", "[", "#", "]"}], "]"}], ",", 
+                      " ", "HoldFirst"}], "]"}]}], ";"}], 
+              "\[IndentingNewLine]", RowBox[{RowBox[{"q", ":", RowBox[
+                   {RowBox[{"Tree", "[", "l_List", "]"}], "?", 
+                    "unconstructedQ"}]}], ":=", "\[IndentingNewLine]", 
+                RowBox[{"System`Private`SetNoEntry", "[", RowBox[
+                   {"Unevaluated", "@", "q"}], "]"}]}]}], "CodeInput"], 
+           Cell[BoxData[RowBox[{RowBox[{"newTree", "[", "list_", "]"}], ":=", 
+               "\n", "  ", RowBox[{"System`Private`SetNoEntry", "@", "\n", 
+                 "    ", RowBox[{"Unevaluated", "[", RowBox[{"Tree", "[", 
+                     "list", "]"}], "]"}]}]}]], "CodeInput"], 
+           Cell[BoxData[{RowBox[{RowBox[{RowBox[{"TreeNode", "[", "]"}], 
+                  ":=", RowBox[{"TreeNode", "[", RowBox[{RowBox[{"{", "}"}], 
+                      RowBox[{"(*", " ", RowBox[{"data", " ", "field"}], " ", 
+                        "*)"}], ",", " ", RowBox[{"{", "}"}]}], RowBox[
+                     {"(*", RowBox[{"children", " ", "field"}], " ", "*)"}], 
+                    "]"}]}], ";"}], "\n", RowBox[{RowBox[{"n", ":", 
+                  RowBox[{RowBox[{"TreeNode", "[", RowBox[{"data_List", ",", 
+                        " ", "children_List"}], "]"}], "?", 
+                    "unconstructedQ"}]}], ":=", "\[IndentingNewLine]", 
+                RowBox[{"System`Private`SetNoEntry", "[", RowBox[
+                   {"Unevaluated", "@", "n"}], "]"}]}], "\n", 
+              RowBox[{RowBox[{"newNode", "[", RowBox[{"data_", ",", " ", 
+                    "children_"}], "]"}], ":=", "\n", "  ", RowBox[
+                 {"System`Private`SetNoEntry", "@", "\n", "    ", 
+                  RowBox[{"Unevaluated", "[", RowBox[{"TreeNode", "[", 
+                      RowBox[{"data", ",", " ", "children"}], "]"}], 
+                    "]"}]}]}]}], "CodeInput"]}, Open]], 
+        Cell[CellGroupData[
+          {Cell["\[LeftCeiling]Destructor Operations\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[BoxData[RowBox[{RowBox[{"(*", " ", RowBox[{"basic", " ", 
+                   "destructors"}], " ", "*)"}], "\[IndentingNewLine]", 
+               RowBox[{RowBox[{RowBox[{"TreeQ", "[", "q_Tree", "]"}], ":=", 
+                   RowBox[{"System`Private`NoEntryQ", "[", "q", "]"}]}], 
+                 ";"}]}]], "CodeInput"]}, Open]], 
+        Cell[CellGroupData[{Cell["\[LeftCeiling]treePosSpec\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[BoxData[{RowBox[{RowBox[{RowBox[{"treePosSpec", "[", 
+                    RowBox[{"pos", ":", RowBox[{"{", "__Integer", "}"}]}], 
+                    "]"}], ":=", "\n", "  ", RowBox[{"Prepend", "[", 
+                    RowBox[{RowBox[{"Riffle", "[", RowBox[{"pos", ",", " ", 
+                          "2"}], "]"}], ",", " ", "2"}], "]"}]}], ";"}], 
+              "\n", RowBox[{RowBox[{RowBox[{"treePosSpec", "[", "i_Integer", 
+                    "]"}], ":=", "\n", "  ", RowBox[{"treePosSpec", "[", 
+                    RowBox[{"{", "i", "}"}], "]"}]}], ";"}]}], "CodeInput"]}, 
+          Open]], Cell[CellGroupData[
+          {Cell["\[LeftCeiling]treeHasDepth\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[BoxData[RowBox[{RowBox[{RowBox[{"treeHasDepth", "[", 
+                   RowBox[{"t_", ",", " ", "posSpec_"}], "]"}], ":=", "\n", 
+                 "  ", RowBox[{"Quiet", "[", RowBox[{RowBox[{"Check", "[", 
+                       RowBox[{RowBox[{RowBox[{"t", "[", RowBox[{"[", RowBox[
+                          {"Sequence", "@@", "posSpec"}], "]"}], "]"}], ";", 
+                          "True"}], ",", " ", "False", ",", " ", RowBox[
+                          {"Part", "::", "partw"}]}], "]"}], ",", " ", 
+                     RowBox[{"Part", "::", "partw"}]}], "]"}]}], ";"}]], 
+            "CodeInput"]}, Open]], Cell[CellGroupData[
+          {Cell["\[LeftCeiling]Children\[RightFloor]", "CodeSubsubsection", 
+            Evaluatable -> True], Cell[BoxData[
+             {RowBox[{RowBox[{RowBox[{"treeChildren", "[", "\n", "  ", 
+                    RowBox[{"head_", ",", "\n", "  ", "obj_", ",", "\n", 
+                      "  ", "list_", ",", " ", "\n", "  ", RowBox[{"node", 
+                        ":", RowBox[{"{", RowBox[{"data_List", ",", " ", 
+                          "children_List"}], "}"}]}], ",", " ", "\n", "  ", 
+                      RowBox[{"pos", ":", RowBox[{RowBox[{"{", "__Integer", 
+                          "}"}], "|", "Integer"}]}]}], "\n", "  ", "]"}], 
+                  ":=", "\n", "  ", RowBox[{"With", "[", RowBox[
+                     {RowBox[{"{", RowBox[{"ps", "=", RowBox[{"treePosSpec", 
+                          "[", "pos", "]"}]}], "}"}], ",", "\n", "    ", 
+                      RowBox[{"If", "[", RowBox[{RowBox[{"treeHasDepth", "[", 
+                          RowBox[{"list", ",", " ", "ps"}], "]"}], ",", "\n", 
+                          "      ", RowBox[{"Insert", "[", RowBox[{"list", 
+                          ",", " ", "node", ",", " ", "ps"}], "]"}], ",", 
+                          "\n", "      ", RowBox[{RowBox[{"Message", "[", 
+                          RowBox[{RowBox[{"head", "::", "partw"}], ",", " ", 
+                          "pos", ",", " ", "obj"}], "]"}], ";", "\n", 
+                          "      ", RowBox[{"Failure", "[", RowBox[
+                          {"\"BadPart\"", ",", " ", RowBox[{"<|", "\n", 
+                          "        ", RowBox[{RowBox[{"\"MessageTemplate\"", 
+                          ":>", RowBox[{"head", "::", "partw"}]}], ",", "\n", 
+                          "        ", RowBox[{"\"MessageParameters\"", 
+                          "\[RuleDelayed]", RowBox[{"{", RowBox[{"pos", ",", 
+                          " ", "obj"}], "}"}]}]}], "\n", "        ", 
+                          "|>"}]}], "\n", "        ", "]"}]}]}], "\n", 
+                        "      ", "]"}]}], "\n", "    ", "]"}]}], ";"}], 
+              "\n", RowBox[{RowBox[{RowBox[{"treeInsert", "[", "\n", "  ", 
+                    RowBox[{"head_", ",", "\n", "  ", "obj_", ",", "\n", 
+                      "  ", "list_", ",", " ", "\n", "  ", RowBox[
+                       {"TreeNode", "[", RowBox[{"data_List", ",", " ", 
+                          "children_List"}], "]"}], ",", " ", "\n", "  ", 
+                      RowBox[{"pos", ":", RowBox[{RowBox[{"{", "__Integer", 
+                          "}"}], "|", "Integer"}]}]}], "\n", "  ", "]"}], 
+                  ":=", "\n", "  ", RowBox[{"treeInsert", "[", RowBox[
+                     {"head", ",", " ", "obj", ",", " ", "list", ",", " ", 
+                      RowBox[{"{", RowBox[{"data", ",", " ", "children"}], 
+                        "}"}], ",", " ", "pos"}], "]"}]}], ";"}]}], 
+            "CodeInput"]}, Open]], Cell[CellGroupData[
+          {Cell["\[LeftCeiling]Insert\[RightFloor]", "CodeSubsubsection", 
+            Evaluatable -> True], Cell[BoxData[
+             {RowBox[{RowBox[{RowBox[{"treeInsert", "[", "\n", "  ", 
+                    RowBox[{"head_", ",", "\n", "  ", "obj_", ",", "\n", 
+                      "  ", "list_", ",", " ", "\n", "  ", RowBox[{"node", 
+                        ":", RowBox[{"{", RowBox[{"data_List", ",", " ", 
+                          "children_List"}], "}"}]}], ",", " ", "\n", "  ", 
+                      RowBox[{"pos", ":", RowBox[{RowBox[{"{", "__Integer", 
+                          "}"}], "|", "Integer"}]}]}], "\n", "  ", "]"}], 
+                  ":=", "\n", "  ", RowBox[{"With", "[", RowBox[
+                     {RowBox[{"{", RowBox[{"ps", "=", RowBox[{"treePosSpec", 
+                          "[", "pos", "]"}]}], "}"}], ",", "\n", "    ", 
+                      RowBox[{"If", "[", RowBox[{RowBox[{"treeHasDepth", "[", 
+                          RowBox[{"list", ",", " ", "ps"}], "]"}], ",", "\n", 
+                          "      ", RowBox[{"Insert", "[", RowBox[{"list", 
+                          ",", " ", "node", ",", " ", "ps"}], "]"}], ",", 
+                          "\n", "      ", RowBox[{RowBox[{"Message", "[", 
+                          RowBox[{RowBox[{"head", "::", "partw"}], ",", " ", 
+                          "pos", ",", " ", "obj"}], "]"}], ";", "\n", 
+                          "      ", RowBox[{"Failure", "[", RowBox[
+                          {"\"BadPart\"", ",", " ", RowBox[{"<|", "\n", 
+                          "        ", RowBox[{RowBox[{"\"MessageTemplate\"", 
+                          ":>", RowBox[{"head", "::", "partw"}]}], ",", "\n", 
+                          "        ", RowBox[{"\"MessageParameters\"", 
+                          "\[RuleDelayed]", RowBox[{"{", RowBox[{"pos", ",", 
+                          " ", "obj"}], "}"}]}]}], "\n", "        ", 
+                          "|>"}]}], "\n", "        ", "]"}]}]}], "\n", 
+                        "      ", "]"}]}], "\n", "    ", "]"}]}], ";"}], 
+              "\n", RowBox[{RowBox[{RowBox[{"treeInsert", "[", "\n", "  ", 
+                    RowBox[{"head_", ",", "\n", "  ", "obj_", ",", "\n", 
+                      "  ", "list_", ",", " ", "\n", "  ", RowBox[
+                       {"TreeNode", "[", RowBox[{"data_List", ",", " ", 
+                          "children_List"}], "]"}], ",", " ", "\n", "  ", 
+                      RowBox[{"pos", ":", RowBox[{RowBox[{"{", "__Integer", 
+                          "}"}], "|", "Integer"}]}]}], "\n", "  ", "]"}], 
+                  ":=", "\n", "  ", RowBox[{"treeInsert", "[", RowBox[
+                     {"head", ",", " ", "obj", ",", " ", "list", ",", " ", 
+                      RowBox[{"{", RowBox[{"data", ",", " ", "children"}], 
+                        "}"}], ",", " ", "pos"}], "]"}]}], ";"}]}], 
+            "CodeInput"], Cell[BoxData[{RowBox[{RowBox[{RowBox[{"TreeInsert", 
+                    "[", "\n", "  ", RowBox[{RowBox[{"n", ":", RowBox[
+                         {"Tree", "[", "t_", "]"}]}], ",", " ", "\n", "  ", 
+                      RowBox[{"node", ":", RowBox[{RowBox[{"{", RowBox[
+                          {"data_List", ",", " ", "children_List"}], "}"}], 
+                          "|", RowBox[{"_TreeNode", "?", "TreeNodeQ"}]}]}], 
+                      ",", " ", "\n", "  ", RowBox[{"pos", ":", RowBox[
+                         {RowBox[{"{", "__Integer", "}"}], "|", 
+                          "Integer"}]}]}], "\n", "  ", "]"}], ":=", "\n", 
+                  "  ", RowBox[{"With", "[", RowBox[{RowBox[{"{", RowBox[
+                         {"l", "=", RowBox[{"treeInsert", "[", RowBox[
+                          {"Tree", ",", " ", "n", ",", " ", "t", ",", " ", 
+                          "node", ",", " ", "pos"}], "]"}]}], "}"}], ",", 
+                      "\n", "    ", RowBox[{"If", "[", RowBox[{RowBox[
+                          {"ListQ", "@", "l"}], ",", " ", RowBox[{"newTree", 
+                          "[", "l", "]"}], ",", " ", "l"}], "]"}]}], "\n", 
+                    "    ", "]"}]}], ";"}], "\n", RowBox[{RowBox[
+                 {RowBox[{"TreeInsert", "[", "\n", "  ", RowBox[
+                     {RowBox[{"n", ":", RowBox[{"TreeNode", "[", RowBox[
+                          {"d_", ",", " ", "t_"}], "]"}]}], ",", " ", "\n", 
+                      "  ", RowBox[{"node", ":", RowBox[{RowBox[{"{", RowBox[
+                          {"data_List", ",", " ", "children_List"}], "}"}], 
+                          "|", RowBox[{"_TreeNode", "?", "TreeNodeQ"}]}]}], 
+                      ",", " ", "\n", "  ", RowBox[{"pos", ":", RowBox[
+                         {RowBox[{"{", "__Integer", "}"}], "|", 
+                          "Integer"}]}]}], "\n", "  ", "]"}], ":=", "\n", 
+                  "  ", RowBox[{"With", "[", RowBox[{RowBox[{"{", RowBox[
+                         {"l", "=", RowBox[{"treeInsert", "[", RowBox[
+                          {"TreeNode", ",", " ", "n", ",", " ", "t", ",", 
+                          " ", "node", ",", " ", "pos"}], "]"}]}], "}"}], 
+                      ",", "\n", "    ", RowBox[{"If", "[", RowBox[
+                         {RowBox[{"ListQ", "@", "l"}], ",", " ", RowBox[
+                          {"newNode", "[", RowBox[{"data", ",", " ", "l"}], 
+                          "]"}], ",", " ", "l"}], "]"}]}], "\n", "    ", 
+                    "]"}]}], ";"}]}], "CodeInput"]}, Open]], 
+        Cell["\[LeftCeiling]Pop\[RightFloor]", "CodeSubsubsection", 
+         Evaluatable -> True], Cell[CellGroupData[
+          {Cell["\[LeftCeiling]Insert\[RightFloor]", "CodeSubsubsection", 
+            Evaluatable -> True], Cell[BoxData[
+             {RowBox[{RowBox[{RowBox[{"treePop", "[", "\n", "  ", RowBox[
+                     {"head_", ",", "\n", "  ", "obj_", ",", "\n", "  ", 
+                      "list_", ",", " ", "\n", "  ", RowBox[{"node", ":", 
+                        RowBox[{"{", RowBox[{"data_List", ",", " ", 
+                          "children_List"}], "}"}]}], ",", " ", "\n", "  ", 
+                      RowBox[{"pos", ":", RowBox[{RowBox[{"{", "__Integer", 
+                          "}"}], "|", "Integer"}]}]}], "\n", "  ", "]"}], 
+                  ":=", "\n", "  ", RowBox[{"With", "[", RowBox[
+                     {RowBox[{"{", RowBox[{"ps", "=", RowBox[{"treePosSpec", 
+                          "[", "pos", "]"}]}], "}"}], ",", "\n", "    ", 
+                      RowBox[{"If", "[", RowBox[{RowBox[{"treeHasDepth", "[", 
+                          RowBox[{"list", ",", " ", "ps"}], "]"}], ",", "\n", 
+                          "      ", RowBox[{"Insert", "[", RowBox[{"list", 
+                          ",", " ", "node", ",", " ", "ps"}], "]"}], ",", 
+                          "\n", "      ", RowBox[{RowBox[{"Message", "[", 
+                          RowBox[{RowBox[{"head", "::", "partw"}], ",", " ", 
+                          "pos", ",", " ", "obj"}], "]"}], ";", "\n", 
+                          "      ", RowBox[{"Failure", "[", RowBox[
+                          {"\"BadPart\"", ",", " ", RowBox[{"<|", "\n", 
+                          "        ", RowBox[{RowBox[{"\"MessageTemplate\"", 
+                          ":>", RowBox[{"head", "::", "partw"}]}], ",", "\n", 
+                          "        ", RowBox[{"\"MessageParameters\"", 
+                          "\[RuleDelayed]", RowBox[{"{", RowBox[{"pos", ",", 
+                          " ", "obj"}], "}"}]}]}], "\n", "        ", 
+                          "|>"}]}], "\n", "        ", "]"}]}]}], "\n", 
+                        "      ", "]"}]}], "\n", "    ", "]"}]}], ";"}], 
+              "\n", RowBox[{RowBox[{RowBox[{"treeInsert", "[", "\n", "  ", 
+                    RowBox[{"head_", ",", "\n", "  ", "obj_", ",", "\n", 
+                      "  ", "list_", ",", " ", "\n", "  ", RowBox[
+                       {"TreeNode", "[", RowBox[{"data_List", ",", " ", 
+                          "children_List"}], "]"}], ",", " ", "\n", "  ", 
+                      RowBox[{"pos", ":", RowBox[{RowBox[{"{", "__Integer", 
+                          "}"}], "|", "Integer"}]}]}], "\n", "  ", "]"}], 
+                  ":=", "\n", "  ", RowBox[{"treeInsert", "[", RowBox[
+                     {"head", ",", " ", "obj", ",", " ", "list", ",", " ", 
+                      RowBox[{"{", RowBox[{"data", ",", " ", "children"}], 
+                        "}"}], ",", " ", "pos"}], "]"}]}], ";"}]}], 
+            "CodeInput"], Cell[BoxData[{RowBox[{RowBox[{RowBox[{"TreeInsert", 
+                    "[", "\n", "  ", RowBox[{RowBox[{"n", ":", RowBox[
+                         {"Tree", "[", "t_", "]"}]}], ",", " ", "\n", "  ", 
+                      RowBox[{"node", ":", RowBox[{RowBox[{"{", RowBox[
+                          {"data_List", ",", " ", "children_List"}], "}"}], 
+                          "|", RowBox[{"_TreeNode", "?", "TreeNodeQ"}]}]}], 
+                      ",", " ", "\n", "  ", RowBox[{"pos", ":", RowBox[
+                         {RowBox[{"{", "__Integer", "}"}], "|", 
+                          "Integer"}]}]}], "\n", "  ", "]"}], ":=", "\n", 
+                  "  ", RowBox[{"With", "[", RowBox[{RowBox[{"{", RowBox[
+                         {"l", "=", RowBox[{"treeInsert", "[", RowBox[
+                          {"Tree", ",", " ", "n", ",", " ", "t", ",", " ", 
+                          "node", ",", " ", "pos"}], "]"}]}], "}"}], ",", 
+                      "\n", "    ", RowBox[{"If", "[", RowBox[{RowBox[
+                          {"ListQ", "@", "l"}], ",", " ", RowBox[{"newTree", 
+                          "[", "l", "]"}], ",", " ", "l"}], "]"}]}], "\n", 
+                    "    ", "]"}]}], ";"}], "\n", RowBox[{RowBox[
+                 {RowBox[{"TreeInsert", "[", "\n", "  ", RowBox[
+                     {RowBox[{"n", ":", RowBox[{"TreeNode", "[", RowBox[
+                          {"d_", ",", " ", "t_"}], "]"}]}], ",", " ", "\n", 
+                      "  ", RowBox[{"node", ":", RowBox[{RowBox[{"{", RowBox[
+                          {"data_List", ",", " ", "children_List"}], "}"}], 
+                          "|", RowBox[{"_TreeNode", "?", "TreeNodeQ"}]}]}], 
+                      ",", " ", "\n", "  ", RowBox[{"pos", ":", RowBox[
+                         {RowBox[{"{", "__Integer", "}"}], "|", 
+                          "Integer"}]}]}], "\n", "  ", "]"}], ":=", "\n", 
+                  "  ", RowBox[{"With", "[", RowBox[{RowBox[{"{", RowBox[
+                         {"l", "=", RowBox[{"treeInsert", "[", RowBox[
+                          {"TreeNode", ",", " ", "n", ",", " ", "t", ",", 
+                          " ", "node", ",", " ", "pos"}], "]"}]}], "}"}], 
+                      ",", "\n", "    ", RowBox[{"If", "[", RowBox[
+                         {RowBox[{"ListQ", "@", "l"}], ",", " ", RowBox[
+                          {"newNode", "[", RowBox[{"data", ",", " ", "l"}], 
+                          "]"}], ",", " ", "l"}], "]"}]}], "\n", "    ", 
+                    "]"}]}], ";"}]}], "CodeInput"]}, Open]], 
+        Cell[CellGroupData[{Cell["\[LeftCeiling]Formatting\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[BoxData[{RowBox[{RowBox[{RowBox[{"Format", "[", RowBox[
+                     {RowBox[{"q_StackQueue", "?", "StackQ"}], ",", " ", 
+                      "StandardForm"}], "]"}], ":=", "\[IndentingNewLine]", 
+                  RowBox[{"RawBoxes", "@", "\[IndentingNewLine]", RowBox[
+                     {"BoxForm`ArrangeSummaryBox", "[", 
+                      "\[IndentingNewLine]", RowBox[{"StackQueue", ",", 
+                        "\[IndentingNewLine]", "q", ",", 
+                        "\[IndentingNewLine]", "None", ",", 
+                        "\[IndentingNewLine]", RowBox[{"{", 
+                          "\[IndentingNewLine]", RowBox[
+                          {"BoxForm`MakeSummaryItem", "[", RowBox[{RowBox[
+                          {"{", RowBox[{"\"Size:\"", ",", " ", RowBox[
+                          {"StackSize", "[", "q", "]"}]}], "}"}], ",", " ", 
+                          "StandardForm"}], "]"}], "\[IndentingNewLine]", 
+                          "}"}], ",", "\[IndentingNewLine]", RowBox[{"{", 
+                          "}"}], ",", "\[IndentingNewLine]", 
+                        "StandardForm"}], "\[IndentingNewLine]", "]"}]}]}], 
+                ";"}], "\[IndentingNewLine]", RowBox[{RowBox[{"Format", "[", 
+                  RowBox[{RowBox[{"q_StackQueue", "?", "StackQ"}], ",", " ", 
+                    "TextForm"}], "]"}], ":=", "\[IndentingNewLine]", 
+                "\"StackQueue[<>]\""}]}], "CodeInput"]}, Open]]}, Open]], 
+     Cell[BoxData[RowBox[{RowBox[{"End", "[", "]"}], ";"}]], 
+      "InputSection"]}, Open]], Cell["", "SectionSeparator"]}, 
+ WindowSize -> {808, 755}, WindowMargins -> {{316, Automatic}, 
+   {Automatic, 50}}, TaggingRules -> 
+  {"UUIDButtons" -> 
+    {"Active" -> {"Button-89ffd2c3-ec41-4179-a9b1-8e28670bca2c" -> False, 
+       "Button-ca46e5e0-4fd1-47e8-8cf6-72998922b757" -> False, 
+       "Button-a6d68254-3684-4d32-83fc-e5ef6f443930" -> False}}}, 
+ FrontEndVersion -> "12.0 for Mac OS X x86 (64-bit) (April 8, 2019)", 
+ StyleDefinitions -> FrontEnd`FileName[{"BTools"}, "CodePackage.nb", 
+   CharacterEncoding -> "UTF-8"]]
