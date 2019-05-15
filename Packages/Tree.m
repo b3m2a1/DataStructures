@@ -97,16 +97,33 @@ treeHasDepth[t_, posSpec_]:=
 
 
 
+(* ::Subsubsubsection::Closed:: *)
+(*treeChildren*)
+
+
+
 treeChildren[
   head_,
   obj_,
   list_, 
-  node:{data_List, children_List}, 
-  pos:{__Integer}|Integer
+  pos:{__Integer}|_Integer,
+  children_
   ]:=
-  With[{ps=treePosSpec[pos]},
-    If[treeHasDepth[list, ps],
-      Insert[list, node, ps],
+  Module[
+    {
+      ps=Join[treePosSpec[pos], {2, children}],
+      $failed,
+      c
+      },
+    c=
+      Quiet[
+        Check[list[[Sequence@@ps]], 
+          $failed,
+          Part::partw], 
+        Part::partw
+        ];
+    If[c=!=$failed,
+      c,
       Message[head::partw, pos, obj];
       Failure["BadPart", <|
         "MessageTemplate":>head::partw,
@@ -115,14 +132,43 @@ treeChildren[
         ]
       ]
     ];
-treeInsert[
-  head_,
-  obj_,
-  list_, 
-  TreeNode[data_List, children_List], 
-  pos:{__Integer}|Integer
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*TreeChildren*)
+
+
+
+TreeChildren[
+  n:Tree[t_], 
+  pos:{__Integer}|_Integer,
+  children:{___Integer}|_Integer|_Span|All:All
   ]:=
-  treeInsert[head, obj, list, {data, children}, pos];
+  With[{l=treeChildren[Tree, n, t, pos, children]},
+    Which[
+      Not@ListQ@l, 
+        l,
+      IntegerQ@children,
+        newNode@@l,
+      True,
+        newNode@@@l
+      ]
+    ];
+TreeChildren[
+  n:TreeNode[d_, t_], 
+  pos:{__Integer}|_Integer,
+  children:{___Integer}|_Integer|_Span|All:All
+  ]:=
+  With[{l=treeChildren[TreeNode, n, t, pos, children]},
+    Which[
+      Not@ListQ@l, 
+        l,
+      IntegerQ@children,
+        newNode@@l,
+      True,
+        newNode@@@l
+      ]
+    ];
 
 
 (* ::Subsubsection::Closed:: *)
@@ -130,22 +176,36 @@ treeInsert[
 
 
 
+(* ::Subsubsubsection::Closed:: *)
+(*treeInsert*)
+
+
+
 treeInsert[
   head_,
   obj_,
   list_, 
   node:{data_List, children_List}, 
-  pos:{__Integer}|Integer
+  pos:{__Integer}|_Integer
   ]:=
-  With[{ps=treePosSpec[pos]},
-    If[treeHasDepth[list, ps],
-      Insert[list, node, ps],
+  Module[{c, $failed, ps=treePosSpec[pos]},
+    c=
+      Quiet[
+        Check[
+          Insert[list, node, ps],
+          $failed,
+          Insert::ins
+          ],
+        Insert::ins
+        ];
+    If[c===$failed,
       Message[head::partw, pos, obj];
       Failure["BadPart", <|
         "MessageTemplate":>head::partw,
         "MessageParameters":>{pos, obj}
         |>
-        ]
+        ],
+      c
       ]
     ];
 treeInsert[
@@ -153,15 +213,20 @@ treeInsert[
   obj_,
   list_, 
   TreeNode[data_List, children_List], 
-  pos:{__Integer}|Integer
+  pos:{__Integer}|_Integer
   ]:=
   treeInsert[head, obj, list, {data, children}, pos];
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*TreeInsert*)
+
 
 
 TreeInsert[
   n:Tree[t_], 
   node:{data_List, children_List}|_TreeNode?TreeNodeQ, 
-  pos:{__Integer}|Integer
+  pos:{__Integer}|_Integer
   ]:=
   With[{l=treeInsert[Tree, n, t, node, pos]},
     If[ListQ@l, newTree[l], l]
@@ -169,11 +234,17 @@ TreeInsert[
 TreeInsert[
   n:TreeNode[d_, t_], 
   node:{data_List, children_List}|_TreeNode?TreeNodeQ, 
-  pos:{__Integer}|Integer
+  pos:{__Integer}|_Integer
   ]:=
   With[{l=treeInsert[TreeNode, n, t, node, pos]},
     If[ListQ@l, newNode[data, l], l]
     ];
+TreeInsert[
+  n:_Tree|_TreeNode, 
+  data_, 
+  pos:{__Integer}|_Integer
+  ]:=
+  TreeInsert[n, {data, {}}, pos]
 
 
 (* ::Subsubsection::Closed:: *)
@@ -181,8 +252,8 @@ TreeInsert[
 
 
 
-(* ::Subsubsection::Closed:: *)
-(*Insert*)
+(* ::Subsubsubsection::Closed:: *)
+(*treePop*)
 
 
 
@@ -190,12 +261,23 @@ treePop[
   head_,
   obj_,
   list_, 
-  node:{data_List, children_List}, 
-  pos:{__Integer}|Integer
+  pos:{__Integer}|_Integer
   ]:=
-  With[{ps=treePosSpec[pos]},
-    If[treeHasDepth[list, ps],
-      Insert[list, node, ps],
+  Module[
+    {
+      ps=treePosSpec[pos],
+      $failed,
+      c
+      },
+    c=
+      Quiet[
+        Check[list[[Sequence@@ps]], 
+          $failed,
+          Part::partw], 
+        Part::partw
+        ];
+    If[c=!=$failed,
+      {c, Delete[list, ps]},
       Message[head::partw, pos, obj];
       Failure["BadPart", <|
         "MessageTemplate":>head::partw,
@@ -204,32 +286,27 @@ treePop[
         ]
       ]
     ];
-treeInsert[
-  head_,
-  obj_,
-  list_, 
-  TreeNode[data_List, children_List], 
-  pos:{__Integer}|Integer
-  ]:=
-  treeInsert[head, obj, list, {data, children}, pos];
 
 
-TreeInsert[
+(* ::Subsubsubsection::Closed:: *)
+(*TreePop*)
+
+
+
+TreePop[
   n:Tree[t_], 
-  node:{data_List, children_List}|_TreeNode?TreeNodeQ, 
-  pos:{__Integer}|Integer
+  pos:{__Integer}|_Integer
   ]:=
-  With[{l=treeInsert[Tree, n, t, node, pos]},
-    If[ListQ@l, newTree[l], l]
+  With[{l=treePop[Tree, n, t, pos]},
+    If[ListQ@l, {newNode@@l[[1]], newTree[l[[2]]]}, l]
     ];
-TreeInsert[
+TreePop[
   n:TreeNode[d_, t_], 
-  node:{data_List, children_List}|_TreeNode?TreeNodeQ, 
-  pos:{__Integer}|Integer
+  pos:{__Integer}|_Integer
   ]:=
-  With[{l=treeInsert[TreeNode, n, t, node, pos]},
-    If[ListQ@l, newNode[data, l], l]
-    ];
+  With[{l=treePop[TreeNode, n, t, pos]},
+    If[ListQ@l, {newNode@@l[[1]], newTree[l[[2]]]}, l]
+    ]
 
 
 (* ::Subsubsection::Closed:: *)
@@ -237,20 +314,20 @@ TreeInsert[
 
 
 
-Format[q_StackQueue?StackQ, StandardForm]:=
+Format[q_Tree?TreeQ, StandardForm]:=
 RawBoxes@
 BoxForm`ArrangeSummaryBox[
-StackQueue,
+Tree,
 q,
 None,
 {
-BoxForm`MakeSummaryItem[{"Size:", StackSize[q]}, StandardForm]
+BoxForm`MakeSummaryItem[{"", ""}, StandardForm]
 },
 {},
 StandardForm
 ];
-Format[q_StackQueue?StackQ, TextForm]:=
-"StackQueue[<>]"
+Format[q_Tree?Tree, TextForm]:=
+"Tree[<>]"
 
 
 End[];
