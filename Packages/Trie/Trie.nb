@@ -1,171 +1,459 @@
-Notebook[{
-
-Cell[CellGroupData[{
-Cell["Trie", \
-"CodeSection",ExpressionUUID->"0f3ab7b4-87ba-467c-8f2e-b9a711696580"],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{
-   RowBox[{"Trie", "::", "usage"}], "=", "\"\<A Trie\>\""}], ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"TrieAdd", "::", "usage"}], "=", 
-   "\"\<Adds words to the Trie\>\""}], ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"TreeRemove", "::", "usage"}], "=", 
-   "\"\<Drops words from the Trie\>\""}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"71cf1220-b0af-402e-9f07-d70ddb4818d1"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"TrieMatches", "::", "usage"}], "=", 
-   "\"\<Returns the possible matches for a given prefix list\>\""}], 
-  ";"}]], "CodeInput",ExpressionUUID->"ec2c990f-c7e1-4c55-b5fa-e02755a0ae46"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], 
-  ";"}]], "InputSection",ExpressionUUID->"5fbda725-b5ad-4810-a4ef-\
-453bde0c0f50"],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]Trie\[RightFloor]", "CodeSubsection",
- Evaluatable->True,ExpressionUUID->"ab637360-df1d-43bb-a31c-d4089f3517bf"],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]Constructor\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"1c20b89b-bb94-4f9f-b625-1831a37f5922"],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{"Trie", "//", "ClearAll"}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"Trie", "[", 
-    RowBox[{"s", ":", 
-     RowBox[{"{", "___String", "}"}]}], "]"}], ":=", 
-   RowBox[{"Trie", "[", 
-    RowBox[{
-     RowBox[{"createTrie", "[", "s", "]"}], ",", " ", 
-     RowBox[{"Length", "@", "s"}]}], "]"}]}], ";"}], "\n", 
- RowBox[{
-  RowBox[{"unconstructedQ", "=", 
-   RowBox[{"Function", "[", 
-    RowBox[{"Null", ",", " ", 
-     RowBox[{"System`Private`EntryQ", "[", 
-      RowBox[{"Unevaluated", "[", "#", "]"}], "]"}], ",", " ", "HoldFirst"}], 
-    "]"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"q", ":", 
-   RowBox[{
-    RowBox[{"Trie", "[", 
-     RowBox[{
-      RowBox[{"a_Association", "?", "AssociationQ"}], ",", " ", 
-      "ct_Integer"}], "]"}], "?", "unconstructedQ"}]}], ":=", 
-  "\[IndentingNewLine]", 
-  RowBox[{"System`Private`SetNoEntry", "[", 
-   RowBox[{"Unevaluated", "@", "q"}], 
-   "]"}]}]}], \
-"CodeInput",ExpressionUUID->"6d9fa677-3729-41bb-8cb0-a7f2f1b8dc4c"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"newTrie", "[", 
-   RowBox[{"a_", ",", " ", "ct_"}], "]"}], ":=", "\n", "  ", 
-  RowBox[{"System`Private`SetNoEntry", "@", "\n", "    ", 
-   RowBox[{"Unevaluated", "[", 
-    RowBox[{"Trie", "[", 
-     RowBox[{"a", ",", " ", "ct"}], "]"}], 
-    "]"}]}]}]], \
-"CodeInput",ExpressionUUID->"49b495ad-8e84-4120-af3e-1f9eb4fd8c9c"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]Destructor Operations\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"289580c0-9177-44eb-9ba2-81e3a0027ef6"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"(*", " ", 
-   RowBox[{"basic", " ", "destructors"}], " ", "*)"}], "\[IndentingNewLine]", 
-  
-  RowBox[{
-   RowBox[{
-    RowBox[{
-     RowBox[{"TrieQ", "[", "q_Trie", "]"}], ":=", 
-     RowBox[{"System`Private`NoEntryQ", "[", "q", "]"}]}], ";"}], 
-   "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{
-     RowBox[{"TrieData", "[", 
-      RowBox[{"Trie", "[", "a_", "]"}], "]"}], ":=", "a"}], 
-    ";"}]}]}]], \
-"CodeInput",ExpressionUUID->"cca094d9-fa32-4dee-b9be-2e95b385f629"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["\[LeftCeiling]Formatting\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"eb0287a7-4d38-430f-b2bc-76663919eb27"],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{
-   RowBox[{"Format", "[", 
-    RowBox[{
-     RowBox[{"t_Trie", "?", "TrieQ"}], ",", " ", "StandardForm"}], "]"}], ":=",
-    "\[IndentingNewLine]", 
-   RowBox[{"RawBoxes", "@", "\[IndentingNewLine]", 
-    RowBox[{"BoxForm`ArrangeSummaryBox", "[", "\[IndentingNewLine]", 
-     RowBox[{
-     "Trie", ",", "\[IndentingNewLine]", "t", ",", "\[IndentingNewLine]", 
-      "None", ",", "\[IndentingNewLine]", 
-      RowBox[{"{", "\[IndentingNewLine]", 
-       RowBox[{"BoxForm`MakeSummaryItem", "[", 
-        RowBox[{
-         RowBox[{"{", 
-          RowBox[{"\"\<Words:\>\"", ",", " ", 
-           RowBox[{"TrieWordCount", "[", "t", "]"}]}], "}"}], ",", " ", 
-         "StandardForm"}], "]"}], "\[IndentingNewLine]", "}"}], ",", 
-      "\[IndentingNewLine]", 
-      RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", "StandardForm"}], 
-     "\[IndentingNewLine]", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Format", "[", 
-   RowBox[{
-    RowBox[{"t_Trie", "?", "TrieQ"}], ",", " ", "TextForm"}], "]"}], ":=", 
-  "\[IndentingNewLine]", 
-  "\"\<Trie[<>]\>\""}]}], \
-"CodeInput",ExpressionUUID->"26861b1a-785b-46ad-b228-b32a4becf8b7"]
-}, Open  ]]
-}, Open  ]],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"End", "[", "]"}], 
-  ";"}]], "InputSection",ExpressionUUID->"68a0b91b-8014-478f-9b26-\
-0d27d9ee4950"]
-}, Open  ]],
-
-Cell["", "SectionSeparator",ExpressionUUID->"7fa39073-1cd9-4942-9894-\
-cf58fe2186c8"]
-},
-WindowSize->{808, 755},
-WindowMargins->{{316, Automatic}, {Automatic, 50}},
-TaggingRules->{
- "UUIDButtons" -> {
-   "Active" -> {
-     "Button-89ffd2c3-ec41-4179-a9b1-8e28670bca2c" -> False, 
-      "Button-ca46e5e0-4fd1-47e8-8cf6-72998922b757" -> False, 
-      "Button-a6d68254-3684-4d32-83fc-e5ef6f443930" -> False}}},
-FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
-StyleDefinitions->FrontEnd`FileName[{"BTools"}, "CodePackage.nb", 
-  CharacterEncoding -> "UTF-8"]
-]
-
+Notebook[{Cell[CellGroupData[{Cell["Trie", "CodeSection"], 
+     Cell[BoxData[{RowBox[{RowBox[{RowBox[{"Trie", "::", "usage"}], "=", 
+            "\"A Trie\""}], ";"}], "\n", 
+        RowBox[{RowBox[{RowBox[{"TrieData", "::", "usage"}], "=", 
+            "\"Returns the core data used by the Trie\""}], ";"}], "\n", 
+        RowBox[{RowBox[{RowBox[{"TrieAdd", "::", "usage"}], "=", 
+            "\"Adds words to the Trie\""}], ";"}], "\n", 
+        RowBox[{RowBox[{RowBox[{"TreeRemove", "::", "usage"}], "=", 
+            "\"Drops words from the Trie\""}], ";"}]}], "CodeInput"], 
+     Cell[BoxData[{RowBox[{RowBox[{RowBox[{"TrieMatches", "::", "usage"}], 
+            "=", 
+            "\"Returns the possible matches for a given prefix list\""}], 
+          ";"}], "\n", RowBox[{RowBox[{RowBox[{"TrieClosest", "::", 
+              "usage"}], "=", "\"Returns the closest possible matches for a \
+given word list\""}], ";"}]}], "CodeInput"], 
+     Cell[BoxData[RowBox[{RowBox[{RowBox[{"TrieWordCount", "::", "usage"}], 
+           "=", "\"Gives the number of words in the Trie\""}], ";"}]], 
+      "CodeInput"], Cell[BoxData[RowBox[
+        {RowBox[{"Begin", "[", "\"`Private`\"", "]"}], ";"}]], 
+      "InputSection"], Cell[CellGroupData[
+       {Cell["\[LeftCeiling]Trie\[RightFloor]", "CodeSubsection", 
+         Evaluatable -> True], Cell["\[LeftCeiling]\n\tNone of this *needs* \
+UTF8 so I should allow the Trie to use a different encoding for memory \
+possibly...\n\[RightFloor]", "Text", Evaluatable -> True], 
+        Cell[CellGroupData[{Cell["\[LeftCeiling]Constructor\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[BoxData[{RowBox[{RowBox[{"Trie", "//", "ClearAll"}], ";"}], 
+              "\[IndentingNewLine]", RowBox[{RowBox[{RowBox[{"Trie", "[", 
+                    RowBox[{"s", ":", RowBox[{"{", "___String", "}"}]}], 
+                    "]"}], ":=", RowBox[{"Trie", "[", RowBox[{"buildTrie", 
+                      "[", "s", "]"}], "]"}]}], ";"}], "\n", 
+              RowBox[{RowBox[{"unconstructedQ", "=", RowBox[{"Function", "[", 
+                    RowBox[{"Null", ",", " ", RowBox[
+                       {"System`Private`EntryQ", "[", RowBox[{"Unevaluated", 
+                          "[", "#", "]"}], "]"}], ",", " ", "HoldFirst"}], 
+                    "]"}]}], ";"}], "\[IndentingNewLine]", 
+              RowBox[{RowBox[{"q", ":", RowBox[{RowBox[{"Trie", "[", 
+                      RowBox[{"a_Association", "?", "AssociationQ"}], "]"}], 
+                    "?", "unconstructedQ"}]}], ":=", "\[IndentingNewLine]", 
+                RowBox[{"System`Private`SetNoEntry", "[", RowBox[
+                   {"Unevaluated", "@", "q"}], "]"}]}]}], "CodeInput"], 
+           Cell[BoxData[RowBox[{RowBox[{"newTrie", "[", "a_", "]"}], ":=", 
+               "\n", "  ", RowBox[{"System`Private`SetNoEntry", "@", "\n", 
+                 "    ", RowBox[{"Unevaluated", "[", RowBox[{"Trie", "[", 
+                     "a", "]"}], "]"}]}]}]], "CodeInput"], 
+           Cell[CellGroupData[{Cell["\[LeftCeiling]buildTrie\[RightFloor]", 
+               "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
+                {RowBox[{RowBox[{RowBox[{"attachDefaultWords", "[", RowBox[
+                        {"assoc_", ",", " ", RowBox[{"cur_:", "\"\""}]}], 
+                       "]"}], ":=", "\n", "  ", RowBox[{"AssociationMap", 
+                       "[", "\n", "    ", RowBox[{RowBox[{RowBox[{"With", 
+                          "[", RowBox[{RowBox[{"{", RowBox[{"cur1", "=", 
+                          RowBox[{"cur", "<>", RowBox[{"FromCharacterCode", 
+                          "[", RowBox[{RowBox[{"#", "[", RowBox[{"[", "1", 
+                          "]"}], "]"}], ",", " ", "\"UTF8\""}], "]"}]}]}], 
+                          "}"}], ",", "\n", "      ", RowBox[{RowBox[{"#", 
+                          "[", RowBox[{"[", "1", "]"}], "]"}], "\[Rule]", 
+                          "\n", "        ", RowBox[{"Map", "[", "\n", 
+                          "          ", RowBox[{RowBox[{RowBox[{"If", "[", 
+                          RowBox[{RowBox[{"AssociationQ", "[", "#", "]"}], 
+                          ",", " ", RowBox[{"attachDefaultWords", "[", RowBox[
+                          {"#", ",", " ", "cur1"}], "]"}], ",", " ", "#"}], 
+                          "]"}], "&"}], ",", "\n", "          ", RowBox[
+                          {"If", "[", RowBox[{RowBox[{"AssociationQ", "@", 
+                          RowBox[{"#", "[", RowBox[{"[", "2", "]"}], "]"}]}], 
+                          ",", " ", RowBox[{"Append", "[", RowBox[{RowBox[
+                          {"#", "[", RowBox[{"[", "2", "]"}], "]"}], ",", 
+                          " ", RowBox[{RowBox[{"-", "1"}], "\[Rule]", 
+                          "cur1"}]}], "]"}], ",", " ", RowBox[{"#", "[", 
+                          RowBox[{"[", "2", "]"}], "]"}]}], "]"}]}], "\n", 
+                          "          ", "]"}]}]}], "\n", "      ", "]"}], 
+                          "&"}], ",", "\n", "    ", "assoc"}], "\n", "    ", 
+                       "]"}]}], ";"}], "\n", RowBox[{RowBox[{RowBox[
+                      {"getPrefixes", "[", RowBox[{"strings_", ",", " ", 
+                         "pos_"}], "]"}], ":=", "\n", "  ", RowBox[{"With", 
+                       "[", RowBox[{RowBox[{"{", RowBox[{"longer", "=", 
+                          RowBox[{"Select", "[", RowBox[{"strings", ",", " ", 
+                          RowBox[{RowBox[{RowBox[{"StringLength", "@", "#"}], 
+                          ">=", "pos"}], "&"}]}], "]"}]}], "}"}], ",", "\n", 
+                         "    ", RowBox[{"Which", "[", "\n", "      ", 
+                          RowBox[{RowBox[{RowBox[{"Length", "@", "strings"}], 
+                          "==", "1"}], ",", "\n", "        ", RowBox[
+                          {"strings", "[", RowBox[{"[", "1", "]"}], "]"}], 
+                          ",", "\n", "      ", RowBox[{RowBox[{"Length", "@", 
+                          "longer"}], ">", "0"}], ",", "\n", "        ", 
+                          RowBox[{"GroupBy", "[", RowBox[{"longer", ",", " ", 
+                          "\n", "          ", RowBox[{RowBox[{RowBox[
+                          {"ToCharacterCode", "[", RowBox[{RowBox[
+                          {"StringTake", "[", RowBox[{"#", ",", " ", RowBox[
+                          {"{", "pos", "}"}]}], "]"}], ",", " ", 
+                          "\"UTF8\""}], "]"}], "[", RowBox[{"[", "1", "]"}], 
+                          "]"}], "&"}], ",", " ", "\n", "          ", RowBox[
+                          {RowBox[{"getPrefixes", "[", RowBox[{"#", ",", " ", 
+                          RowBox[{"pos", "+", "1"}]}], "]"}], "&"}]}], "\n", 
+                          "          ", "]"}], ",", "\n", "      ", "True", 
+                          ",", "\n", "        ", RowBox[{"strings", "[", 
+                          RowBox[{"[", "1", "]"}], "]"}]}], "\n", "      ", 
+                          "]"}]}], "\n", "    ", "]"}]}], ";"}], "\n", 
+                 RowBox[{RowBox[{"buildTrie", "[", RowBox[{"strings_", ",", 
+                       " ", RowBox[{"startAt_:", "1"}]}], "]"}], ":=", "\n", 
+                   "  ", RowBox[{"attachDefaultWords", "@", RowBox[
+                      {"getPrefixes", "[", RowBox[{"strings", ",", " ", 
+                         "startAt"}], "]"}]}]}]}], "CodeInput"]}, Open]]}, 
+          Open]], Cell[CellGroupData[
+          {Cell["\[LeftCeiling]Destructor Operations\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[BoxData[RowBox[{RowBox[{"(*", " ", RowBox[{"basic", " ", 
+                   "destructors"}], " ", "*)"}], "\[IndentingNewLine]", 
+               RowBox[{RowBox[{RowBox[{RowBox[{"TrieQ", "[", "q_Trie", "]"}], 
+                     ":=", RowBox[{"System`Private`NoEntryQ", "[", "q", 
+                       "]"}]}], ";"}], "\[IndentingNewLine]", RowBox[
+                  {RowBox[{RowBox[{"TrieData", "[", RowBox[{"Trie", "[", 
+                         "a_", "]"}], "]"}], ":=", "a"}], ";"}]}]}]], 
+            "CodeInput"]}, Open]], Cell[CellGroupData[
+          {Cell["\[LeftCeiling]TrieAdd\[RightFloor]", "CodeSubsubsection", 
+            Evaluatable -> True], Cell[CellGroupData[
+             {Cell["\[LeftCeiling]iTrieAdd\[RightFloor]", 
+               "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
+                {RowBox[{RowBox[{RowBox[{"groupPaths", "[", RowBox[{"{", 
+                         "p_String", "}"}], "]"}], ":=", "p"}], ";"}], "\n", 
+                 RowBox[{RowBox[{"groupPaths", "[", "p_", "]"}], ":=", "\n", 
+                   "  ", RowBox[{"GroupBy", "[", RowBox[{"p", ",", " ", 
+                       RowBox[{RowBox[{"(", RowBox[{RowBox[{"First", "[", 
+                          "#", "]"}], "&"}], ")"}], "\[Rule]", RowBox[
+                          {"(", RowBox[{RowBox[{"Rest", "[", "#", "]"}], 
+                          "&"}], ")"}]}], ",", " ", "groupPaths"}], 
+                     "]"}]}]}], "CodeInput"], Cell[BoxData[
+                {RowBox[{RowBox[{RowBox[{"mergeDown", "[", RowBox[
+                        {RowBox[{"s", ":", RowBox[{"{", "_String", "}"}]}], 
+                         ",", " ", "depth_"}], "]"}], ":=", "\n", "  ", 
+                     "s"}], ";"}], "\n", RowBox[{RowBox[{RowBox[{"mergeDown", 
+                       "[", RowBox[{RowBox[{"s", ":", RowBox[{"{", 
+                          "__String", "}"}]}], ",", " ", "depth_"}], "]"}], 
+                     ":=", "\n", "  ", RowBox[{"buildTrie", "[", RowBox[
+                        {"s", ",", " ", "depth"}], "]"}]}], ";"}], "\n", 
+                 RowBox[{RowBox[{RowBox[{"mergeDown", "[", RowBox[
+                        {RowBox[{"s", ":", RowBox[{"{", "__Association", 
+                          "}"}]}], ",", " ", "depth_"}], "]"}], ":=", "\n", 
+                     "  ", RowBox[{"mergeDown", "[", RowBox[{"s", ",", " ", 
+                         RowBox[{"depth", "+", "1"}]}], "]"}]}], ";"}], "\n", 
+                 RowBox[{RowBox[{RowBox[{"mergeDown", "[", RowBox[
+                        {RowBox[{"s", ":", RowBox[{"{", RowBox[
+                          {"___Association", ",", " ", "e_String", ",", " ", 
+                          "___"}], "}"}]}], ",", " ", "depth_"}], "]"}], 
+                     ":=", "\n", "  ", RowBox[{"Prepend", "[", RowBox[
+                        {RowBox[{"mergeDown", "[", RowBox[{RowBox[
+                          {"DeleteCases", "[", RowBox[{"s", ",", " ", "e"}], 
+                          "]"}], ",", " ", "depth"}], "]"}], ",", " ", 
+                         RowBox[{RowBox[{"-", "1"}], "\[Rule]", "e"}]}], 
+                       "]"}]}], ";"}], "\n", RowBox[{RowBox[{"mergeDown", 
+                     "[", RowBox[{"a_", ",", " ", "paths_", ",", " ", 
+                       RowBox[{"depth_:", "1"}]}], "]"}], ":=", "\n", "  ", 
+                   RowBox[{"Merge", "[", "\n", "    ", RowBox[{RowBox[
+                        {"{", RowBox[{"a", ",", " ", "paths"}], "}"}], ",", 
+                       "\n", "    ", RowBox[{RowBox[{"mergeDown", "[", 
+                          RowBox[{"#", ",", " ", "depth"}], "]"}], "&"}]}], 
+                     "\n", "    ", "]"}]}]}], "CodeInput"], Cell[BoxData[
+                {RowBox[{RowBox[{RowBox[{"iTrieAdd", "[", RowBox[{"a_", ",", 
+                         " ", RowBox[{"words", ":", RowBox[{"{", "__String", 
+                          "}"}]}]}], "]"}], ":=", "\n", "  ", RowBox[
+                      {"Module", "[", RowBox[{RowBox[{"{", RowBox[{"paths", 
+                          ",", " ", "new"}], "}"}], ",", "\n", "    ", 
+                         RowBox[{RowBox[{"paths", " ", "=", " ", "\n", 
+                          "      ", RowBox[{"MapThread", "[", "\n", 
+                          "        ", RowBox[{RowBox[{RowBox[{"Flatten", "[", 
+                          RowBox[{"{", RowBox[{"#", ",", " ", "#2"}], "}"}], 
+                          "]"}], "&"}], ",", "\n", "  ", "      ", RowBox[
+                          {"{", "\n", "  ", "        ", RowBox[{RowBox[
+                          {"Map", "[", RowBox[{"trieFindPrefixes", ",", " ", 
+                          RowBox[{"ToCharacterCode", "[", RowBox[{"words", 
+                          ",", " ", "\"UTF8\""}], "]"}]}], "]"}], ",", "\n", 
+                          "  ", "        ", "words"}], "\n", "  ", 
+                          "        ", "}"}]}], "\n", "  ", "      ", "]"}]}], 
+                          ";", "\n", "    ", RowBox[{"new", " ", "=", " ", 
+                          "\n", "      ", RowBox[{"groupPaths", "[", "paths", 
+                          "]"}]}], ";", "\n", "    ", RowBox[{"mergeDown", 
+                          "[", RowBox[{"{", RowBox[{"a", ",", " ", "new"}], 
+                          "}"}], "]"}]}]}], "\n", "    ", "]"}]}], ";"}], 
+                 "\n", RowBox[{" ", RowBox[{RowBox[{"iTrieAdd", "[", 
+                       RowBox[{"a_", ",", " ", "words_String"}], "]"}], ":=", 
+                     "\n", "   ", RowBox[{"iTrieAdd", "[", RowBox[{"a", ",", 
+                         " ", RowBox[{"{", "words", "}"}]}], "]"}]}]}]}], 
+               "CodeInput"]}, Open]], Cell[CellGroupData[
+             {Cell["\[LeftCeiling]TrieAdd\[RightFloor]", 
+               "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
+                RowBox[{RowBox[{RowBox[{"TrieAdd", "[", RowBox[{RowBox[
+                         {"Trie", "[", "a_", "]"}], ",", " ", "words_"}], 
+                      "]"}], ":=", "\n", "  ", RowBox[{"newTrie", "@", 
+                      RowBox[{"iTrieAdd", "[", RowBox[{"a", ",", " ", 
+                          "words"}], "]"}]}]}], ";"}]], "CodeInput"]}, 
+             Open]]}, Open]], Cell[CellGroupData[
+          {Cell["\[LeftCeiling]TrieRemove\[RightFloor]", "CodeSubsubsection", 
+            Evaluatable -> True], Cell[CellGroupData[
+             {Cell["\[LeftCeiling]iTrieRemove\[RightFloor]", 
+               "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
+                RowBox[{RowBox[{"iTrieRemove", "[", RowBox[{"a_", ",", " ", 
+                      RowBox[{"words", ":", RowBox[{"{", "__String", 
+                          "}"}]}]}], "]"}], ":=", "\n", "  ", RowBox[
+                   {"Module", "[", RowBox[{RowBox[{"{", RowBox[{"paths", ",", 
+                          " ", "new"}], "}"}], ",", "\n", "    ", RowBox[
+                       {RowBox[{"paths", " ", "=", " ", "\n", "      ", 
+                          RowBox[{"Flatten", "/@", "\n", "        ", RowBox[
+                          {"Map", "[", RowBox[{"trieFindPrefixes", ",", " ", 
+                          RowBox[{"ToCharacterCode", "[", RowBox[{"words", 
+                          ",", " ", "\"UTF8\""}], "]"}]}], "]"}]}]}], ";", 
+                        "\n", "    ", RowBox[{"paths", " ", "=", " ", 
+                          RowBox[{"Reverse", "@", RowBox[{"SortBy", "[", 
+                          RowBox[{"paths", ",", " ", "Length"}], "]"}]}]}], 
+                        ";", "\n", "    ", RowBox[{"Fold", "[", "\n", 
+                          "      ", RowBox[{RowBox[{RowBox[{"With", "[", 
+                          RowBox[{RowBox[{"{", RowBox[{"v", "=", RowBox[{"#", 
+                          "[", RowBox[{"[", RowBox[{"Sequence", "@@", "#2"}], 
+                          "]"}], "]"}]}], "}"}], ",", "\n", "        ", 
+                          RowBox[{"Which", "[", "\n", "          ", RowBox[
+                          {RowBox[{"StringQ", "@", "v"}], ",", "\n", 
+                          "            ", RowBox[{"Delete", "[", RowBox[{"#", 
+                          ",", " ", RowBox[{"Key", "/@", "#2"}]}], "]"}], 
+                          ",", "\n", "          ", RowBox[{"AssociationQ", 
+                          "@", "v"}], ",", "\n", "            ", RowBox[
+                          {"Delete", "[", RowBox[{"#", ",", " ", RowBox[
+                          {"Key", "/@", RowBox[{"Append", "[", RowBox[{"#2", 
+                          ",", " ", RowBox[{"-", "1"}]}], "]"}]}]}], "]"}], 
+                          " ", RowBox[{"(*", " ", RowBox[{"does", " ", "it", 
+                          " ", "only", " ", "makes", " ", "sense", " ", "to", 
+                          " ", "terminals", " ", RowBox[{"though", "?"}]}], 
+                          " ", "*)"}], ",", "\n", "          ", "True", ",", 
+                          "\n", "            ", "#"}], "\n", "          ", 
+                          "]"}]}], "\n", "        ", "]"}], "&"}], ",", "\n", 
+                          "      ", "a", ",", "\n", "      ", "paths"}], 
+                          "\n", "      ", "]"}]}]}], "\n", "    ", "]"}]}]], 
+               "CodeInput"]}, Open]], Cell[CellGroupData[
+             {Cell["\[LeftCeiling]TrieRemove\[RightFloor]", 
+               "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
+                RowBox[{RowBox[{RowBox[{"TrieRemove", "[", RowBox[
+                       {RowBox[{"Trie", "[", "a_", "]"}], ",", " ", 
+                        "words_"}], "]"}], ":=", "\n", "  ", RowBox[
+                     {"newTrie", "@", RowBox[{"iTrieRemove", "[", RowBox[
+                         {"a", ",", " ", "words"}], "]"}]}]}], ";"}]], 
+               "CodeInput"]}, Open]]}, Open]], 
+        Cell[CellGroupData[{Cell["\[LeftCeiling]TrieMatches\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[BoxData[RowBox[{RowBox[{RowBox[{"TrieMatches", "[", 
+                   RowBox[{RowBox[{"Trie", "[", "a_", "]"}], ",", " ", 
+                     "word_"}], "]"}], ":=", "\n", "  ", RowBox[{"With", "[", 
+                   RowBox[{RowBox[{"{", RowBox[{"t", "=", RowBox[
+                          {"trieApply", "[", RowBox[{"a", ",", " ", "word"}], 
+                          "]"}]}], "}"}], ",", "\n", "    ", RowBox[
+                      {"If", "[", RowBox[{RowBox[{"AssociationQ", "[", "t", 
+                          "]"}], ",", " ", RowBox[{"newTrie", "[", "t", 
+                          "]"}], ",", " ", "t"}], "]"}]}], "\n", "    ", 
+                   "]"}]}], ";"}]], "CodeInput"], 
+           Cell[CellGroupData[{Cell["\[LeftCeiling]trieApply\[RightFloor]", 
+               "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
+                {RowBox[{RowBox[{"trieApply", "//", "Clear"}], ";"}], "\n", 
+                 RowBox[{RowBox[{RowBox[{"trieApply", "[", RowBox[{"a_", ",", 
+                         " ", RowBox[{"word", ":", RowBox[{"{", RowBox[
+                          {"_Integer", ",", " ", "___"}], "}"}]}]}], "]"}], 
+                     ":=", "\n", "  ", RowBox[{"Fold", "[", "\n", "    ", 
+                       RowBox[{RowBox[{"Function", "[", "\n", "      ", 
+                          RowBox[{"With", "[", RowBox[{RowBox[{"{", RowBox[
+                          {"r", "=", RowBox[{"#", "[", RowBox[{"#2", "[", 
+                          RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "}"}], 
+                          ",", "\n", "        ", RowBox[{"Which", "[", "\n", 
+                          "          ", RowBox[{RowBox[{"MissingQ", "[", "r", 
+                          "]"}], ",", "\n", "  ", "  ", "        ", RowBox[
+                          {"Return", "[", RowBox[{RowBox[{"Missing", "[", 
+                          RowBox[{"\"KeyAbsent\"", ",", " ", RowBox[
+                          {"FromCharacterCode", "[", RowBox[{"word", ",", 
+                          " ", "\"UTF8\""}], "]"}]}], "]"}], ",", " ", 
+                          "Fold"}], "]"}], ",", "\n", "  ", "        ", 
+                          RowBox[{"StringQ", "[", "r", "]"}], ",", "\n", 
+                          "            ", RowBox[{"If", "[", RowBox[{RowBox[
+                          {RowBox[{"Length", "@", "word"}], "\[Equal]", 
+                          RowBox[{"#2", "[", RowBox[{"[", "2", "]"}], 
+                          "]"}]}], ",", "\n", "              ", RowBox[
+                          {"Return", "[", RowBox[{"r", ",", " ", "Fold"}], 
+                          "]"}], ",", "\n", "              ", RowBox[{RowBox[
+                          {RowBox[{"If", "[", RowBox[{RowBox[{"!", RowBox[
+                          {"StringStartsQ", "[", RowBox[{"r", ",", " ", 
+                          "#"}], "]"}]}], ",", "\n", "                ", 
+                          RowBox[{"Return", "[", RowBox[{RowBox[{"Missing", 
+                          "[", RowBox[{"\"KeyAbsent\"", ",", " ", "#"}], 
+                          "]"}], ",", " ", "Fold"}], "]"}], ",", "\n", 
+                          "                ", RowBox[{"Return", "[", RowBox[
+                          {"r", ",", " ", "Fold"}], "]"}]}], "\n", 
+                          "                ", "]"}], "&"}], "@", RowBox[
+                          {"FromCharacterCode", "[", RowBox[{"word", ",", 
+                          " ", "\"UTF8\""}], "]"}]}]}], "\n", 
+                          "              ", "]"}], ",", "\n", "          ", 
+                          "True", ",", "\n", "            ", "r"}], "\n", 
+                          "          ", "]"}]}], "\n", "        ", "]"}], 
+                          "\n", "      ", "]"}], ",", " ", "\n", "    ", "a", 
+                         ",", "\n", "    ", RowBox[{"Thread", "[", RowBox[
+                          {"{", RowBox[{"word", ",", " ", RowBox[{"Range", 
+                          "[", RowBox[{"Length", "@", "word"}], "]"}]}], 
+                          "}"}], "]"}]}], "\n", "    ", "]"}]}], ";"}], "\n", 
+                 RowBox[{RowBox[{RowBox[{"trieApply", "[", RowBox[{"a_", ",", 
+                         " ", RowBox[{"word", ":", RowBox[{"{", RowBox[
+                          {"_String", ",", " ", "___"}], "}"}]}]}], "]"}], 
+                     ":=", "\n", "  ", RowBox[{"With", "[", "\n", "    ", 
+                       RowBox[{RowBox[{"{", "\n", "      ", RowBox[{"p1", 
+                          "=", "\n", "        ", RowBox[
+                          {"Developer`ToPackedArray", "[", RowBox[
+                          {"ToCharacterCode", "[", RowBox[{"word", ",", " ", 
+                          "\"UTF8\""}], "]"}], "]"}]}], "\n", "      ", 
+                          "}"}], ",", "\n", "    ", RowBox[{"If", "[", 
+                          RowBox[{RowBox[{"Developer`PackedArrayQ", "[", 
+                          "p1", "]"}], ",", "\n", "      ", RowBox[
+                          {"trieApply", "[", RowBox[{"a", ",", " ", "p1"}], 
+                          "]"}], ",", "\n", "      ", RowBox[{RowBox[
+                          {RowBox[{"trieApply", "[", RowBox[{"a", ",", " ", 
+                          "#"}], "]"}], "&"}], "/@", "p1"}]}], "\n", 
+                          "      ", "]"}]}], "\n", "    ", "]"}]}], ";"}], 
+                 "\n", RowBox[{RowBox[{RowBox[{"trieApply", "[", RowBox[
+                        {"a_", ",", " ", "word_String"}], "]"}], ":=", "\n", 
+                     "  ", RowBox[{"trieApply", "[", RowBox[{"a", ",", " ", 
+                         RowBox[{"ToCharacterCode", "[", RowBox[{"word", ",", 
+                          " ", "\"UTF8\""}], "]"}]}], "]"}]}], ";"}]}], 
+               "CodeInput"]}, Open]]}, Open]], 
+        Cell[CellGroupData[{Cell["\[LeftCeiling]TrieClosest\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[BoxData[RowBox[{RowBox[{"TrieClosest", "[", RowBox[
+                  {RowBox[{"Trie", "[", "a_", "]"}], ",", " ", "word_"}], 
+                 "]"}], ":=", "\n", "  ", RowBox[{"Module", "[", "\n", 
+                 "    ", RowBox[{RowBox[{"{", "\n", "      ", RowBox[
+                      {"t", "=", RowBox[{"trieFindPrefixes", "[", RowBox[
+                          {"a", ",", " ", "word"}], "]"}]}], "\n", "      ", 
+                     "}"}], ",", "\n", "    ", RowBox[{"If", "[", RowBox[
+                      {RowBox[{RowBox[{RowBox[{"Length", "@", "t"}], 
+                          "\[Equal]", "2"}], "&&", RowBox[{RowBox[{"Length", 
+                          "@", RowBox[{"t", "[", RowBox[{"[", "2", "]"}], 
+                          "]"}]}], "\[Equal]", "0"}]}], ",", " ", "\n", 
+                       "      ", RowBox[{"triePullPrefix", "[", "t", "]"}], 
+                       ",", " ", "\n", "      ", RowBox[{"triePullPrefix", 
+                         "/@", "t"}]}], "\n", "      ", "]"}]}], "\n", 
+                 "    ", "]"}]}]], "CodeInput"], Cell[CellGroupData[
+             {Cell["\[LeftCeiling]triePullPrefix\[RightFloor]", 
+               "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
+                RowBox[{RowBox[{"triePullPrefix", "[", RowBox[{"a_", ",", 
+                      " ", "p_"}], "]"}], ":=", "\n", "  ", RowBox[
+                   {"With", "[", RowBox[{RowBox[{"{", RowBox[{"t", "=", 
+                          RowBox[{"Fold", "[", RowBox[{"Lookup", ",", " ", 
+                          "a", ",", " ", "p"}], "]"}]}], "}"}], ",", "\n", 
+                      "  ", "  ", RowBox[{"If", "[", RowBox[{RowBox[
+                          {"AssociationQ", "@", "t"}], ",", " ", RowBox[
+                          {"newTrie", "[", "t", "]"}], ",", " ", "t"}], 
+                        "]"}]}], "\n", "  ", "  ", "]"}]}]], "CodeInput"]}, 
+             Closed]], Cell[CellGroupData[
+             {Cell["\[LeftCeiling]trieFindPrefixes\[RightFloor]", 
+               "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
+                {RowBox[{RowBox[{"trieFindPrefixes", "//", "Clear"}], ";"}], 
+                 "\n", RowBox[{RowBox[{RowBox[{"trieFindPrefixes", "[", 
+                       RowBox[{"a_", ",", " ", RowBox[{"word", ":", RowBox[
+                          {"{", RowBox[{"_Integer", ",", " ", "___"}], 
+                          "}"}]}]}], "]"}], ":=", "\n", "  ", RowBox[
+                      {"Module", "[", RowBox[{RowBox[{"{", "r", "}"}], ",", 
+                         "\n", "    ", RowBox[{"Fold", "[", "\n", "      ", 
+                          RowBox[{RowBox[{"Function", "[", "\n", "  ", 
+                          "      ", RowBox[{RowBox[{RowBox[{"r", " ", "=", 
+                          " ", RowBox[{RowBox[{"#", "[", RowBox[{"[", "1", 
+                          "]"}], "]"}], "[", "#2", "]"}]}], ";"}], ",", " ", 
+                          "\n", "        ", RowBox[{"If", "[", RowBox[
+                          {RowBox[{"!", RowBox[{"AssociationQ", "[", "r", 
+                          "]"}]}], ",", "\n", "          ", RowBox[{"Return", 
+                          "[", RowBox[{RowBox[{"{", RowBox[{RowBox[{"#", "[", 
+                          RowBox[{"[", "2", "]"}], "]"}], ",", " ", "#2"}], 
+                          "}"}], ",", " ", "Fold"}], "]"}], ",", " ", "\n", 
+                          "  ", "  ", "      ", RowBox[{"{", "\n", "  ", 
+                          "  ", "        ", RowBox[{RowBox[{"{", RowBox[
+                          {RowBox[{"#", "[", RowBox[{"[", "2", "]"}], "]"}], 
+                          ",", " ", "#2"}], "}"}], ",", "\n", "            ", 
+                          "r"}], "\n", "            ", "}"}]}], "\n", 
+                          "          ", "]"}]}], "\n", "  ", "      ", "]"}], 
+                          ",", " ", "\n", "      ", "word"}], "\n", "      ", 
+                          "]"}]}], "\n", "    ", "]"}]}], ";"}], "\n", 
+                 RowBox[{RowBox[{RowBox[{"trieFindPrefixes", "[", RowBox[
+                        {"a_", ",", " ", RowBox[{"word", ":", RowBox[{"{", 
+                          RowBox[{"_String", ",", " ", "___"}], "}"}]}]}], 
+                       "]"}], ":=", "\n", "  ", RowBox[{"With", "[", "\n", 
+                       "    ", RowBox[{RowBox[{"{", "\n", "      ", RowBox[
+                          {"p1", "=", "\n", "        ", RowBox[
+                          {"Developer`ToPackedArray", "[", RowBox[
+                          {"ToCharacterCode", "[", RowBox[{"word", ",", " ", 
+                          "\"UTF8\""}], "]"}], "]"}]}], "\n", "      ", 
+                          "}"}], ",", "\n", "    ", RowBox[{"If", "[", 
+                          RowBox[{RowBox[{"Developer`PackedArrayQ", "[", 
+                          "p1", "]"}], ",", "\n", "      ", RowBox[
+                          {"trieFindPrefixes", "[", RowBox[{"a", ",", " ", 
+                          "p1"}], "]"}], ",", "\n", "      ", RowBox[
+                          {RowBox[{RowBox[{"trieFindPrefixes", "[", RowBox[
+                          {"a", ",", " ", "#"}], "]"}], "&"}], "/@", 
+                          "p1"}]}], "\n", "      ", "]"}]}], "\n", "    ", 
+                       "]"}]}], ";"}], "\n", RowBox[{RowBox[{RowBox[
+                      {"trieFindPrefixes", "[", RowBox[{"a_", ",", " ", 
+                         "word_String"}], "]"}], ":=", "\n", "  ", RowBox[
+                      {"trieFindPrefixes", "[", RowBox[{"a", ",", " ", 
+                         RowBox[{"ToCharacterCode", "[", RowBox[{"word", ",", 
+                          " ", "\"UTF8\""}], "]"}]}], "]"}]}], ";"}]}], 
+               "CodeInput"]}, Open]]}, Open]], 
+        Cell[CellGroupData[{Cell["\[LeftCeiling]TrieWordCount\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[BoxData[RowBox[{RowBox[{"trieCountRec", "[", RowBox[
+                  {RowBox[{"Hold", "[", "ct_", "]"}], ",", " ", "words_"}], 
+                 "]"}], ":=", "\n", "  ", RowBox[{"With", "[", RowBox[
+                  {RowBox[{"{", RowBox[{RowBox[{"l", "=", RowBox[{"Length", 
+                          "@", "words"}]}], ",", " ", RowBox[{"v", "=", 
+                         RowBox[{"Select", "[", RowBox[{RowBox[{"Values", 
+                          "[", "words", "]"}], ",", " ", "AssociationQ"}], 
+                          "]"}]}]}], "}"}], ",", "\n", "    ", RowBox[
+                    {"If", "[", RowBox[{RowBox[{"l", ">", "0"}], ",", "\n", 
+                       "      ", RowBox[{RowBox[{"ct", "+=", RowBox[{"l", 
+                          "-", RowBox[{"Length", "@", "v"}]}]}], ";", "\n", 
+                         "      ", RowBox[{RowBox[{RowBox[{"trieCountRec", 
+                          "[", RowBox[{RowBox[{"Hold", "[", "ct", "]"}], ",", 
+                          " ", "#"}], "]"}], "&"}], "/@", "v"}], ";"}]}], 
+                     "\n", "      ", "]"}]}], "\n", "    ", "]"}]}]], 
+            "CodeInput"], Cell[BoxData[RowBox[{RowBox[{"TrieWordCount", "[", 
+                 RowBox[{"Trie", "[", "a_", "]"}], "]"}], ":=", "\n", "  ", 
+               RowBox[{"Module", "[", RowBox[{RowBox[{"{", RowBox[{"ct", "=", 
+                       "0"}], "}"}], ",", "\n", "    ", RowBox[
+                    {RowBox[{"trieCountRec", "[", RowBox[{RowBox[{"Hold", 
+                          "[", "ct", "]"}], ",", " ", "a"}], "]"}], ";", 
+                     "\n", "    ", "ct"}]}], "\n", "    ", "]"}]}]], 
+            "CodeInput"]}, Open]], Cell[CellGroupData[
+          {Cell["\[LeftCeiling]Formatting\[RightFloor]", "CodeSubsubsection", 
+            Evaluatable -> True], Cell[BoxData[
+             {RowBox[{RowBox[{RowBox[{"Format", "[", RowBox[{RowBox[
+                       {"t_Trie", "?", "TrieQ"}], ",", " ", "StandardForm"}], 
+                    "]"}], ":=", "\[IndentingNewLine]", RowBox[{"RawBoxes", 
+                    "@", "\[IndentingNewLine]", RowBox[
+                     {"BoxForm`ArrangeSummaryBox", "[", 
+                      "\[IndentingNewLine]", RowBox[{"Trie", ",", 
+                        "\[IndentingNewLine]", "t", ",", 
+                        "\[IndentingNewLine]", "None", ",", 
+                        "\[IndentingNewLine]", RowBox[{"{", 
+                          "\[IndentingNewLine]", RowBox[
+                          {"BoxForm`MakeSummaryItem", "[", RowBox[{RowBox[
+                          {"{", RowBox[{"\"Words:\"", ",", " ", RowBox[
+                          {"TrieWordCount", "[", "t", "]"}]}], "}"}], ",", 
+                          " ", "StandardForm"}], "]"}], 
+                          "\[IndentingNewLine]", "}"}], ",", 
+                        "\[IndentingNewLine]", RowBox[{"{", "}"}], ",", 
+                        "\[IndentingNewLine]", "StandardForm"}], 
+                      "\[IndentingNewLine]", "]"}]}]}], ";"}], 
+              "\[IndentingNewLine]", RowBox[{RowBox[{"Format", "[", 
+                  RowBox[{RowBox[{"t_Trie", "?", "TrieQ"}], ",", " ", 
+                    "TextForm"}], "]"}], ":=", "\[IndentingNewLine]", 
+                "\"Trie[<>]\""}]}], "CodeInput"]}, Open]]}, Open]], 
+     Cell[BoxData[RowBox[{RowBox[{"End", "[", "]"}], ";"}]], 
+      "InputSection"]}, Open]], Cell["", "SectionSeparator"]}, 
+ WindowSize -> {808, 755}, WindowMargins -> {{316, Automatic}, 
+   {Automatic, 50}}, TaggingRules -> 
+  {"UUIDButtons" -> 
+    {"Active" -> {"Button-89ffd2c3-ec41-4179-a9b1-8e28670bca2c" -> False, 
+       "Button-ca46e5e0-4fd1-47e8-8cf6-72998922b757" -> False, 
+       "Button-a6d68254-3684-4d32-83fc-e5ef6f443930" -> False}}}, 
+ FrontEndVersion -> "12.0 for Mac OS X x86 (64-bit) (April 8, 2019)", 
+ StyleDefinitions -> FrontEnd`FileName[{"BTools"}, "CodePackage.nb", 
+   CharacterEncoding -> "UTF-8"]]
