@@ -21,6 +21,9 @@ TreeInsertData::usage="Inserts into the data field of each node";
 TreePopData::usage="Deletes from the data field of each node";
 
 
+TreeWalk::usage="Walks a tree";
+
+
 Begin["`Private`"];
 
 
@@ -524,6 +527,153 @@ TreePopData[
   With[{l=treePopData[TreeNode, n, {d, t}, pos, where]},
     If[ListQ@l, {l[[1]], newNode@@l[[2]]}, l]
     ]
+
+
+(* ::Subsubsection::Closed:: *)
+(*TreeWalk*)
+
+
+
+(* ::Text:: *)
+(*
+
+We\[CloseCurlyQuote]ll provide like three events?
+	- \[OpenCurlyDoubleQuote]EnterNode\[CloseCurlyDoubleQuote]
+	- \[OpenCurlyDoubleQuote]ProcessNode\[CloseCurlyDoubleQuote]
+	- \[OpenCurlyDoubleQuote]ExitNode\[CloseCurlyDoubleQuote]
+	
+*)
+
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*walkTreeDF*)
+
+
+
+(* ::Text:: *)
+(*
+	Simple depth-first traversal of a node
+*)
+
+
+
+walkTreeDF[node_, handlers:{body_, enter_, exit_}]:=  
+  Module[{children = node[[2]], res},
+    node = enter[node];
+    res=
+      body[
+        {
+          node[[1]],
+          walkASTNodeDF[#, handlers]&/@children
+          },
+        node
+        ];
+    exit[res, node]
+    ];
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*walkTreeBF*)
+
+
+
+walkTreeBF[root_, handlers:{body_, enter_, exit_}]:=  
+    Module[
+      {
+        node = root,
+        children, 
+        res,
+        q = Queue[]
+        },
+      Reap[
+        q = QueuePush[q, node];
+        While[!QueueEmptyQ[q],
+          node = QueuePop[q];
+          node = enter[node];
+          children = root["Children"];
+          q = QueueExtend[q, children];
+          res = body[node, node];
+          exit[res, node];
+          ];
+        "WalkTree"
+        ][[2]]
+    ];
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*TreeWalk*)
+
+
+
+(* ::Subsubsubsubsection::Closed:: *)
+(*$TreeTraversalFunctions*)
+
+
+
+$TreeTraversalFunctions=
+  <|
+    "DepthFirst"-><|
+      "EnterNode"->#&,
+      "ExitNode"->#&,
+      "ProcessNode"->#&
+      |>,
+    "BreadthFirst"-><|
+      "EnterNode"->#&,
+      "ExitNode"->(Sow[#, "WalkTree"]&),
+      "ProcessNode"->#&
+      |>
+    |>;
+
+
+(* ::Subsubsubsubsection::Closed:: *)
+(*iTreeWalk*)
+
+
+
+Options[iTreeWalk]=
+  {
+    "TraversalFunction"->"DepthFirst"
+    };
+iTreeWalk[node_, visitFunctions_,
+  ops:OptionsPattern[]
+  ]:=
+  Module[
+    {
+      mode, enter, exit, body,
+      funcs
+      },
+    mode=
+      Replace[
+        OptionValue[iTreeWalk, 
+          FilterRules[{ops}, "TraversalFunction"], 
+          "TraversalFunction"
+          ],
+        {
+          "BreadthFirst"->walkTreeBF,
+          "DepthFirst"->walkTreeDF
+          }
+        ];
+    funcs = 
+      Lookup[$TreeTraversalFunctions, mode, $TreeTraversalFunctions["DepthFirst"]];
+    enter=Lookup[visitFunctions, "EnterNode",   funcs["EnterNode"]];
+    exit =Lookup[visitFunctions, "ExitNode",    funcs["ExitNode"]];
+    body =Lookup[visitFunctions, "ProcessNode", funcs["ProcessNode"]];
+    mode[node, {body, enter, exit}]
+    ];
+
+
+(* ::Subsubsubsubsection::Closed:: *)
+(*TreeWalk*)
+
+
+
+Options[TreeWalk]=
+  Options[iTreeWalk];
+TreeWalk[Tree[t_], visitFunctions_, ops:OptionsPattern[]]:=
+  iTreeWalk[t, visitFunctions, ops];
+TreeWalk[TreeNode[d_, t_], visitFunctions_, ops:OptionsPattern[]]:=
+  iTreeWalk[{d, t}, visitFunctions, ops];
 
 
 (* ::Subsubsection::Closed:: *)

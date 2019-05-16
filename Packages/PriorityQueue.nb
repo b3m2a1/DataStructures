@@ -1,0 +1,158 @@
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["PriorityQueue", \
+"CodeSection",ExpressionUUID->"0f3ab7b4-87ba-467c-8f2e-b9a711696580"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"PriorityQueue", "::", "usage"}], "=", "\"\<A PQueue\>\""}], 
+  ";"}]], "CodeInput",ExpressionUUID->"71cf1220-b0af-402e-9f07-d70ddb4818d1"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], 
+  ";"}]], "InputSection",ExpressionUUID->"5fbda725-b5ad-4810-a4ef-\
+453bde0c0f50"],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]PriorityQueue\[RightFloor]", "CodeSubsection",
+ Evaluatable->True,ExpressionUUID->"ab637360-df1d-43bb-a31c-d4089f3517bf"],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]Constructor\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"1c20b89b-bb94-4f9f-b625-1831a37f5922"],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"Trie", "//", "ClearAll"}], ";"}], "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Trie", "[", 
+       RowBox[{"s", ":", 
+        RowBox[{"{", "___String", "}"}]}], "]"}], ":=", 
+      RowBox[{"Trie", "[", 
+       RowBox[{
+        RowBox[{"createTrie", "[", "s", "]"}], ",", " ", 
+        RowBox[{"Length", "@", "s"}]}], "]"}]}], ";"}], "\n", 
+    RowBox[{
+     RowBox[{"unconstructedQ", "=", 
+      RowBox[{"Function", "[", 
+       RowBox[{"Null", ",", " ", 
+        RowBox[{"System`Private`EntryQ", "[", 
+         RowBox[{"Unevaluated", "[", "#", "]"}], "]"}], ",", " ", 
+        "HoldFirst"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+    RowBox[{"q", ":", 
+     RowBox[{
+      RowBox[{"Trie", "[", 
+       RowBox[{
+        RowBox[{"a_Association", "?", "AssociationQ"}], ",", " ", 
+        "ct_Integer"}], "]"}], "?", "unconstructedQ"}]}]}], ":=", 
+   "\[IndentingNewLine]", 
+   RowBox[{"System`Private`SetNoEntry", "[", 
+    RowBox[{"Unevaluated", "@", "q"}], "]"}]}], 
+  "*)"}]], "CodeInput",ExpressionUUID->"50e2ed8b-9416-4935-be93-76aa738d08c1"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"newTrie", "[", 
+   RowBox[{"a_", ",", " ", "ct_"}], "]"}], ":=", "\n", "  ", 
+  RowBox[{"System`Private`SetNoEntry", "@", "\n", "    ", 
+   RowBox[{"Unevaluated", "[", 
+    RowBox[{"Trie", "[", 
+     RowBox[{"a", ",", " ", "ct"}], "]"}], 
+    "]"}]}]}]], \
+"CodeInput",ExpressionUUID->"49b495ad-8e84-4120-af3e-1f9eb4fd8c9c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]Destructor Operations\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"289580c0-9177-44eb-9ba2-81e3a0027ef6"],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"(*", " ", 
+   RowBox[{"basic", " ", "destructors"}], " ", "*)"}], "\[IndentingNewLine]", 
+  
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"TrieQ", "[", "q_Trie", "]"}], ":=", 
+     RowBox[{"System`Private`NoEntryQ", "[", "q", "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"TrieData", "[", 
+      RowBox[{"Trie", "[", "a_", "]"}], "]"}], ":=", "a"}], ";"}]}], 
+  "*)"}]], "CodeInput",ExpressionUUID->"ac2278c3-b18e-46a8-a580-13193e34629d"]\
+
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]Formatting\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"eb0287a7-4d38-430f-b2bc-76663919eb27"],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Format", "[", 
+     RowBox[{
+      RowBox[{"t_Trie", "?", "TrieQ"}], ",", " ", "StandardForm"}], "]"}], ":=",
+     "\[IndentingNewLine]", 
+    RowBox[{"RawBoxes", "@", "\[IndentingNewLine]", 
+     RowBox[{"BoxForm`ArrangeSummaryBox", "[", "\[IndentingNewLine]", 
+      RowBox[{
+      "Trie", ",", "\[IndentingNewLine]", "t", ",", "\[IndentingNewLine]", 
+       "None", ",", "\[IndentingNewLine]", 
+       RowBox[{"{", "\[IndentingNewLine]", 
+        RowBox[{"BoxForm`MakeSummaryItem", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"\"\<Words:\>\"", ",", " ", 
+            RowBox[{"TrieWordCount", "[", "t", "]"}]}], "}"}], ",", " ", 
+          "StandardForm"}], "]"}], "\[IndentingNewLine]", "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", "StandardForm"}], 
+      "\[IndentingNewLine]", "]"}]}]}], ";", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Format", "[", 
+     RowBox[{
+      RowBox[{"t_Trie", "?", "TrieQ"}], ",", " ", "TextForm"}], "]"}], ":=", 
+    "\[IndentingNewLine]", "\"\<Trie[<>]\>\""}]}], 
+  "*)"}]], "CodeInput",ExpressionUUID->"f161b5b3-79e4-4f16-a3a8-3356dcd1cbfe"]\
+
+}, Open  ]]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"End", "[", "]"}], 
+  ";"}]], "InputSection",ExpressionUUID->"68a0b91b-8014-478f-9b26-\
+0d27d9ee4950"]
+}, Open  ]],
+
+Cell["", "SectionSeparator",ExpressionUUID->"7fa39073-1cd9-4942-9894-\
+cf58fe2186c8"]
+},
+WindowSize->{808, 755},
+WindowMargins->{{316, Automatic}, {Automatic, 50}},
+TaggingRules->{
+ "UUIDButtons" -> {
+   "Active" -> {
+     "Button-89ffd2c3-ec41-4179-a9b1-8e28670bca2c" -> False, 
+      "Button-ca46e5e0-4fd1-47e8-8cf6-72998922b757" -> False, 
+      "Button-a6d68254-3684-4d32-83fc-e5ef6f443930" -> False}}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "CodePackage.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+

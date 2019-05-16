@@ -2,13 +2,13 @@ Notebook[{
 
 Cell[CellGroupData[{
 Cell["Tree", \
-"CodeSection",ExpressionUUID->"c9a054ab-836f-4409-a76c-13ae59e547ce"],
+"CodeSection",ExpressionUUID->"8463c7ec-b791-493d-9495-f8400294d35d"],
 
 Cell[BoxData[
  RowBox[{
   RowBox[{
    RowBox[{"Tree", "::", "usage"}], "=", "\"\<A Tree data structure\>\""}], 
-  ";"}]], "CodeInput",ExpressionUUID->"c857d6ba-740f-43de-bd19-a66a2a97b77d"],
+  ";"}]], "CodeInput",ExpressionUUID->"13cee42b-2c2a-43b5-aa12-25881772c413"],
 
 Cell[BoxData[
  RowBox[{
@@ -16,7 +16,7 @@ Cell[BoxData[
    RowBox[{"TreeNode", "::", "usage"}], "=", 
    "\"\<A TreeNode object which exists as a symbolic wrapper on node \
 data\>\""}], 
-  ";"}]], "CodeInput",ExpressionUUID->"65f62086-0d34-430d-9ae9-604f4807e5d0"],
+  ";"}]], "CodeInput",ExpressionUUID->"e7c3f4e9-afe7-4d23-a0ed-712af141fd21"],
 
 Cell[BoxData[{
  RowBox[{
@@ -31,7 +31,7 @@ Cell[BoxData[{
   RowBox[{
    RowBox[{"TreeChildCount", "::", "usage"}], "=", 
    "\"\<Counts the number of leaves in the tree\>\""}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"321f9b9d-146e-43e0-897c-70a97209be1e"],
+  ";"}]}], "CodeInput",ExpressionUUID->"fe7923d5-edb0-4728-b9ab-2b7449c5a76f"],
 
 Cell[BoxData[{
  RowBox[{
@@ -42,7 +42,7 @@ Cell[BoxData[{
   RowBox[{
    RowBox[{"TreePop", "::", "usage"}], "=", 
    "\"\<Pops a node (and children) from a tree\>\""}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"59583a30-a96b-4689-a854-197f746e6f40"],
+  ";"}]}], "CodeInput",ExpressionUUID->"8d885e51-2719-44ac-945b-90bfabbc3e39"],
 
 Cell[BoxData[{
  RowBox[{
@@ -53,15 +53,21 @@ Cell[BoxData[{
   RowBox[{
    RowBox[{"TreePopData", "::", "usage"}], "=", 
    "\"\<Deletes from the data field of each node\>\""}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"36ca22e8-b340-4f04-ae0a-be64231cb240"],
+  ";"}]}], "CodeInput",ExpressionUUID->"046105bf-4424-4476-9869-7a88b4f40ddf"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"TreeWalk", "::", "usage"}], "=", "\"\<Walks a tree\>\""}], 
+  ";"}]], "CodeInput",ExpressionUUID->"22d1e2c9-0a8a-4204-ab36-72fafd3edd77"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{
   RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], 
-  ";"}]], "InputSection",ExpressionUUID->"677d2ed0-08a3-43ad-8808-\
-e48346c8d094"],
+  ";"}]], "InputSection",ExpressionUUID->"4ea5a183-88c8-4d68-b5d7-\
+98c276817700"],
 
 Cell["\<\
 \[LeftCeiling]
@@ -72,23 +78,23 @@ than introducing pushes and pops we\[CloseCurlyQuote]ll introduce tree \
 insertion, deletion, rearrangement, and walking
 \[RightFloor]\
 \>", "Text",
- Evaluatable->True,ExpressionUUID->"d25e1c2a-abc4-4424-9329-8a1b4a1801b5"]
+ Evaluatable->True,ExpressionUUID->"332b6e38-76b3-4d84-a436-e5be5a8e2148"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]Tree\[RightFloor]", "CodeSubsection",
- Evaluatable->True,ExpressionUUID->"fa4d8a85-d879-494d-a096-14b3509d0a87"],
+ Evaluatable->True,ExpressionUUID->"24213544-7efd-4443-8ded-61e9da389b9a"],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]Constructor\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"a98fab34-62af-4d45-8b62-ccbebe3be3ae"],
+ Evaluatable->True,ExpressionUUID->"df217790-fcef-4649-9332-f21cf02c31ef"],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]Tree\[RightFloor]", "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"594468fe-f90e-4911-884c-70d92aa27b34"],
+ Evaluatable->True,ExpressionUUID->"bb80f5cf-23a9-42f6-b81a-ce233025d694"],
 
 Cell[BoxData[{
  RowBox[{
@@ -116,7 +122,7 @@ Cell[BoxData[{
   RowBox[{"System`Private`SetNoEntry", "[", 
    RowBox[{"Unevaluated", "@", "q"}], 
    "]"}]}]}], \
-"CodeInput",ExpressionUUID->"d940427d-348a-487e-9326-c0d8b78a5146"],
+"CodeInput",ExpressionUUID->"c6e5c231-264f-4ebf-bed3-1c882f09c778"],
 
 Cell[BoxData[
  RowBox[{
@@ -125,13 +131,13 @@ Cell[BoxData[
    RowBox[{"Unevaluated", "[", 
     RowBox[{"Tree", "[", "list", "]"}], 
     "]"}]}]}]], \
-"CodeInput",ExpressionUUID->"3eb71e8f-8cd1-4bdf-9cbb-20b1b3675fd4"]
+"CodeInput",ExpressionUUID->"c7e14aef-fc6a-48f3-bf5b-d98d576c4907"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]TreeNode\[RightFloor]", "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"45b8c83e-cf80-4a9a-933f-b3854a89aacc"],
+ Evaluatable->True,ExpressionUUID->"91e53371-a2c7-43bf-9d30-9ff099850e8c"],
 
 Cell[BoxData[{
  RowBox[{"TreeNode", "//", "Clear"}], "\n", 
@@ -162,14 +168,14 @@ Cell[BoxData[{
     RowBox[{"TreeNode", "[", 
      RowBox[{"data", ",", " ", "children"}], "]"}], 
     "]"}]}]}]}], \
-"CodeInput",ExpressionUUID->"92de8714-9092-43b0-ae44-3f468c45269c"]
+"CodeInput",ExpressionUUID->"016a7336-67a4-4357-a09e-9da5e23a51ca"]
 }, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]Destructor Operations\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"8a98aa4f-cbf3-4644-a80c-c17a80ca40f5"],
+ Evaluatable->True,ExpressionUUID->"f2f97d84-2671-43e9-a149-834bae636410"],
 
 Cell[BoxData[
  RowBox[{
@@ -186,7 +192,7 @@ Cell[BoxData[
     RowBox[{
      RowBox[{"TreeQ", "[", "_", "]"}], ":=", "False"}], 
     ";"}]}]}]], \
-"CodeInput",ExpressionUUID->"8651eca2-3678-4c6a-8c9a-2ab7fb1b92e9"],
+"CodeInput",ExpressionUUID->"17e19fad-bec4-460b-ac92-c591e75a05e5"],
 
 Cell[BoxData[{
  RowBox[{"TreeNodeQ", "//", "Clear"}], "\n", 
@@ -197,13 +203,13 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{"TreeNodeQ", "[", "_", "]"}], ":=", 
   "False"}]}], \
-"CodeInput",ExpressionUUID->"406aeb4b-744d-4994-9958-2e06bba87b75"]
+"CodeInput",ExpressionUUID->"0e46958e-bab5-4d4f-a93a-f33e72c8cb77"]
 }, Closed]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]treePosSpec\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"ab493a4f-a9a7-4cf3-b0c2-a680f3890561"],
+ Evaluatable->True,ExpressionUUID->"491c1c4e-2058-4585-89ba-184ae852a1c6"],
 
 Cell[BoxData[{
  RowBox[{"treePosSpec", "//", "Clear"}], "\n", 
@@ -228,14 +234,14 @@ Cell[BoxData[{
    RowBox[{"treePosSpec", "[", "i_Integer", "]"}], ":=", "\n", "  ", 
    RowBox[{"treePosSpec", "[", 
     RowBox[{"{", "i", "}"}], "]"}]}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"65ce6e3d-0123-47a3-a5b3-16a188385624"]\
+  ";"}]}], "CodeInput",ExpressionUUID->"c2fd7f3e-b00e-436d-b872-61c1b088dea5"]\
 
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]treeHasDepth\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"f6a1436e-d6ac-4a42-8d59-70a85acad16b"],
+ Evaluatable->True,ExpressionUUID->"7040625d-c70a-47b6-b3fc-06bae1c87b7b"],
 
 Cell[BoxData[
  RowBox[{
@@ -253,13 +259,13 @@ Cell[BoxData[
        ",", " ", "False", ",", " ", 
        RowBox[{"Part", "::", "partw"}]}], "]"}], ",", " ", 
      RowBox[{"Part", "::", "partw"}]}], "]"}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"f1e88e63-c0e3-433f-b42a-c3d4aebca48e"]
+  ";"}]], "CodeInput",ExpressionUUID->"467cd43c-8548-4637-8ef8-6f0246723b08"]
 }, Closed]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]Children\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"01bd37a1-f930-4809-b728-7b0081c7bc88"],
+ Evaluatable->True,ExpressionUUID->"8b089674-843f-476e-a48f-1c3168ff4fa2"],
 
 Cell[BoxData[{
  RowBox[{
@@ -271,12 +277,12 @@ Cell[BoxData[{
   RowBox[{
    RowBox[{"TreeNode", "::", "nohild"}], "=", 
    "\"\<TreeNode doesn't have children at node `` and position ``\>\""}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"647ba186-9f90-4550-a983-3cced8a86b33"],
+  ";"}]}], "CodeInput",ExpressionUUID->"3ce9b6fd-d489-49be-88de-4352ab51b9aa"],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]treeChildren\[RightFloor]", "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"d263d504-3337-49cf-b967-926e6a7d7107"],
+ Evaluatable->True,ExpressionUUID->"1ce0dff8-1f12-4c3e-a954-2653c640e228"],
 
 Cell[BoxData[{
  RowBox[{"treeChildren", "//", "Clear"}], "\n", 
@@ -336,14 +342,14 @@ Cell[BoxData[{
                RowBox[{"pos", ",", " ", "children", ",", " ", "obj"}], 
                "}"}]}]}], "\n", "        ", "|>"}]}], "\n", "        ", 
           "]"}]}]}], "\n", "      ", "]"}]}]}], "\n", "    ", "]"}]}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"c5d66ff5-7171-4ce9-abda-2a60ae06b658"]\
+  ";"}]}], "CodeInput",ExpressionUUID->"d7fdcbc9-82d6-4932-84ec-4a9dc7179fe7"]\
 
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]TreeChildren\[RightFloor]", "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"f2447a42-8829-4a8b-b13c-9fbdec712096"],
+ Evaluatable->True,ExpressionUUID->"4074b452-bb24-4e49-8a17-77488fbd3a7d"],
 
 Cell[BoxData[{
  RowBox[{"TreeChildren", "//", "Clear"}], "\n", 
@@ -412,7 +418,7 @@ Cell[BoxData[{
         "        ", 
        RowBox[{"newNode", "@@@", "l"}]}], "\n", "      ", "]"}]}], "\n", 
     "    ", "]"}]}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"9d8cd100-c1fe-45c2-9706-0f93bf05ed18"]\
+  ";"}]}], "CodeInput",ExpressionUUID->"00326d06-ac63-4cf4-a28f-200819ffa237"]\
 
 }, Open  ]]
 }, Open  ]],
@@ -420,12 +426,12 @@ Cell[BoxData[{
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]ChildCount\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"82fc67eb-514e-4374-a69f-12cfcdd84daf"],
+ Evaluatable->True,ExpressionUUID->"e9c82f0e-9ae5-49cd-a54e-59cc9dcc22e8"],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]TreeChildCount\[RightFloor]", "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"d97e9de3-32aa-423b-a3cb-9550175629eb"],
+ Evaluatable->True,ExpressionUUID->"7940a0ec-a0d2-4c8f-9295-a9104ad7eb49"],
 
 Cell[BoxData[{
  RowBox[{"TreeChildCount", "//", "Clear"}], "\n", 
@@ -481,19 +487,19 @@ Cell[BoxData[{
        RowBox[{"ListQ", "@", "l"}], ",", " ", 
        RowBox[{"Length", "@", "l"}], ",", " ", "l"}], "]"}]}], "\n", "    ", 
     "]"}]}], ";"}]}], \
-"CodeInput",ExpressionUUID->"f4f5e0b1-0bee-48ce-870d-547685983467"]
+"CodeInput",ExpressionUUID->"d3d4da37-2fc8-41da-ba28-0d3695202190"]
 }, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]Insert\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"a8939791-ca90-4cd9-baa4-8a9863270b9a"],
+ Evaluatable->True,ExpressionUUID->"a9077792-6e0d-4453-8528-23d16efd1c32"],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]treeInsert\[RightFloor]", "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"7ef8f16f-4939-45bf-b4d7-8a5d678a9188"],
+ Evaluatable->True,ExpressionUUID->"10b4a8df-27e0-4e74-bcff-bc65e5656228"],
 
 Cell[BoxData[{
  RowBox[{"treeInsert", "//", "Clear"}], "\n", 
@@ -577,14 +583,14 @@ Cell[BoxData[{
      RowBox[{"{", 
       RowBox[{"data", ",", " ", "children"}], "}"}], ",", " ", "pos", ",", 
      " ", "where"}], "]"}]}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"94d367f7-7f53-498f-ae94-5987327da3e5"]\
+  ";"}]}], "CodeInput",ExpressionUUID->"d8fca020-337f-48b3-a84e-fbabe8caece7"]\
 
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]TreeInsert\[RightFloor]", "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"fefbc1cc-1a33-4521-affb-b3eb08ee4d15"],
+ Evaluatable->True,ExpressionUUID->"d5b23248-fc71-4e33-91fd-0d321b52dcdd"],
 
 Cell[BoxData[{
  RowBox[{"TreeInsert", "//", "Clear"}], "\n", 
@@ -670,14 +676,14 @@ Cell[BoxData[{
       RowBox[{"{", "data", "}"}], ",", " ", 
       RowBox[{"{", "}"}]}], "}"}], ",", " ", "pos", ",", " ", "where"}], 
    "]"}]}]}], \
-"CodeInput",ExpressionUUID->"9eebd4cf-f14f-4cbe-be2a-ec14530fc11d"]
+"CodeInput",ExpressionUUID->"c2414599-d763-4086-8dbe-b6eb78811dfb"]
 }, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]InsertData\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"adf1b8de-5df5-4481-95d9-31389d88c241"],
+ Evaluatable->True,ExpressionUUID->"4cb58b9b-318c-4815-8c9c-6c5ef0528ad9"],
 
 Cell[BoxData[{
  RowBox[{
@@ -688,12 +694,12 @@ Cell[BoxData[{
   RowBox[{
    RowBox[{"TreeNode", "::", "nohild"}], "=", 
    "\"\<TreeNode doesn't have a node at ``\>\""}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"57d25b4e-9948-4bc9-aa85-3530a0d5fb38"],
+  ";"}]}], "CodeInput",ExpressionUUID->"4de526b7-e257-47cf-880e-14797fa9bc9c"],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]treeInsertData\[RightFloor]", "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"1f201455-0051-4543-a8c1-240792cab0a3"],
+ Evaluatable->True,ExpressionUUID->"e3c8fe99-74c7-4a7a-85ac-1e883a273b2a"],
 
 Cell[BoxData[{
  RowBox[{"treeInsertData", "//", "Clear"}], "\n", 
@@ -752,14 +758,14 @@ Cell[BoxData[{
                RowBox[{"pos", ",", " ", "obj"}], "}"}]}]}], "\n", "        ", 
             "|>"}]}], "\n", "        ", "]"}]}], ",", "\n", "      ", "c"}], 
        "\n", "      ", "]"}]}]}], "\n", "    ", "]"}]}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"8b689a24-83aa-49b3-8ea6-0b351cc5051d"]\
+  ";"}]}], "CodeInput",ExpressionUUID->"524b96dd-79d1-457f-8d5f-c5ec740bad2d"]\
 
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]TreeInsertData\[RightFloor]", "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"0caae673-d40a-4d70-9b69-4f7b311e150a"],
+ Evaluatable->True,ExpressionUUID->"d60b5f86-fd36-49d3-b170-7b8cd1c4067d"],
 
 Cell[BoxData[{
  RowBox[{
@@ -819,7 +825,7 @@ Cell[BoxData[{
        RowBox[{"newNode", "[", 
         RowBox[{"d", ",", " ", "l"}], "]"}], ",", " ", "l"}], "]"}]}], "\n", 
     "    ", "]"}]}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"2d3e2207-84ee-43c1-abe0-482179d80817"]\
+  ";"}]}], "CodeInput",ExpressionUUID->"2178c7c9-b1c5-4ed5-a399-9cb509014645"]\
 
 }, Open  ]]
 }, Open  ]],
@@ -827,12 +833,12 @@ Cell[BoxData[{
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]Pop\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"90f39559-6dc4-4e60-b480-59812e3af90f"],
+ Evaluatable->True,ExpressionUUID->"1f8f5c38-20c1-4116-906a-c110aa3aa290"],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]treePop\[RightFloor]", "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"259cb8e2-f1dc-46b6-a886-7329e8696463"],
+ Evaluatable->True,ExpressionUUID->"62e1e558-37c8-4694-83c9-7bbe11308be4"],
 
 Cell[BoxData[
  RowBox[{
@@ -897,13 +903,13 @@ Cell[BoxData[
                RowBox[{"pos", ",", " ", "where", ",", " ", "obj"}], "}"}]}]}],
              "\n", "        ", "|>"}]}], "\n", "        ", "]"}]}]}], "\n", 
        "      ", "]"}]}]}], "\n", "    ", "]"}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"e1ef9387-763c-42fc-8731-3ea42bf0e666"]
+  ";"}]], "CodeInput",ExpressionUUID->"5052595c-fd44-4bd1-85aa-0d46342e79b3"]
 }, Closed]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]TreePop\[RightFloor]", "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"a2e459db-addf-4c9b-883a-b771ca746298"],
+ Evaluatable->True,ExpressionUUID->"000c2a40-bd59-4d2f-b4cc-8f442468a3f0"],
 
 Cell[BoxData[{
  RowBox[{"TreePop", "//", "Clear"}], "\n", 
@@ -973,14 +979,14 @@ Cell[BoxData[{
           RowBox[{"[", "2", "]"}], "]"}]}]}], "}"}], ",", " ", "l"}], "]"}]}],
     "\n", "    ", 
    "]"}]}]}], \
-"CodeInput",ExpressionUUID->"0aac6268-bde8-4f84-9635-4da3bb8e8fa8"]
+"CodeInput",ExpressionUUID->"a44d8f13-56ca-4e65-ba43-fac48770c425"]
 }, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]PopData\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"bae3d238-1b4d-4e73-b916-921480c6c928"],
+ Evaluatable->True,ExpressionUUID->"c49c8eb0-3766-417f-94a2-84199c8fd188"],
 
 Cell[BoxData[{
  RowBox[{
@@ -991,12 +997,12 @@ Cell[BoxData[{
   RowBox[{
    RowBox[{"TreeNode", "::", "nodata"}], "=", 
    "\"\<TreeNode doesn't have data at node `` and position ``\>\""}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"03007845-3df4-43f6-baec-4de3f5caf214"],
+  ";"}]}], "CodeInput",ExpressionUUID->"4ec53187-1dbf-4b6e-aac9-3ac463ff2b06"],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]treePopData\[RightFloor]", "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"5ff3d6af-1329-4a9f-86ea-e6b1128587cf"],
+ Evaluatable->True,ExpressionUUID->"e4844d03-1664-43c6-820e-ede785159564"],
 
 Cell[BoxData[{
  RowBox[{"treePopData", "//", "Clear"}], "\n", 
@@ -1062,14 +1068,14 @@ Cell[BoxData[{
                RowBox[{"pos", ",", " ", "where", ",", " ", "obj"}], "}"}]}]}],
              "\n", "        ", "|>"}]}], "\n", "        ", "]"}]}]}], "\n", 
        "      ", "]"}]}]}], "\n", "    ", "]"}]}], 
-  ";"}]}], "CodeInput",ExpressionUUID->"fdb35dd1-6a68-4431-8933-8a58e1c79721"]\
+  ";"}]}], "CodeInput",ExpressionUUID->"bd83186a-444b-4449-a18e-039e9105a7ee"]\
 
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]TreePopData\[RightFloor]", "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"44a018cf-ddff-49a9-a954-ed157c178274"],
+ Evaluatable->True,ExpressionUUID->"5edb99b0-1137-4d5a-82b1-ad81709a17de"],
 
 Cell[BoxData[{
  RowBox[{"TreePopData", "//", "Clear"}], "\n", 
@@ -1137,19 +1143,303 @@ Cell[BoxData[{
           RowBox[{"[", "2", "]"}], "]"}]}]}], "}"}], ",", " ", "l"}], "]"}]}],
     "\n", "    ", 
    "]"}]}]}], \
-"CodeInput",ExpressionUUID->"9592f636-b660-433e-80b8-e14bfce9b606"]
+"CodeInput",ExpressionUUID->"89beefdd-5bed-496a-ba09-cf56e48686a9"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]TreeWalk\[RightFloor]", "CodeSubsubsection",
+ Evaluatable->True,ExpressionUUID->"609b6e27-b3e0-4451-8980-00ee9d800010"],
+
+Cell["\<\
+\[LeftCeiling]
+
+We\[CloseCurlyQuote]ll provide like three events?
+\t- \[OpenCurlyDoubleQuote]EnterNode\[CloseCurlyDoubleQuote]
+\t- \[OpenCurlyDoubleQuote]ProcessNode\[CloseCurlyDoubleQuote]
+\t- \[OpenCurlyDoubleQuote]ExitNode\[CloseCurlyDoubleQuote]
+\t
+\[RightFloor]\
+\>", "Text",
+ Evaluatable->True,ExpressionUUID->"f7082611-2558-47ec-aac9-c2e81fdd8fee"],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]walkTreeDF\[RightFloor]", "CodeSubsubsubsection",
+ Evaluatable->True,ExpressionUUID->"b3e8be17-9488-48fb-9186-929e77df1205"],
+
+Cell["\<\
+\[LeftCeiling]
+\tSimple depth-first traversal of a node
+\[RightFloor]\
+\>", "Text",
+ Evaluatable->True,ExpressionUUID->"210e7014-8bf3-4c4e-ab44-2d34efc1db94"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"walkTreeDF", "[", 
+    RowBox[{"node_", ",", " ", 
+     RowBox[{"handlers", ":", 
+      RowBox[{"{", 
+       RowBox[{"body_", ",", " ", "enter_", ",", " ", "exit_"}], "}"}]}]}], 
+    "]"}], ":=", "  ", "\n", "  ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"children", " ", "=", " ", 
+        RowBox[{"node", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], ",", " ", "res"}], "}"}], ",", 
+     "\n", "    ", 
+     RowBox[{
+      RowBox[{"node", " ", "=", " ", 
+       RowBox[{"enter", "[", "node", "]"}]}], ";", "\n", "    ", 
+      RowBox[{"res", "=", "\n", "      ", 
+       RowBox[{"body", "[", "\n", "        ", 
+        RowBox[{
+         RowBox[{"{", "\n", "          ", 
+          RowBox[{
+           RowBox[{"node", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], ",", "\n", "  ", "        ", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"walkASTNodeDF", "[", 
+              RowBox[{"#", ",", " ", "handlers"}], "]"}], "&"}], "/@", 
+            "children"}]}], "\n", "          ", "}"}], ",", "\n", "        ", 
+         "node"}], "\n", "        ", "]"}]}], ";", "\n", "    ", 
+      RowBox[{"exit", "[", 
+       RowBox[{"res", ",", " ", "node"}], "]"}]}]}], "\n", "    ", "]"}]}], 
+  ";"}]], "CodeInput",ExpressionUUID->"5b71c66a-4cdb-4c8b-9cf7-3afd42afaa75"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]walkTreeBF\[RightFloor]", "CodeSubsubsubsection",
+ Evaluatable->True,ExpressionUUID->"c7947c06-be9d-40b1-a168-8e3b22d6af6c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"walkTreeBF", "[", 
+    RowBox[{"root_", ",", " ", 
+     RowBox[{"handlers", ":", 
+      RowBox[{"{", 
+       RowBox[{"body_", ",", " ", "enter_", ",", " ", "exit_"}], "}"}]}]}], 
+    "]"}], ":=", "  ", "\n", "    ", 
+   RowBox[{"Module", "[", "\n", "      ", 
+    RowBox[{
+     RowBox[{"{", "\n", "        ", 
+      RowBox[{
+       RowBox[{"node", " ", "=", " ", "root"}], ",", "\n", "        ", 
+       "children", ",", " ", "\n", "        ", "res", ",", "\n", "        ", 
+       RowBox[{"q", " ", "=", " ", 
+        RowBox[{"Queue", "[", "]"}]}]}], "\n", "        ", "}"}], ",", "\n", 
+     "      ", 
+     RowBox[{
+      RowBox[{"Reap", "[", "\n", "        ", 
+       RowBox[{
+        RowBox[{"q", " ", "=", " ", 
+         RowBox[{"QueuePush", "[", 
+          RowBox[{"q", ",", " ", "node"}], "]"}]}], ";", "\n", "        ", 
+        RowBox[{"While", "[", 
+         RowBox[{
+          RowBox[{"!", 
+           RowBox[{"QueueEmptyQ", "[", "q", "]"}]}], ",", "\n", "          ", 
+          
+          RowBox[{
+           RowBox[{"node", " ", "=", " ", 
+            RowBox[{"QueuePop", "[", "q", "]"}]}], ";", "\n", "          ", 
+           RowBox[{"node", " ", "=", " ", 
+            RowBox[{"enter", "[", "node", "]"}]}], ";", "\n", "  ", "  ", 
+           "      ", 
+           RowBox[{"children", " ", "=", " ", 
+            RowBox[{"root", "[", "\"\<Children\>\"", "]"}]}], ";", "\n", 
+           "          ", 
+           RowBox[{"q", " ", "=", " ", 
+            RowBox[{"QueueExtend", "[", 
+             RowBox[{"q", ",", " ", "children"}], "]"}]}], ";", "\n", 
+           "          ", 
+           RowBox[{"res", " ", "=", " ", 
+            RowBox[{"body", "[", 
+             RowBox[{"node", ",", " ", "node"}], "]"}]}], ";", "\n", 
+           "          ", 
+           RowBox[{"exit", "[", 
+            RowBox[{"res", ",", " ", "node"}], "]"}], ";"}]}], "\n", 
+         "          ", "]"}], ";", "\n", "        ", "\"\<WalkTree\>\""}], 
+       "\n", "        ", "]"}], "[", 
+      RowBox[{"[", "2", "]"}], "]"}]}], "\n", "    ", "]"}]}], 
+  ";"}]], "CodeInput",ExpressionUUID->"13380059-7400-49d7-affc-548c51ddf96c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]TreeWalk\[RightFloor]", "CodeSubsubsubsection",
+ Evaluatable->True,ExpressionUUID->"9b8bf5db-204f-47e1-8291-87a033e0ee6f"],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]$TreeTraversalFunctions\[RightFloor]", \
+"CodeSubsubsubsubsection",
+ Evaluatable->True,ExpressionUUID->"b397feb5-0f01-44e3-9d0f-e5b97d986383"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"$TreeTraversalFunctions", "=", "\n", "  ", 
+   RowBox[{"<|", "\n", "    ", 
+    RowBox[{
+     RowBox[{"\"\<DepthFirst\>\"", "\[Rule]", 
+      RowBox[{"<|", "\n", "      ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"\"\<EnterNode\>\"", "->", "#"}], "&"}], ",", "\n", "      ", 
+        RowBox[{
+         RowBox[{"\"\<ExitNode\>\"", "->", "#"}], "&"}], ",", "\n", "      ", 
+        
+        RowBox[{
+         RowBox[{"\"\<ProcessNode\>\"", "->", "#"}], "&"}]}], "\n", "      ", 
+       "|>"}]}], ",", "\n", "    ", 
+     RowBox[{"\"\<BreadthFirst\>\"", "\[Rule]", 
+      RowBox[{"<|", "\n", "      ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"\"\<EnterNode\>\"", "->", "#"}], "&"}], ",", "\n", "      ", 
+        RowBox[{"\"\<ExitNode\>\"", "\[Rule]", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"Sow", "[", 
+            RowBox[{"#", ",", " ", "\"\<WalkTree\>\""}], "]"}], "&"}], 
+          ")"}]}], ",", "\n", "      ", 
+        RowBox[{
+         RowBox[{"\"\<ProcessNode\>\"", "->", "#"}], "&"}]}], "\n", "      ", 
+       "|>"}]}]}], "\n", "    ", "|>"}]}], 
+  ";"}]], "CodeInput",ExpressionUUID->"e92efcbb-0d42-4e0f-9d20-c1c267bf9d40"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]iTreeWalk\[RightFloor]", "CodeSubsubsubsubsection",
+ Evaluatable->True,ExpressionUUID->"f617a62d-b83a-4aec-97a7-1facdc00e288"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Options", "[", "iTreeWalk", "]"}], "=", "\n", "  ", 
+   RowBox[{"{", "\n", "    ", 
+    RowBox[{"\"\<TraversalFunction\>\"", "\[Rule]", "\"\<DepthFirst\>\""}], 
+    "\n", "    ", "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"iTreeWalk", "[", 
+    RowBox[{"node_", ",", " ", "visitFunctions_", ",", "\n", "  ", 
+     RowBox[{"ops", ":", 
+      RowBox[{"OptionsPattern", "[", "]"}]}]}], "\n", "  ", "]"}], ":=", "\n",
+    "  ", 
+   RowBox[{"Module", "[", "\n", "    ", 
+    RowBox[{
+     RowBox[{"{", "\n", "      ", 
+      RowBox[{
+      "mode", ",", " ", "enter", ",", " ", "exit", ",", " ", "body", ",", 
+       "\n", "      ", "funcs"}], "\n", "      ", "}"}], ",", "\n", "    ", 
+     RowBox[{
+      RowBox[{"mode", "=", "\n", "      ", 
+       RowBox[{"Replace", "[", "\n", "        ", 
+        RowBox[{
+         RowBox[{"OptionValue", "[", 
+          RowBox[{"iTreeWalk", ",", " ", "\n", "          ", 
+           RowBox[{"FilterRules", "[", 
+            RowBox[{
+             RowBox[{"{", "ops", "}"}], ",", " ", 
+             "\"\<TraversalFunction\>\""}], "]"}], ",", " ", "\n", "  ", 
+           "        ", "\"\<TraversalFunction\>\""}], "\n", "  ", "        ", 
+          "]"}], ",", "\n", "  ", "      ", 
+         RowBox[{"{", "\n", "  ", "        ", 
+          RowBox[{
+           RowBox[{"\"\<BreadthFirst\>\"", "->", "walkTreeBF"}], ",", "\n", 
+           "          ", 
+           RowBox[{"\"\<DepthFirst\>\"", "->", "walkTreeDF"}]}], "\n", 
+          "          ", "}"}]}], "\n", "        ", "]"}]}], ";", "\n", "    ", 
+      RowBox[{"funcs", " ", "=", " ", "\n", "      ", 
+       RowBox[{"Lookup", "[", 
+        RowBox[{"$TreeTraversalFunctions", ",", " ", "mode", ",", " ", 
+         RowBox[{
+         "$TreeTraversalFunctions", "[", "\"\<DepthFirst\>\"", "]"}]}], 
+        "]"}]}], ";", "\n", "    ", 
+      RowBox[{"enter", "=", 
+       RowBox[{"Lookup", "[", 
+        RowBox[{"visitFunctions", ",", " ", "\"\<EnterNode\>\"", ",", "   ", 
+         RowBox[{"funcs", "[", "\"\<EnterNode\>\"", "]"}]}], "]"}]}], ";", 
+      "\n", "    ", 
+      RowBox[{"exit", " ", "=", 
+       RowBox[{"Lookup", "[", 
+        RowBox[{"visitFunctions", ",", " ", "\"\<ExitNode\>\"", ",", "    ", 
+         RowBox[{"funcs", "[", "\"\<ExitNode\>\"", "]"}]}], "]"}]}], ";", 
+      "\n", "    ", 
+      RowBox[{"body", " ", "=", 
+       RowBox[{"Lookup", "[", 
+        RowBox[{"visitFunctions", ",", " ", "\"\<ProcessNode\>\"", ",", " ", 
+         RowBox[{"funcs", "[", "\"\<ProcessNode\>\"", "]"}]}], "]"}]}], ";", 
+      "\n", "    ", 
+      RowBox[{"mode", "[", 
+       RowBox[{"node", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"body", ",", " ", "enter", ",", " ", "exit"}], "}"}]}], 
+       "]"}]}]}], "\n", "    ", "]"}]}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"548a6e78-0900-410f-bd06-7dc88a415a03"]\
+
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\[LeftCeiling]TreeWalk\[RightFloor]", "CodeSubsubsubsubsection",
+ Evaluatable->True,ExpressionUUID->"3a7c9a9a-cd14-490b-bde7-ea34587fc9ad"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Options", "[", "TreeWalk", "]"}], "=", "\n", "  ", 
+   RowBox[{"Options", "[", "iTreeWalk", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"TreeWalk", "[", 
+    RowBox[{
+     RowBox[{"Tree", "[", "t_", "]"}], ",", " ", "visitFunctions_", ",", " ", 
+     
+     RowBox[{"ops", ":", 
+      RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", "\n", "  ", 
+   RowBox[{"iTreeWalk", "[", 
+    RowBox[{"t", ",", " ", "visitFunctions", ",", " ", "ops"}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"TreeWalk", "[", 
+    RowBox[{
+     RowBox[{"TreeNode", "[", 
+      RowBox[{"d_", ",", " ", "t_"}], "]"}], ",", " ", "visitFunctions_", ",",
+      " ", 
+     RowBox[{"ops", ":", 
+      RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", "\n", "  ", 
+   RowBox[{"iTreeWalk", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"d", ",", " ", "t"}], "}"}], ",", " ", "visitFunctions", ",", 
+     " ", "ops"}], "]"}]}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"d88c3755-4d93-404f-8740-2f0bcfd3a7ac"]\
+
+}, Open  ]]
 }, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]Formatting\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"4f63f48c-a385-41c5-b688-25e7126da33b"],
+ Evaluatable->True,ExpressionUUID->"9dcb02e8-40a7-44f3-b3d8-1dd05eba5d42"],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]Tree\[RightFloor]", "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"cbe7472e-42ca-4da9-beaf-2ca75384c55e"],
+ Evaluatable->True,ExpressionUUID->"0dad717a-f4d6-4c13-98b1-1691acdb0f03"],
 
 Cell[BoxData[{
  RowBox[{
@@ -1204,13 +1494,13 @@ Cell[BoxData[{
     RowBox[{"q_Tree", "?", "Tree"}], ",", " ", "TextForm"}], "]"}], ":=", 
   "\n", "  ", 
   "\"\<Tree[<>]\>\""}]}], \
-"CodeInput",ExpressionUUID->"d1a9046d-a318-4b31-b651-a918bc1ca18e"]
+"CodeInput",ExpressionUUID->"83b508ce-7989-41d1-805e-d614d2c44c0c"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]Node\[RightFloor]", "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"1347efed-92c6-41dc-96b5-0a2c41654314"],
+ Evaluatable->True,ExpressionUUID->"b17feb1c-2655-4e68-a0ca-1e550e374be5"],
 
 Cell[BoxData[{
  RowBox[{
@@ -1265,7 +1555,7 @@ Cell[BoxData[{
     RowBox[{"q_TreeNode", "?", "TreeNodeQ"}], ",", " ", "TextForm"}], "]"}], ":=",
    "\n", "  ", 
   "\"\<TreeNode[<>]\>\""}]}], \
-"CodeInput",ExpressionUUID->"8f6f82ff-4e86-455c-8398-6b89d315e29e"]
+"CodeInput",ExpressionUUID->"9d6af319-602d-4ea8-bd57-2bc1dfda0424"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
@@ -1273,12 +1563,12 @@ Cell[BoxData[{
 Cell[BoxData[
  RowBox[{
   RowBox[{"End", "[", "]"}], 
-  ";"}]], "InputSection",ExpressionUUID->"f521c3fb-b659-4c32-841d-\
-d75be2c6acf2"]
+  ";"}]], "InputSection",ExpressionUUID->"b8f41c60-c336-483a-a310-\
+48a50b065741"]
 }, Open  ]],
 
-Cell["", "SectionSeparator",ExpressionUUID->"72eb8ecc-3931-4a45-99c3-\
-53053d03ebf3"]
+Cell["", "SectionSeparator",ExpressionUUID->"a4319844-7981-47f3-9ed7-\
+5662524f3296"]
 },
 NotebookEventActions->{{"MenuCommand", "Save"} :> 
   EasyIDE`Notebooks`Manipulation`IDESave[
@@ -1309,103 +1599,19 @@ Mathematica/Applications/DataStructures/Packages/Tree.nb", "Modified" ->
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
 Mathematica/Applications/DataStructures/.gitignore", "Modified" -> False}, 
-      "README" -> {
-       "File" -> 
-        "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/DataStructures/project/README.nb", "Modified" -> 
-        False}, "scratch" -> {
+      "scratch" -> {
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
 Mathematica/Applications/DataStructures/.scratch/scratch.nb", "Modified" -> 
         False}}, "FileViewer" -> {"Visible" -> False}, 
     "Toolbars" -> {"Column" -> GridBox[{{
           GridBox[{{
-             GridBox[{{
-                StyleBox[
-                 ButtonBox[
-                 "\"Load Package\"", ButtonFunction :> 
-                  EasyIDE`Plugins`CodePackageToolbar`loadPackage[], 
-                  Appearance -> Inherited, Evaluator -> Automatic, Method -> 
-                  "Preemptive"], "ToolbarElement"], 
-                StyleBox[
-                 ButtonBox[
-                 "\"Open Package\"", ButtonFunction :> 
-                  EasyIDE`Plugins`CodePackageToolbar`openPackage[], 
-                  Appearance -> Inherited, Evaluator -> Automatic, Method -> 
-                  "Preemptive"], "ToolbarElement"], 
-                StyleBox[
-                 ActionMenuBox[
-                  ButtonBox[
-                  "\"Insert\"", ButtonFunction :> {}, Evaluator -> None, 
-                   BaseStyle -> "PluginMenu", Appearance -> Inherited, 
-                   FrameMargins -> {{10, 10}, {0, 0}}, 
-                   ImageSize -> {Automatic, 28}, Method -> "Preemptive"], {
-                  "\"Package\"" :> FrontEndExecute[
-                    FrontEnd`NotebookWrite[
-                    FrontEnd`InputNotebook[], {
-                    Cell["Package Name", "CodeSection"], 
-                    Cell[
-                    "\[LeftCeiling]\n  Package description\n\[RightFloor]", 
-                    "Text", Evaluatable -> True], 
-                    Cell[
-                    BoxData[
-                    RowBox[{
-                    RowBox[{"Begin", "[", "\"`Private`\"", "]"}], ";"}]], 
-                    "InputSection"], 
-                    Cell[
-                    BoxData[
-                    RowBox[{
-                    RowBox[{"End", "[", "]"}], ";"}]], "InputSection"], 
-                    Cell["", "SectionSeparator"]}]]}, Appearance -> None, 
-                  MenuAppearance -> "Dropdown"], "ToolbarElement"]}}, 
-              BaseStyle -> "ToolbarElementRow"], 
+             PaneBox["", ImageSize -> {0, 15}], 
              ButtonBox[
-             "", BaseStyle -> "ToolbarCloseButton", ButtonData -> 
+             "", BaseStyle -> "ToolbarShowButton", ButtonData -> 
               "CodePackage"]}}, BaseStyle -> "ToolbarCell"]}}, BaseStyle -> 
-        "Toolbars"], "Tags" -> {"CodePackage"}, 
-      "Cells" -> {"Markdown" -> None, "CodePackage" -> GridBox[{{
-            GridBox[{{
-               StyleBox[
-                ButtonBox[
-                "\"Load Package\"", ButtonFunction :> 
-                 EasyIDE`Plugins`CodePackageToolbar`loadPackage[], Appearance -> 
-                 Inherited, Evaluator -> Automatic, Method -> "Preemptive"], 
-                "ToolbarElement"], 
-               StyleBox[
-                ButtonBox[
-                "\"Open Package\"", ButtonFunction :> 
-                 EasyIDE`Plugins`CodePackageToolbar`openPackage[], Appearance -> 
-                 Inherited, Evaluator -> Automatic, Method -> "Preemptive"], 
-                "ToolbarElement"], 
-               StyleBox[
-                ActionMenuBox[
-                 ButtonBox[
-                 "\"Insert\"", ButtonFunction :> {}, Evaluator -> None, 
-                  BaseStyle -> "PluginMenu", Appearance -> Inherited, 
-                  FrameMargins -> {{10, 10}, {0, 0}}, 
-                  ImageSize -> {Automatic, 28}, Method -> "Preemptive"], {
-                 "\"Package\"" :> FrontEndExecute[
-                    FrontEnd`NotebookWrite[
-                    FrontEnd`InputNotebook[], {
-                    Cell["Package Name", "CodeSection"], 
-                    Cell[
-                    "\[LeftCeiling]\n  Package description\n\[RightFloor]", 
-                    "Text", Evaluatable -> True], 
-                    Cell[
-                    BoxData[
-                    RowBox[{
-                    RowBox[{"Begin", "[", "\"`Private`\"", "]"}], ";"}]], 
-                    "InputSection"], 
-                    Cell[
-                    BoxData[
-                    RowBox[{
-                    RowBox[{"End", "[", "]"}], ";"}]], "InputSection"], 
-                    Cell["", "SectionSeparator"]}]]}, Appearance -> None, 
-                 MenuAppearance -> "Dropdown"], "ToolbarElement"]}}, 
-             BaseStyle -> "ToolbarElementRow"], 
-            ButtonBox[
-            "", BaseStyle -> "ToolbarCloseButton", ButtonData -> 
-             "CodePackage"]}}, BaseStyle -> "ToolbarCell"]}}, 
+        "Toolbars"], "Tags" -> {}, 
+      "Cells" -> {"Markdown" -> None, "CodePackage" -> None}}, 
     "Project" -> {
      "Directory" -> 
       "/Users/Mark/Documents/Wolfram \
