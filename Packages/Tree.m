@@ -15,10 +15,12 @@ TreeChildCount::usage="Counts the number of leaves in the tree";
 
 TreeInsert::usage="Inserts a node into a tree";
 TreePop::usage="Pops a node (and children) from a tree";
+TreeReplace::usage="Replaces a node in a tree";
 
 
 TreeInsertData::usage="Inserts into the data field of each node";
 TreePopData::usage="Deletes from the data field of each node";
+TreeReplaceData::usage="Replaces data in a tree";
 
 
 TreeWalk::usage="Walks a tree";
@@ -235,6 +237,10 @@ TreeChildCount[
 
 
 
+Tree::nonode="Tree doesn't have a node at ``";
+TreeNode::nohild="TreeNode doesn't have a node at ``";
+
+
 (* ::Subsubsubsection::Closed:: *)
 (*treeInsert*)
 
@@ -319,12 +325,96 @@ TreeInsert[
 
 
 (* ::Subsubsection::Closed:: *)
+(*Replace*)
+
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*treeReplace*)
+
+
+
+treeReplace//Clear
+treeReplace[
+  head_,
+  obj_,
+  list_, 
+  node:{data_List, children_List}, 
+  pos:{___Integer}|_Integer|None,
+  where:_Integer
+  ]:=
+  Module[
+    {
+      c, 
+      $failed, 
+      ps=Join[treePosSpec[pos], {2, where}]
+      },
+    c=
+      Quiet[
+        Check[
+          ReplacePart[list, ps->node],
+          $failed,
+          Insert::ins
+          ],
+        Insert::ins
+        ];
+    If[c===$failed,
+      Message[head::nonode, pos];
+      Failure["NoNode", <|
+        "MessageTemplate":>head::nonode,
+        "MessageParameters":>{pos, obj}
+        |>
+        ],
+      c
+      ]
+    ];
+treeReplace[
+  head_,
+  obj_,
+  list_, 
+  TreeNode[data_List, children_List], 
+  pos:{___Integer}|_Integer|None,
+  where:_Integer
+  ]:=
+  treeInsert[head, obj, list, {data, children}, pos, where];
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*TreeReplace*)
+
+
+
+TreeReplace//Clear
+TreeReplace[
+  n:Tree[t_],  
+  pos:{___Integer}|_Integer|None:None,
+  where:_Integer:-1,
+  node:{data_List, children_List}|_TreeNode?TreeNodeQ
+  ]:=
+  With[{l=treeReplace[Tree, n, t, node, pos, where]},
+    If[ListQ@l, newTree[l], l]
+    ];
+TreeReplace[
+  n:TreeNode[d_, t_], 
+  pos:{___Integer}|_Integer|None:None,
+  where:_Integer:-1,
+  node:{data_List, children_List}|_TreeNode?TreeNodeQ
+  ]:=
+  With[{l=treeReplace[TreeNode, n, {d, t}, node, pos, where]},
+    If[ListQ@l, newNode[d, l], l]
+    ];
+TreeReplace[
+  n:_Tree|_TreeNode, 
+  pos:{___Integer}|_Integer|None:None,
+  where:_Integer:-1,
+  data_
+  ]:=
+  TreeReplace[n, {{data}, {}}, pos, where]
+
+
+(* ::Subsubsection::Closed:: *)
 (*InsertData*)
 
-
-
-Tree::nonode="Tree doesn't have a node at ``";
-TreeNode::nohild="TreeNode doesn't have a node at ``";
 
 
 (* ::Subsubsubsection::Closed:: *)
@@ -386,7 +476,76 @@ TreeInsertData[
   pos:{___Integer}|_Integer|None:None,
   where:_Integer:-1
   ]:=
-  With[{l=treeInsert[TreeNode, n, {d, t}, data, pos, where]},
+  With[{l=treeInsertData[TreeNode, n, {d, t}, data, pos, where]},
+    If[ListQ@l, newNode[d, l], l]
+    ];
+
+
+(* ::Subsubsection::Closed:: *)
+(*ReplaceData*)
+
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*treeReplaceData*)
+
+
+
+treeReplaceData//Clear
+treeReplaceData[
+  head_,
+  obj_,
+  list_, 
+  data_, 
+  pos:{___Integer}|_Integer|None,
+  where:_Integer
+  ]:=
+  Module[{c, $failed, 
+    ps=Join[treePosSpec[pos], {1, where}]
+    },
+    c=
+      Quiet[
+        Check[
+          ReplacePart[list, ps->data],
+          $failed,
+          Insert::ins
+          ],
+        Insert::ins
+        ];
+    If[c===$failed,
+      Message[head::nonode, pos];
+      Failure["NoNode", <|
+        "MessageTemplate":>head::nonode,
+        "MessageParameters":>{pos, obj}
+        |>
+        ],
+      c
+      ]
+    ];
+
+
+(* ::Subsubsubsection::Closed:: *)
+(*TreeReplaceData*)
+
+
+
+TreeReplaceData//Clear;
+TreeReplaceData[
+  n:Tree[t_], 
+  pos:{___Integer}|_Integer|None:None,
+  where:_Integer:-1,
+  data_, 
+  ]:=
+  With[{l=treeReplaceData[Tree, n, t, data, pos, where]},
+    If[ListQ@l, newTree[l], l]
+    ];
+TreeReplaceData[
+  n:TreeNode[d_, t_], 
+  pos:{___Integer}|_Integer|None:None,
+  where:_Integer:-1,
+  data_
+  ]:=
+  With[{l=treeReplaceData[TreeNode, n, {d, t}, data, pos, where]},
     If[ListQ@l, newNode[d, l], l]
     ];
 
