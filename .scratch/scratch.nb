@@ -10,22 +10,43 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     51727,       1057]
-NotebookOptionsPosition[     48598,        996]
-NotebookOutlinePosition[     48936,       1011]
-CellTagsIndexPosition[     48893,       1008]
+NotebookDataLength[     43579,       1045]
+NotebookOptionsPosition[     39306,        962]
+NotebookOutlinePosition[     39644,        977]
+CellTagsIndexPosition[     39601,        974]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 
 Cell[CellGroupData[{
+Cell["DataStructures Tests", "Section",
+ CellChangeTimes->{{3.766984799751101*^9, 
+  3.766984803719301*^9}},ExpressionUUID->"a37a52b2-a89b-48bc-97c3-\
+e0b87996676a"],
+
+Cell[CellGroupData[{
+
+Cell["Queue", "Subsection",
+ CellChangeTimes->{{3.766984749422735*^9, 
+  3.766984749837441*^9}},ExpressionUUID->"78f1e3e3-5430-428b-95ae-\
+c120c576843a"],
+
+Cell[BoxData[
+ RowBox[{"<<", "DataStructures`Queue`"}]], "Input",
+ CellChangeTimes->{{3.7669847284974117`*^9, 3.766984738775144*^9}, {
+  3.766984796969543*^9, 
+  3.76698479744766*^9}},ExpressionUUID->"4a241c5e-a4ee-4d30-99ae-\
+3ca34353d06b"],
+
+Cell[CellGroupData[{
+
 Cell[BoxData[
  RowBox[{"q", "=", 
   RowBox[{"Queue", "[", "]"}]}]], "Input",
- CellChangeTimes->{{3.766926108746057*^9, 3.7669261128889627`*^9}},
- CellLabel->
-  "In[256]:=",ExpressionUUID->"a00f1ef8-28ad-434e-bfa3-fdedc2ff5c0a"],
+ CellChangeTimes->{{3.766926108746057*^9, 3.7669261128889627`*^9}, {
+  3.7669847342233953`*^9, 3.766984740686479*^9}},
+ CellLabel->"In[96]:=",ExpressionUUID->"a00f1ef8-28ad-434e-bfa3-fdedc2ff5c0a"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -72,14 +93,13 @@ Cell[BoxData[
        Dynamic[Typeset`open$$], ImageSize -> Automatic]},
      "SummaryPanel"],
     DynamicModuleValues:>{}], "]"}],
-  Queue[
+  DataStructures`Queue`Queue[
    Association[]],
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
- CellChangeTimes->{3.76692611339358*^9},
- CellLabel->
-  "Out[256]=",ExpressionUUID->"8643e254-15e5-4770-a9c4-cdb2738ed3f5"]
+ CellChangeTimes->{3.76692611339358*^9, 3.7669847347176657`*^9},
+ CellLabel->"Out[96]=",ExpressionUUID->"48da7856-8645-4618-a620-be9c58811a23"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -89,272 +109,28 @@ Cell[BoxData[
     RowBox[{"q", ",", " ", 
      RowBox[{"Range", "[", "1000", "]"}]}], "]"}]}], ";"}]], "Input",
  CellChangeTimes->{{3.7669261150659246`*^9, 3.766926128616736*^9}},
- CellLabel->
-  "In[257]:=",ExpressionUUID->"ae9d6f5b-b3c6-420e-afb0-6a4a28fd0661"],
-
-Cell[CellGroupData[{
+ CellLabel->"In[97]:=",ExpressionUUID->"ae9d6f5b-b3c6-420e-afb0-6a4a28fd0661"],
 
 Cell[BoxData[
  RowBox[{"QueuePop", "[", "qq", "]"}]], "Input",
  CellChangeTimes->{{3.766926129465604*^9, 3.766926136562446*^9}},
  CellLabel->
-  "In[258]:=",ExpressionUUID->"66bae5b6-c381-495a-86bc-7be5a1732e85"],
+  "In[100]:=",ExpressionUUID->"66bae5b6-c381-495a-86bc-7be5a1732e85"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Stack", "Subsection",
+ CellChangeTimes->{{3.766984756478644*^9, 
+  3.766984757238079*^9}},ExpressionUUID->"a158edae-2406-4c02-a3e0-\
+0c299179f6bd"],
 
 Cell[BoxData[
- RowBox[{"QueuePop", "[", 
-  InterpretationBox[
-   RowBox[{
-    TagBox["Queue",
-     "SummaryHead"], "[", 
-    DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
-     TemplateBox[{PaneSelectorBox[{False -> GridBox[{{
-             GridBox[{{
-                RowBox[{
-                  TagBox["\"Size:\"", "SummaryItemAnnotation"], 
-                  "\[InvisibleSpace]", 
-                  TagBox["1000", "SummaryItem"]}]}}, 
-              GridBoxAlignment -> {
-               "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
-              False, GridBoxItemSize -> {
-               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
-              GridBoxSpacings -> {
-               "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
-              BaseStyle -> {
-               ShowStringCharacters -> False, NumberMarks -> False, 
-                PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
-           GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
-           GridBoxItemSize -> {
-            "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
-           BaselinePosition -> {1, 1}], True -> GridBox[{{
-             GridBox[{{
-                RowBox[{
-                  TagBox["\"Size:\"", "SummaryItemAnnotation"], 
-                  "\[InvisibleSpace]", 
-                  TagBox["1000", "SummaryItem"]}]}}, 
-              GridBoxAlignment -> {
-               "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
-              False, GridBoxItemSize -> {
-               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
-              GridBoxSpacings -> {
-               "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
-              BaseStyle -> {
-               ShowStringCharacters -> False, NumberMarks -> False, 
-                PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
-           GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
-           GridBoxItemSize -> {
-            "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
-           BaselinePosition -> {1, 1}]}, 
-        Dynamic[Typeset`open$$], ImageSize -> Automatic]},
-      "SummaryPanel"],
-     DynamicModuleValues:>{}], "]"}],
-   Queue[
-    Association[
-    40055 -> 1, 40056 -> 2, 40057 -> 3, 40058 -> 4, 40059 -> 5, 40060 -> 6, 
-     40061 -> 7, 40062 -> 8, 40063 -> 9, 40064 -> 10, 40065 -> 11, 40066 -> 
-     12, 40067 -> 13, 40068 -> 14, 40069 -> 15, 40070 -> 16, 40071 -> 17, 
-     40072 -> 18, 40073 -> 19, 40074 -> 20, 40075 -> 21, 40076 -> 22, 40077 -> 
-     23, 40078 -> 24, 40079 -> 25, 40080 -> 26, 40081 -> 27, 40082 -> 28, 
-     40083 -> 29, 40084 -> 30, 40085 -> 31, 40086 -> 32, 40087 -> 33, 40088 -> 
-     34, 40089 -> 35, 40090 -> 36, 40091 -> 37, 40092 -> 38, 40093 -> 39, 
-     40094 -> 40, 40095 -> 41, 40096 -> 42, 40097 -> 43, 40098 -> 44, 40099 -> 
-     45, 40100 -> 46, 40101 -> 47, 40102 -> 48, 40103 -> 49, 40104 -> 50, 
-     40105 -> 51, 40106 -> 52, 40107 -> 53, 40108 -> 54, 40109 -> 55, 40110 -> 
-     56, 40111 -> 57, 40112 -> 58, 40113 -> 59, 40114 -> 60, 40115 -> 61, 
-     40116 -> 62, 40117 -> 63, 40118 -> 64, 40119 -> 65, 40120 -> 66, 40121 -> 
-     67, 40122 -> 68, 40123 -> 69, 40124 -> 70, 40125 -> 71, 40126 -> 72, 
-     40127 -> 73, 40128 -> 74, 40129 -> 75, 40130 -> 76, 40131 -> 77, 40132 -> 
-     78, 40133 -> 79, 40134 -> 80, 40135 -> 81, 40136 -> 82, 40137 -> 83, 
-     40138 -> 84, 40139 -> 85, 40140 -> 86, 40141 -> 87, 40142 -> 88, 40143 -> 
-     89, 40144 -> 90, 40145 -> 91, 40146 -> 92, 40147 -> 93, 40148 -> 94, 
-     40149 -> 95, 40150 -> 96, 40151 -> 97, 40152 -> 98, 40153 -> 99, 40154 -> 
-     100, 40155 -> 101, 40156 -> 102, 40157 -> 103, 40158 -> 104, 40159 -> 
-     105, 40160 -> 106, 40161 -> 107, 40162 -> 108, 40163 -> 109, 40164 -> 
-     110, 40165 -> 111, 40166 -> 112, 40167 -> 113, 40168 -> 114, 40169 -> 
-     115, 40170 -> 116, 40171 -> 117, 40172 -> 118, 40173 -> 119, 40174 -> 
-     120, 40175 -> 121, 40176 -> 122, 40177 -> 123, 40178 -> 124, 40179 -> 
-     125, 40180 -> 126, 40181 -> 127, 40182 -> 128, 40183 -> 129, 40184 -> 
-     130, 40185 -> 131, 40186 -> 132, 40187 -> 133, 40188 -> 134, 40189 -> 
-     135, 40190 -> 136, 40191 -> 137, 40192 -> 138, 40193 -> 139, 40194 -> 
-     140, 40195 -> 141, 40196 -> 142, 40197 -> 143, 40198 -> 144, 40199 -> 
-     145, 40200 -> 146, 40201 -> 147, 40202 -> 148, 40203 -> 149, 40204 -> 
-     150, 40205 -> 151, 40206 -> 152, 40207 -> 153, 40208 -> 154, 40209 -> 
-     155, 40210 -> 156, 40211 -> 157, 40212 -> 158, 40213 -> 159, 40214 -> 
-     160, 40215 -> 161, 40216 -> 162, 40217 -> 163, 40218 -> 164, 40219 -> 
-     165, 40220 -> 166, 40221 -> 167, 40222 -> 168, 40223 -> 169, 40224 -> 
-     170, 40225 -> 171, 40226 -> 172, 40227 -> 173, 40228 -> 174, 40229 -> 
-     175, 40230 -> 176, 40231 -> 177, 40232 -> 178, 40233 -> 179, 40234 -> 
-     180, 40235 -> 181, 40236 -> 182, 40237 -> 183, 40238 -> 184, 40239 -> 
-     185, 40240 -> 186, 40241 -> 187, 40242 -> 188, 40243 -> 189, 40244 -> 
-     190, 40245 -> 191, 40246 -> 192, 40247 -> 193, 40248 -> 194, 40249 -> 
-     195, 40250 -> 196, 40251 -> 197, 40252 -> 198, 40253 -> 199, 40254 -> 
-     200, 40255 -> 201, 40256 -> 202, 40257 -> 203, 40258 -> 204, 40259 -> 
-     205, 40260 -> 206, 40261 -> 207, 40262 -> 208, 40263 -> 209, 40264 -> 
-     210, 40265 -> 211, 40266 -> 212, 40267 -> 213, 40268 -> 214, 40269 -> 
-     215, 40270 -> 216, 40271 -> 217, 40272 -> 218, 40273 -> 219, 40274 -> 
-     220, 40275 -> 221, 40276 -> 222, 40277 -> 223, 40278 -> 224, 40279 -> 
-     225, 40280 -> 226, 40281 -> 227, 40282 -> 228, 40283 -> 229, 40284 -> 
-     230, 40285 -> 231, 40286 -> 232, 40287 -> 233, 40288 -> 234, 40289 -> 
-     235, 40290 -> 236, 40291 -> 237, 40292 -> 238, 40293 -> 239, 40294 -> 
-     240, 40295 -> 241, 40296 -> 242, 40297 -> 243, 40298 -> 244, 40299 -> 
-     245, 40300 -> 246, 40301 -> 247, 40302 -> 248, 40303 -> 249, 40304 -> 
-     250, 40305 -> 251, 40306 -> 252, 40307 -> 253, 40308 -> 254, 40309 -> 
-     255, 40310 -> 256, 40311 -> 257, 40312 -> 258, 40313 -> 259, 40314 -> 
-     260, 40315 -> 261, 40316 -> 262, 40317 -> 263, 40318 -> 264, 40319 -> 
-     265, 40320 -> 266, 40321 -> 267, 40322 -> 268, 40323 -> 269, 40324 -> 
-     270, 40325 -> 271, 40326 -> 272, 40327 -> 273, 40328 -> 274, 40329 -> 
-     275, 40330 -> 276, 40331 -> 277, 40332 -> 278, 40333 -> 279, 40334 -> 
-     280, 40335 -> 281, 40336 -> 282, 40337 -> 283, 40338 -> 284, 40339 -> 
-     285, 40340 -> 286, 40341 -> 287, 40342 -> 288, 40343 -> 289, 40344 -> 
-     290, 40345 -> 291, 40346 -> 292, 40347 -> 293, 40348 -> 294, 40349 -> 
-     295, 40350 -> 296, 40351 -> 297, 40352 -> 298, 40353 -> 299, 40354 -> 
-     300, 40355 -> 301, 40356 -> 302, 40357 -> 303, 40358 -> 304, 40359 -> 
-     305, 40360 -> 306, 40361 -> 307, 40362 -> 308, 40363 -> 309, 40364 -> 
-     310, 40365 -> 311, 40366 -> 312, 40367 -> 313, 40368 -> 314, 40369 -> 
-     315, 40370 -> 316, 40371 -> 317, 40372 -> 318, 40373 -> 319, 40374 -> 
-     320, 40375 -> 321, 40376 -> 322, 40377 -> 323, 40378 -> 324, 40379 -> 
-     325, 40380 -> 326, 40381 -> 327, 40382 -> 328, 40383 -> 329, 40384 -> 
-     330, 40385 -> 331, 40386 -> 332, 40387 -> 333, 40388 -> 334, 40389 -> 
-     335, 40390 -> 336, 40391 -> 337, 40392 -> 338, 40393 -> 339, 40394 -> 
-     340, 40395 -> 341, 40396 -> 342, 40397 -> 343, 40398 -> 344, 40399 -> 
-     345, 40400 -> 346, 40401 -> 347, 40402 -> 348, 40403 -> 349, 40404 -> 
-     350, 40405 -> 351, 40406 -> 352, 40407 -> 353, 40408 -> 354, 40409 -> 
-     355, 40410 -> 356, 40411 -> 357, 40412 -> 358, 40413 -> 359, 40414 -> 
-     360, 40415 -> 361, 40416 -> 362, 40417 -> 363, 40418 -> 364, 40419 -> 
-     365, 40420 -> 366, 40421 -> 367, 40422 -> 368, 40423 -> 369, 40424 -> 
-     370, 40425 -> 371, 40426 -> 372, 40427 -> 373, 40428 -> 374, 40429 -> 
-     375, 40430 -> 376, 40431 -> 377, 40432 -> 378, 40433 -> 379, 40434 -> 
-     380, 40435 -> 381, 40436 -> 382, 40437 -> 383, 40438 -> 384, 40439 -> 
-     385, 40440 -> 386, 40441 -> 387, 40442 -> 388, 40443 -> 389, 40444 -> 
-     390, 40445 -> 391, 40446 -> 392, 40447 -> 393, 40448 -> 394, 40449 -> 
-     395, 40450 -> 396, 40451 -> 397, 40452 -> 398, 40453 -> 399, 40454 -> 
-     400, 40455 -> 401, 40456 -> 402, 40457 -> 403, 40458 -> 404, 40459 -> 
-     405, 40460 -> 406, 40461 -> 407, 40462 -> 408, 40463 -> 409, 40464 -> 
-     410, 40465 -> 411, 40466 -> 412, 40467 -> 413, 40468 -> 414, 40469 -> 
-     415, 40470 -> 416, 40471 -> 417, 40472 -> 418, 40473 -> 419, 40474 -> 
-     420, 40475 -> 421, 40476 -> 422, 40477 -> 423, 40478 -> 424, 40479 -> 
-     425, 40480 -> 426, 40481 -> 427, 40482 -> 428, 40483 -> 429, 40484 -> 
-     430, 40485 -> 431, 40486 -> 432, 40487 -> 433, 40488 -> 434, 40489 -> 
-     435, 40490 -> 436, 40491 -> 437, 40492 -> 438, 40493 -> 439, 40494 -> 
-     440, 40495 -> 441, 40496 -> 442, 40497 -> 443, 40498 -> 444, 40499 -> 
-     445, 40500 -> 446, 40501 -> 447, 40502 -> 448, 40503 -> 449, 40504 -> 
-     450, 40505 -> 451, 40506 -> 452, 40507 -> 453, 40508 -> 454, 40509 -> 
-     455, 40510 -> 456, 40511 -> 457, 40512 -> 458, 40513 -> 459, 40514 -> 
-     460, 40515 -> 461, 40516 -> 462, 40517 -> 463, 40518 -> 464, 40519 -> 
-     465, 40520 -> 466, 40521 -> 467, 40522 -> 468, 40523 -> 469, 40524 -> 
-     470, 40525 -> 471, 40526 -> 472, 40527 -> 473, 40528 -> 474, 40529 -> 
-     475, 40530 -> 476, 40531 -> 477, 40532 -> 478, 40533 -> 479, 40534 -> 
-     480, 40535 -> 481, 40536 -> 482, 40537 -> 483, 40538 -> 484, 40539 -> 
-     485, 40540 -> 486, 40541 -> 487, 40542 -> 488, 40543 -> 489, 40544 -> 
-     490, 40545 -> 491, 40546 -> 492, 40547 -> 493, 40548 -> 494, 40549 -> 
-     495, 40550 -> 496, 40551 -> 497, 40552 -> 498, 40553 -> 499, 40554 -> 
-     500, 40555 -> 501, 40556 -> 502, 40557 -> 503, 40558 -> 504, 40559 -> 
-     505, 40560 -> 506, 40561 -> 507, 40562 -> 508, 40563 -> 509, 40564 -> 
-     510, 40565 -> 511, 40566 -> 512, 40567 -> 513, 40568 -> 514, 40569 -> 
-     515, 40570 -> 516, 40571 -> 517, 40572 -> 518, 40573 -> 519, 40574 -> 
-     520, 40575 -> 521, 40576 -> 522, 40577 -> 523, 40578 -> 524, 40579 -> 
-     525, 40580 -> 526, 40581 -> 527, 40582 -> 528, 40583 -> 529, 40584 -> 
-     530, 40585 -> 531, 40586 -> 532, 40587 -> 533, 40588 -> 534, 40589 -> 
-     535, 40590 -> 536, 40591 -> 537, 40592 -> 538, 40593 -> 539, 40594 -> 
-     540, 40595 -> 541, 40596 -> 542, 40597 -> 543, 40598 -> 544, 40599 -> 
-     545, 40600 -> 546, 40601 -> 547, 40602 -> 548, 40603 -> 549, 40604 -> 
-     550, 40605 -> 551, 40606 -> 552, 40607 -> 553, 40608 -> 554, 40609 -> 
-     555, 40610 -> 556, 40611 -> 557, 40612 -> 558, 40613 -> 559, 40614 -> 
-     560, 40615 -> 561, 40616 -> 562, 40617 -> 563, 40618 -> 564, 40619 -> 
-     565, 40620 -> 566, 40621 -> 567, 40622 -> 568, 40623 -> 569, 40624 -> 
-     570, 40625 -> 571, 40626 -> 572, 40627 -> 573, 40628 -> 574, 40629 -> 
-     575, 40630 -> 576, 40631 -> 577, 40632 -> 578, 40633 -> 579, 40634 -> 
-     580, 40635 -> 581, 40636 -> 582, 40637 -> 583, 40638 -> 584, 40639 -> 
-     585, 40640 -> 586, 40641 -> 587, 40642 -> 588, 40643 -> 589, 40644 -> 
-     590, 40645 -> 591, 40646 -> 592, 40647 -> 593, 40648 -> 594, 40649 -> 
-     595, 40650 -> 596, 40651 -> 597, 40652 -> 598, 40653 -> 599, 40654 -> 
-     600, 40655 -> 601, 40656 -> 602, 40657 -> 603, 40658 -> 604, 40659 -> 
-     605, 40660 -> 606, 40661 -> 607, 40662 -> 608, 40663 -> 609, 40664 -> 
-     610, 40665 -> 611, 40666 -> 612, 40667 -> 613, 40668 -> 614, 40669 -> 
-     615, 40670 -> 616, 40671 -> 617, 40672 -> 618, 40673 -> 619, 40674 -> 
-     620, 40675 -> 621, 40676 -> 622, 40677 -> 623, 40678 -> 624, 40679 -> 
-     625, 40680 -> 626, 40681 -> 627, 40682 -> 628, 40683 -> 629, 40684 -> 
-     630, 40685 -> 631, 40686 -> 632, 40687 -> 633, 40688 -> 634, 40689 -> 
-     635, 40690 -> 636, 40691 -> 637, 40692 -> 638, 40693 -> 639, 40694 -> 
-     640, 40695 -> 641, 40696 -> 642, 40697 -> 643, 40698 -> 644, 40699 -> 
-     645, 40700 -> 646, 40701 -> 647, 40702 -> 648, 40703 -> 649, 40704 -> 
-     650, 40705 -> 651, 40706 -> 652, 40707 -> 653, 40708 -> 654, 40709 -> 
-     655, 40710 -> 656, 40711 -> 657, 40712 -> 658, 40713 -> 659, 40714 -> 
-     660, 40715 -> 661, 40716 -> 662, 40717 -> 663, 40718 -> 664, 40719 -> 
-     665, 40720 -> 666, 40721 -> 667, 40722 -> 668, 40723 -> 669, 40724 -> 
-     670, 40725 -> 671, 40726 -> 672, 40727 -> 673, 40728 -> 674, 40729 -> 
-     675, 40730 -> 676, 40731 -> 677, 40732 -> 678, 40733 -> 679, 40734 -> 
-     680, 40735 -> 681, 40736 -> 682, 40737 -> 683, 40738 -> 684, 40739 -> 
-     685, 40740 -> 686, 40741 -> 687, 40742 -> 688, 40743 -> 689, 40744 -> 
-     690, 40745 -> 691, 40746 -> 692, 40747 -> 693, 40748 -> 694, 40749 -> 
-     695, 40750 -> 696, 40751 -> 697, 40752 -> 698, 40753 -> 699, 40754 -> 
-     700, 40755 -> 701, 40756 -> 702, 40757 -> 703, 40758 -> 704, 40759 -> 
-     705, 40760 -> 706, 40761 -> 707, 40762 -> 708, 40763 -> 709, 40764 -> 
-     710, 40765 -> 711, 40766 -> 712, 40767 -> 713, 40768 -> 714, 40769 -> 
-     715, 40770 -> 716, 40771 -> 717, 40772 -> 718, 40773 -> 719, 40774 -> 
-     720, 40775 -> 721, 40776 -> 722, 40777 -> 723, 40778 -> 724, 40779 -> 
-     725, 40780 -> 726, 40781 -> 727, 40782 -> 728, 40783 -> 729, 40784 -> 
-     730, 40785 -> 731, 40786 -> 732, 40787 -> 733, 40788 -> 734, 40789 -> 
-     735, 40790 -> 736, 40791 -> 737, 40792 -> 738, 40793 -> 739, 40794 -> 
-     740, 40795 -> 741, 40796 -> 742, 40797 -> 743, 40798 -> 744, 40799 -> 
-     745, 40800 -> 746, 40801 -> 747, 40802 -> 748, 40803 -> 749, 40804 -> 
-     750, 40805 -> 751, 40806 -> 752, 40807 -> 753, 40808 -> 754, 40809 -> 
-     755, 40810 -> 756, 40811 -> 757, 40812 -> 758, 40813 -> 759, 40814 -> 
-     760, 40815 -> 761, 40816 -> 762, 40817 -> 763, 40818 -> 764, 40819 -> 
-     765, 40820 -> 766, 40821 -> 767, 40822 -> 768, 40823 -> 769, 40824 -> 
-     770, 40825 -> 771, 40826 -> 772, 40827 -> 773, 40828 -> 774, 40829 -> 
-     775, 40830 -> 776, 40831 -> 777, 40832 -> 778, 40833 -> 779, 40834 -> 
-     780, 40835 -> 781, 40836 -> 782, 40837 -> 783, 40838 -> 784, 40839 -> 
-     785, 40840 -> 786, 40841 -> 787, 40842 -> 788, 40843 -> 789, 40844 -> 
-     790, 40845 -> 791, 40846 -> 792, 40847 -> 793, 40848 -> 794, 40849 -> 
-     795, 40850 -> 796, 40851 -> 797, 40852 -> 798, 40853 -> 799, 40854 -> 
-     800, 40855 -> 801, 40856 -> 802, 40857 -> 803, 40858 -> 804, 40859 -> 
-     805, 40860 -> 806, 40861 -> 807, 40862 -> 808, 40863 -> 809, 40864 -> 
-     810, 40865 -> 811, 40866 -> 812, 40867 -> 813, 40868 -> 814, 40869 -> 
-     815, 40870 -> 816, 40871 -> 817, 40872 -> 818, 40873 -> 819, 40874 -> 
-     820, 40875 -> 821, 40876 -> 822, 40877 -> 823, 40878 -> 824, 40879 -> 
-     825, 40880 -> 826, 40881 -> 827, 40882 -> 828, 40883 -> 829, 40884 -> 
-     830, 40885 -> 831, 40886 -> 832, 40887 -> 833, 40888 -> 834, 40889 -> 
-     835, 40890 -> 836, 40891 -> 837, 40892 -> 838, 40893 -> 839, 40894 -> 
-     840, 40895 -> 841, 40896 -> 842, 40897 -> 843, 40898 -> 844, 40899 -> 
-     845, 40900 -> 846, 40901 -> 847, 40902 -> 848, 40903 -> 849, 40904 -> 
-     850, 40905 -> 851, 40906 -> 852, 40907 -> 853, 40908 -> 854, 40909 -> 
-     855, 40910 -> 856, 40911 -> 857, 40912 -> 858, 40913 -> 859, 40914 -> 
-     860, 40915 -> 861, 40916 -> 862, 40917 -> 863, 40918 -> 864, 40919 -> 
-     865, 40920 -> 866, 40921 -> 867, 40922 -> 868, 40923 -> 869, 40924 -> 
-     870, 40925 -> 871, 40926 -> 872, 40927 -> 873, 40928 -> 874, 40929 -> 
-     875, 40930 -> 876, 40931 -> 877, 40932 -> 878, 40933 -> 879, 40934 -> 
-     880, 40935 -> 881, 40936 -> 882, 40937 -> 883, 40938 -> 884, 40939 -> 
-     885, 40940 -> 886, 40941 -> 887, 40942 -> 888, 40943 -> 889, 40944 -> 
-     890, 40945 -> 891, 40946 -> 892, 40947 -> 893, 40948 -> 894, 40949 -> 
-     895, 40950 -> 896, 40951 -> 897, 40952 -> 898, 40953 -> 899, 40954 -> 
-     900, 40955 -> 901, 40956 -> 902, 40957 -> 903, 40958 -> 904, 40959 -> 
-     905, 40960 -> 906, 40961 -> 907, 40962 -> 908, 40963 -> 909, 40964 -> 
-     910, 40965 -> 911, 40966 -> 912, 40967 -> 913, 40968 -> 914, 40969 -> 
-     915, 40970 -> 916, 40971 -> 917, 40972 -> 918, 40973 -> 919, 40974 -> 
-     920, 40975 -> 921, 40976 -> 922, 40977 -> 923, 40978 -> 924, 40979 -> 
-     925, 40980 -> 926, 40981 -> 927, 40982 -> 928, 40983 -> 929, 40984 -> 
-     930, 40985 -> 931, 40986 -> 932, 40987 -> 933, 40988 -> 934, 40989 -> 
-     935, 40990 -> 936, 40991 -> 937, 40992 -> 938, 40993 -> 939, 40994 -> 
-     940, 40995 -> 941, 40996 -> 942, 40997 -> 943, 40998 -> 944, 40999 -> 
-     945, 41000 -> 946, 41001 -> 947, 41002 -> 948, 41003 -> 949, 41004 -> 
-     950, 41005 -> 951, 41006 -> 952, 41007 -> 953, 41008 -> 954, 41009 -> 
-     955, 41010 -> 956, 41011 -> 957, 41012 -> 958, 41013 -> 959, 41014 -> 
-     960, 41015 -> 961, 41016 -> 962, 41017 -> 963, 41018 -> 964, 41019 -> 
-     965, 41020 -> 966, 41021 -> 967, 41022 -> 968, 41023 -> 969, 41024 -> 
-     970, 41025 -> 971, 41026 -> 972, 41027 -> 973, 41028 -> 974, 41029 -> 
-     975, 41030 -> 976, 41031 -> 977, 41032 -> 978, 41033 -> 979, 41034 -> 
-     980, 41035 -> 981, 41036 -> 982, 41037 -> 983, 41038 -> 984, 41039 -> 
-     985, 41040 -> 986, 41041 -> 987, 41042 -> 988, 41043 -> 989, 41044 -> 
-     990, 41045 -> 991, 41046 -> 992, 41047 -> 993, 41048 -> 994, 41049 -> 
-     995, 41050 -> 996, 41051 -> 997, 41052 -> 998, 41053 -> 999, 41054 -> 
-     1000]],
-   Editable->False,
-   SelectWithContents->True,
-   Selectable->False], "]"}]], "Output",
- CellChangeTimes->{3.766926136834796*^9},
- CellLabel->
-  "Out[258]=",ExpressionUUID->"b3cc264e-fac1-40d3-9bf7-7b69a2bf6dd8"]
-}, Open  ]],
+ RowBox[{"<<", "DataStructures`Stack`"}]], "Input",
+ CellChangeTimes->{{3.7669847284974117`*^9, 3.766984738775144*^9}, {
+  3.7669848077129602`*^9, 
+  3.766984808262793*^9}},ExpressionUUID->"862e32a7-b5c1-43d0-abd3-\
+8bccb17ba032"],
 
 Cell[CellGroupData[{
 
@@ -504,12 +280,20 @@ Cell[BoxData[
  CellChangeTimes->{{3.766926559644423*^9, 3.766926590759573*^9}},
  CellLabel->
   "Out[272]=",ExpressionUUID->"c5ad724e-e841-4021-872c-c10af6215ab5"]
+}, Open  ]]
 }, Open  ]],
 
+Cell[CellGroupData[{
+
+Cell["Tree", "Subsection",
+ CellChangeTimes->{{3.766984760206171*^9, 
+  3.766984760590027*^9}},ExpressionUUID->"237c9676-7a6e-43ee-abbd-\
+e86cadf45c53"],
+
 Cell[BoxData[
- RowBox[{"<<", "DataStructures`"}]], "Input",
- CellChangeTimes->{{3.766926105508003*^9, 3.7669261082082567`*^9}},
- CellLabel->"In[1]:=",ExpressionUUID->"c12ff8d0-b231-4e02-ae08-8b6bb539ca04"],
+ RowBox[{"<<", "DataStructures`Tree`"}]], "Input",
+ CellChangeTimes->{{3.7669847284974117`*^9, 3.766984738775144*^9}},
+ CellLabel->"In[98]:=",ExpressionUUID->"89bd1b4e-f4ae-4c96-a7ed-7498c67a76a9"],
 
 Cell[CellGroupData[{
 
@@ -517,8 +301,10 @@ Cell[BoxData[
  RowBox[{"t", "=", 
   RowBox[{"Tree", "[", "]"}]}]], "Input",
  CellChangeTimes->{{3.7669268709722147`*^9, 3.766926872171153*^9}, 
-   3.7669275037863073`*^9, 3.7669282462525663`*^9},
- CellLabel->"In[3]:=",ExpressionUUID->"d2221d68-0eaf-4a19-89f9-39d671b478dd"],
+   3.7669275037863073`*^9, 3.7669282462525663`*^9, {3.766984815889176*^9, 
+   3.766984816102858*^9}},
+ CellLabel->
+  "In[101]:=",ExpressionUUID->"d2221d68-0eaf-4a19-89f9-39d671b478dd"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -573,33 +359,36 @@ Cell[BoxData[
        Dynamic[Typeset`open$$], ImageSize -> Automatic]},
      "SummaryPanel"],
     DynamicModuleValues:>{}], "]"}],
-  DataStructures`Tree[{{}, {}}],
+  DataStructures`Tree`Tree[{{}, {}}],
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
  CellChangeTimes->{3.7669282467131567`*^9, 3.766928547247779*^9, 
-  3.7669286777253513`*^9, 3.7669313312661123`*^9, 3.766931370168021*^9},
- CellLabel->"Out[3]=",ExpressionUUID->"6d8484c6-d23d-4652-ae9d-4bffe6f86593"]
+  3.7669286777253513`*^9, 3.7669313312661123`*^9, 3.766931370168021*^9, 
+  3.7669786021779537`*^9, 3.7669848166068583`*^9},
+ CellLabel->
+  "Out[101]=",ExpressionUUID->"e4a85add-fadb-4a62-81ac-26aec7e34495"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"TreePop", "[", "t", "]"}]], "Input",
- CellChangeTimes->{{3.7669313760211477`*^9, 3.7669313764613857`*^9}},
- CellLabel->"In[5]:=",ExpressionUUID->"195c364c-d10e-4823-91ba-7eea830865a4"],
+ CellChangeTimes->{{3.7669313760211477`*^9, 3.7669313764613857`*^9}, {
+  3.766984817320223*^9, 3.7669848175429697`*^9}},
+ CellLabel->
+  "In[102]:=",ExpressionUUID->"195c364c-d10e-4823-91ba-7eea830865a4"],
 
 Cell[BoxData[
  TemplateBox[{
-  "Tree","nochild",
-   "\"Tree doesn't have children at node \\!\\(\\*RowBox[{\\\"None\\\"}]\\) \
-and position \\!\\(\\*RowBox[{\\\"-\\\", \\\"1\\\"}]\\)\"",2,5,2,
-   28141499830444216686,"Local","DataStructures`Tree"},
+  "Tree","nopop",
+   "\"Tree can't pop node \\!\\(\\*RowBox[{\\\"-\\\", \\\"1\\\"}]\\)\"",2,102,
+   17,28141499830444216686,"Local","DataStructures`Tree`Tree"},
   "MessageTemplate2"]], "Message", "MSG",
- CellChangeTimes->{3.7669313780374193`*^9, 3.766931712199396*^9},
+ CellChangeTimes->{3.7669848180490313`*^9},
  CellLabel->
   "During evaluation of \
-In[5]:=",ExpressionUUID->"c01208d4-e47d-49a9-a174-77cf09d006c8"],
+In[102]:=",ExpressionUUID->"d8f56a6f-88bc-4386-b29f-27d865fc086a"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -620,9 +409,8 @@ Cell[BoxData[
                    TagBox["\"Message: \"", "SummaryItemAnnotation"], 
                    "\[InvisibleSpace]", 
                    TagBox[
-                   "\"Part \\!\\(\\*TagBox[\\\"None\\\", \
-Function[Short[Slot[1], 5]]]\\) of \\!\\(\\*TagBox[RowBox[{\\\"-\\\", \\\"1\\\
-\"}], Function[Short[Slot[1], 5]]]\\) does not exist.\"", "SummaryItem"]}}, 
+                   "\"Tree can't pop node \\!\\(\\*TagBox[RowBox[{\\\"-\\\", \
+\\\"1\\\"}], Function[Short[Slot[1], 5]]]\\)\"", "SummaryItem"]}}, 
                  GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
                  GridBoxAlignment -> {"Columns" -> {{Left}}}, 
                  GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}, {
@@ -630,7 +418,7 @@ Function[Short[Slot[1], 5]]]\\) of \\!\\(\\*TagBox[RowBox[{\\\"-\\\", \\\"1\\\
                 GridBox[{{
                    TagBox["\"Tag: \"", "SummaryItemAnnotation"], 
                    "\[InvisibleSpace]", 
-                   TagBox["\"BadPart\"", "SummaryItem"]}}, 
+                   TagBox["\"NoPop\"", "SummaryItem"]}}, 
                  GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
                  GridBoxAlignment -> {"Columns" -> {{Left}}}, 
                  GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}}, 
@@ -657,9 +445,8 @@ Function[Short[Slot[1], 5]]]\\) of \\!\\(\\*TagBox[RowBox[{\\\"-\\\", \\\"1\\\
                    TagBox["\"Message: \"", "SummaryItemAnnotation"], 
                    "\[InvisibleSpace]", 
                    TagBox[
-                   "\"Part \\!\\(\\*TagBox[\\\"None\\\", \
-Function[Short[Slot[1], 5]]]\\) of \\!\\(\\*TagBox[RowBox[{\\\"-\\\", \\\"1\\\
-\"}], Function[Short[Slot[1], 5]]]\\) does not exist.\"", "SummaryItem"]}}, 
+                   "\"Tree can't pop node \\!\\(\\*TagBox[RowBox[{\\\"-\\\", \
+\\\"1\\\"}], Function[Short[Slot[1], 5]]]\\)\"", "SummaryItem"]}}, 
                  GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
                  GridBoxAlignment -> {"Columns" -> {{Left}}}, 
                  GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}, {
@@ -667,7 +454,7 @@ Function[Short[Slot[1], 5]]]\\) of \\!\\(\\*TagBox[RowBox[{\\\"-\\\", \\\"1\\\
                 GridBox[{{
                    TagBox["\"Tag: \"", "SummaryItemAnnotation"], 
                    "\[InvisibleSpace]", 
-                   TagBox["\"BadPart\"", "SummaryItem"]}}, 
+                   TagBox["\"NoPop\"", "SummaryItem"]}}, 
                  GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
                  GridBoxAlignment -> {"Columns" -> {{Left}}}, 
                  GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}}, 
@@ -686,107 +473,17 @@ Function[Short[Slot[1], 5]]]\\) of \\!\\(\\*TagBox[RowBox[{\\\"-\\\", \\\"1\\\
        Dynamic[Typeset`open$$], ImageSize -> Automatic]},
      "SummaryPanel"],
     DynamicModuleValues:>{}], "]"}],
-  Failure["BadPart", 
+  Failure["NoPop", 
    Association[
-   "MessageTemplate" :> MessageName[DataStructures`Tree, "partw"], 
-    "MessageParameters" :> {None, -1, 
-      DataStructures`Tree[{{}, {}}]}]],
+   "MessageTemplate" :> MessageName[DataStructures`Tree`Tree, "nopop"], 
+    "MessageParameters" :> {-1, 
+      DataStructures`Tree`Tree[{{}, {}}]}]],
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
- CellChangeTimes->{3.7669313780498037`*^9, 3.766931712226791*^9},
- CellLabel->"Out[5]=",ExpressionUUID->"47d00124-206a-428d-8978-1c87dc1f6aa4"]
-}, Open  ]],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{"a", ",", " ", "b"}], "}"}], "=", 
-   RowBox[{"TreePop", "[", 
-    RowBox[{"TreeInsertData", "[", 
-     RowBox[{
-      RowBox[{"TreeInsert", "[", 
-       RowBox[{"t", ",", " ", "1"}], "]"}], ",", " ", "1"}], "]"}], "]"}]}], 
-  ";"}]], "Input",
- CellChangeTimes->{{3.766928893029258*^9, 3.766928896883219*^9}, {
-  3.766928928434497*^9, 3.7669289830389023`*^9}, {3.766929021049623*^9, 
-  3.766929107267447*^9}},
- CellLabel->"In[53]:=",ExpressionUUID->"c3996542-e668-4c1a-890f-a17d5551ec6a"],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"TreeInsert", "[", "\[IndentingNewLine]", 
-  RowBox[{
-   RowBox[{"TreeInsert", "[", 
-    RowBox[{"t", ",", " ", "1", ",", " ", 
-     RowBox[{"{", "}"}]}], "]"}], ",", "\[IndentingNewLine]", "2", ",", 
-   "\[IndentingNewLine]", 
-   RowBox[{"{", "1", "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
- CellChangeTimes->{{3.7669303104359207`*^9, 3.766930333066969*^9}, 
-   3.766931735077076*^9},
- CellLabel->"In[7]:=",ExpressionUUID->"e9b70cb4-de96-4268-89d4-4f2771e1b2a4"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{
-   TagBox["Tree",
-    "SummaryHead"], "[", 
-   DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
-    
-    TemplateBox[{PaneSelectorBox[{False -> GridBox[{{
-            GridBox[{{
-               RowBox[{
-                 TagBox["\"Root:\"", "SummaryItemAnnotation"], 
-                 "\[InvisibleSpace]", 
-                 TagBox["None", "SummaryItem"]}]}, {
-               RowBox[{
-                 TagBox["\"Children:\"", "SummaryItemAnnotation"], 
-                 "\[InvisibleSpace]", 
-                 TagBox["1", "SummaryItem"]}]}}, 
-             GridBoxAlignment -> {
-              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
-             False, GridBoxItemSize -> {
-              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
-             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
-              BaseStyle -> {
-              ShowStringCharacters -> False, NumberMarks -> False, 
-               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
-          GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
-          GridBoxItemSize -> {
-           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
-          BaselinePosition -> {1, 1}], True -> GridBox[{{
-            GridBox[{{
-               RowBox[{
-                 TagBox["\"Root:\"", "SummaryItemAnnotation"], 
-                 "\[InvisibleSpace]", 
-                 TagBox["None", "SummaryItem"]}]}, {
-               RowBox[{
-                 TagBox["\"Children:\"", "SummaryItemAnnotation"], 
-                 "\[InvisibleSpace]", 
-                 TagBox["1", "SummaryItem"]}]}}, 
-             GridBoxAlignment -> {
-              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
-             False, GridBoxItemSize -> {
-              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
-             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
-              BaseStyle -> {
-              ShowStringCharacters -> False, NumberMarks -> False, 
-               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
-          GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
-          GridBoxItemSize -> {
-           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
-          BaselinePosition -> {1, 1}]}, 
-       Dynamic[Typeset`open$$], ImageSize -> Automatic]},
-     "SummaryPanel"],
-    DynamicModuleValues:>{}], "]"}],
-  DataStructures`Tree[{{}, {{{1}, {{{2}, {}}}}}}],
-  Editable->False,
-  SelectWithContents->True,
-  Selectable->False]], "Output",
- CellChangeTimes->{3.76693173539456*^9},
- CellLabel->"Out[7]=",ExpressionUUID->"ba504745-e7b2-41b4-b4c9-fb4a0072aa1d"]
+ CellChangeTimes->{3.766984818062644*^9},
+ CellLabel->
+  "Out[102]=",ExpressionUUID->"04a48401-4c05-4fc3-aa13-815bd96e330a"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -815,23 +512,95 @@ Cell[BoxData[
          "\[IndentingNewLine]", "}"}], "&"}], ",", "\[IndentingNewLine]", " ", 
        RowBox[{"{", 
         RowBox[{"t", ",", " ", 
-         RowBox[{"{", "}"}]}], "}"}], ",", " ", "\[IndentingNewLine]", 
+         RowBox[{"{", "1", "}"}]}], "}"}], ",", " ", "\[IndentingNewLine]", 
        RowBox[{"Range", "[", "5", "]"}]}], "\[IndentingNewLine]", "]"}], "[", 
      
      RowBox[{"[", "1", "]"}], "]"}]}], ";"}], "//", 
   "RepeatedTiming"}]], "Input",
  CellChangeTimes->{{3.766929424920143*^9, 3.766929489709264*^9}, {
-  3.766929543814204*^9, 3.766929592262961*^9}, {3.76693036558856*^9, 
-  3.7669303983847523`*^9}},
- CellLabel->"In[8]:=",ExpressionUUID->"640d8636-091f-47d9-95e5-cda56f439c18"],
+   3.766929543814204*^9, 3.766929592262961*^9}, {3.76693036558856*^9, 
+   3.7669303983847523`*^9}, 3.766984846190627*^9},
+ CellLabel->
+  "In[105]:=",ExpressionUUID->"640d8636-091f-47d9-95e5-cda56f439c18"],
 
 Cell[BoxData[
  RowBox[{"{", 
-  RowBox[{"0.0001954198717948718`2.", ",", "Null"}], "}"}]], "Output",
+  RowBox[{"0.0002081675347222222`2.", ",", "Null"}], "}"}]], "Output",
  CellChangeTimes->{{3.766929581351157*^9, 3.766929607414844*^9}, 
    3.76692969098595*^9, {3.766930368555526*^9, 3.766930399946082*^9}, 
-   3.766931737818204*^9},
- CellLabel->"Out[8]=",ExpressionUUID->"2eb1994e-135d-46bc-9c59-4946cdb9e9fb"]
+   3.766931737818204*^9, {3.766984825176034*^9, 3.766984847528287*^9}},
+ CellLabel->
+  "Out[105]=",ExpressionUUID->"4b0e3530-ef35-4d92-bf61-f20ad7b67acc"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["t1"], "Input",
+ CellChangeTimes->{{3.7669848266533203`*^9, 3.766984826884121*^9}},
+ CellLabel->
+  "In[106]:=",ExpressionUUID->"588d99d6-944d-41f5-8d5b-fef487343a0a"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox["Tree",
+    "SummaryHead"], "[", 
+   DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+    
+    TemplateBox[{PaneSelectorBox[{False -> GridBox[{{
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"Root:\"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["None", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Children:\"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["1", "SummaryItem"]}]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}], True -> GridBox[{{
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"Root:\"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["None", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Children:\"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["1", "SummaryItem"]}]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}]}, 
+       Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+     "SummaryPanel"],
+    DynamicModuleValues:>{}], "]"}],
+  DataStructures`Tree`Tree[{{}, {{{
+      1}, {{{2}, {{{3}, {{{4}, {{{5}, {}}}}}}}}}}}}],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{{3.766984827169689*^9, 3.766984848949749*^9}},
+ CellLabel->
+  "Out[106]=",ExpressionUUID->"c1968bdb-95b1-40ca-9461-7bf1dd8d4317"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -841,7 +610,8 @@ Cell[BoxData[
   RowBox[{"t1", ",", " ", "2", ",", " ", "1"}], "]"}]], "Input",
  CellChangeTimes->{{3.766930375384259*^9, 3.7669304058558893`*^9}, 
    3.766931741956409*^9},
- CellLabel->"In[10]:=",ExpressionUUID->"dae7bd10-666e-4f29-95d3-edf3484ffb3b"],
+ CellLabel->
+  "In[107]:=",ExpressionUUID->"dae7bd10-666e-4f29-95d3-edf3484ffb3b"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -859,7 +629,7 @@ Cell[BoxData[
                RowBox[{
                  TagBox["\"Children:\"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
-                 TagBox["1", "SummaryItem"]}]}}, 
+                 TagBox["2", "SummaryItem"]}]}}, 
              GridBoxAlignment -> {
               "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
              False, GridBoxItemSize -> {
@@ -880,7 +650,7 @@ Cell[BoxData[
                RowBox[{
                  TagBox["\"Children:\"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
-                 TagBox["1", "SummaryItem"]}]}}, 
+                 TagBox["2", "SummaryItem"]}]}}, 
              GridBoxAlignment -> {
               "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
              False, GridBoxItemSize -> {
@@ -896,41 +666,27 @@ Cell[BoxData[
        Dynamic[Typeset`open$$], ImageSize -> Automatic]},
      "SummaryPanel"],
     DynamicModuleValues:>{}], "]"}],
-  DataStructures`Tree[{{}, {{{
-      1}, {{{2}, {{{3}, {{{4}, {{{5}, {}}}}}}}}, {{2}, {}}}}}}],
+  DataStructures`Tree`Tree[{{}, {{{2}, {}}, {{
+      1}, {{{2}, {{{3}, {{{4}, {{{5}, {}}}}}}}}}}}}],
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
  CellChangeTimes->{
   3.766930406197171*^9, 3.766930506205668*^9, 3.76693066050278*^9, {
-   3.766931739560604*^9, 3.766931742286765*^9}},
- CellLabel->"Out[10]=",ExpressionUUID->"050b9b78-8514-4e3c-9d3f-03fc59272a86"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"t1", "//", "InputForm"}]], "Input",
- CellChangeTimes->{{3.766931772291874*^9, 3.766931774228569*^9}},
- CellLabel->"In[15]:=",ExpressionUUID->"a1edb3c5-aa56-4504-8582-a9ff8e4d4f4a"],
-
-Cell["Tree[{{}, {{{1}, {{{2}, {{{3}, {{{4}, {{{5}, {}}}}}}}}}}}}]", "Output",
- CellChangeTimes->{3.766931774519272*^9},
+   3.766931739560604*^9, 3.766931742286765*^9}, 3.766984852332999*^9},
  CellLabel->
-  "Out[15]//InputForm=",ExpressionUUID->"67c1b71b-074f-400b-84e8-\
-220d582c1aaa"]
+  "Out[107]=",ExpressionUUID->"e702fc2e-dec8-42d2-b676-9ec310df55b1"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"TreeInsertData", "[", 
+ RowBox[{"t1", "//", 
   RowBox[{
-   RowBox[{"TreeInsert", "[", 
-    RowBox[{"t1", ",", " ", "2", ",", " ", "1"}], "]"}], ",", " ", "1"}], 
-  "]"}]], "Input",
- CellChangeTimes->{{3.766931808458968*^9, 3.7669318240192547`*^9}},
- CellLabel->"In[19]:=",ExpressionUUID->"c205df5b-5189-4a39-a974-f4968076c611"],
+   RowBox[{"TreeInsertData", "[", 
+    RowBox[{"#", ",", " ", "1"}], "]"}], "&"}]}]], "Input",
+ CellLabel->
+  "In[112]:=",ExpressionUUID->"6aee1e2c-f2e1-4804-afa9-70a1f1ad454f"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -985,13 +741,223 @@ Cell[BoxData[
        Dynamic[Typeset`open$$], ImageSize -> Automatic]},
      "SummaryPanel"],
     DynamicModuleValues:>{}], "]"}],
-  DataStructures`Tree[{{
-    1}, {{{1}, {{{2}, {{{3}, {{{4}, {{{5}, {}}}}}}}}, {{2}, {}}}}}}],
+  DataStructures`Tree`Tree[{{
+    1}, {{{1}, {{{2}, {{{3}, {{{4}, {{{5}, {}}}}}}}}}}}}],
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
- CellChangeTimes->{{3.766931821912026*^9, 3.766931824297338*^9}},
- CellLabel->"Out[19]=",ExpressionUUID->"84108129-482c-4355-b599-131b23d3e87b"]
+ CellChangeTimes->{3.766984908631295*^9},
+ CellLabel->
+  "Out[112]=",ExpressionUUID->"3ff008b3-f72c-4f94-8a38-5ac2ce4bc43e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"t1", "//", 
+   RowBox[{
+    RowBox[{"TreeInsertData", "[", 
+     RowBox[{"#", ",", " ", "1"}], "]"}], "&"}]}], "//", 
+  RowBox[{
+   RowBox[{"TreeData", "[", 
+    RowBox[{"#", ",", " ", "All"}], "]"}], "&"}]}]], "Input",
+ CellChangeTimes->{{3.7669848560529947`*^9, 3.7669848794361258`*^9}},
+ CellLabel->
+  "In[110]:=",ExpressionUUID->"845cc9bf-6978-4ecd-8646-75d96c6b885c"],
+
+Cell[BoxData[
+ RowBox[{"{", "1", "}"}]], "Output",
+ CellChangeTimes->{{3.766984864292656*^9, 3.7669848798683987`*^9}},
+ CellLabel->
+  "Out[110]=",ExpressionUUID->"fde13dbe-3a6e-4b32-986b-b8eff527d584"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"t1", "//", 
+   RowBox[{
+    RowBox[{"TreeChildren", "[", 
+     RowBox[{"#", ",", " ", "1"}], "]"}], "&"}]}], "//", 
+  "InputForm"}]], "Input",
+ CellChangeTimes->{{3.7669849122534637`*^9, 3.766984926312417*^9}},
+ CellLabel->
+  "In[115]:=",ExpressionUUID->"79d28069-a540-4b82-9f36-f7d67bbdeb2f"],
+
+Cell["TreeNode[{1}, {{{2}, {{{3}, {{{4}, {{{5}, {}}}}}}}}}]", "Output",
+ CellChangeTimes->{{3.76698491630333*^9, 3.76698492661088*^9}},
+ CellLabel->
+  "Out[115]//InputForm=",ExpressionUUID->"b7cca876-3ea2-4ad0-8c94-\
+b81bf073354e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"TreeInsertSequence", "[", 
+   RowBox[{"t1", ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", " ", "2", ",", " ", "3", ",", " ", "4"}], "}"}]}], 
+   "]"}], "//", "RepeatedTiming"}]], "Input",
+ CellChangeTimes->{{3.76698493885*^9, 3.766984971993743*^9}},
+ CellLabel->
+  "In[119]:=",ExpressionUUID->"5ccb7042-2e8c-49c2-9d08-d370d5baa0d2"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.0000533567590801633`2.", ",", 
+   InterpretationBox[
+    RowBox[{
+     TagBox["Tree",
+      "SummaryHead"], "[", 
+     DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = 
+      "Ready"}, 
+      TemplateBox[{PaneSelectorBox[{False -> GridBox[{{
+              GridBox[{{
+                 RowBox[{
+                   TagBox["\"Root:\"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox["None", "SummaryItem"]}]}, {
+                 RowBox[{
+                   TagBox["\"Children:\"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox["5", "SummaryItem"]}]}}, 
+               GridBoxAlignment -> {
+                "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+               False, GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+               GridBoxSpacings -> {
+                "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+               BaseStyle -> {
+                ShowStringCharacters -> False, NumberMarks -> False, 
+                 PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+            GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+            GridBoxItemSize -> {
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+            BaselinePosition -> {1, 1}], True -> GridBox[{{
+              GridBox[{{
+                 RowBox[{
+                   TagBox["\"Root:\"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox["None", "SummaryItem"]}]}, {
+                 RowBox[{
+                   TagBox["\"Children:\"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox["5", "SummaryItem"]}]}}, 
+               GridBoxAlignment -> {
+                "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+               False, GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+               GridBoxSpacings -> {
+                "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+               BaseStyle -> {
+                ShowStringCharacters -> False, NumberMarks -> False, 
+                 PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+            GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+            GridBoxItemSize -> {
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+            BaselinePosition -> {1, 1}]}, 
+         Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+       "SummaryPanel"],
+      DynamicModuleValues:>{}], "]"}],
+    DataStructures`Tree`Tree[{{}, {{{
+        1}, {{{2}, {{{3}, {{{4}, {{{5}, {}}}}}}}}}}, {{1}, {}}, {{2}, {}}, {{
+        3}, {}}, {{4}, {}}}}],
+    Editable->False,
+    SelectWithContents->True,
+    Selectable->False]}], "}"}]], "Output",
+ CellChangeTimes->{{3.766984945435087*^9, 3.7669849728880653`*^9}},
+ CellLabel->
+  "Out[119]=",ExpressionUUID->"8d40e7e9-dc9f-4f10-baca-4d5d4bb6987f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"TreeInsertSequence", "[", 
+   RowBox[{"t1", ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", " ", "2", ",", " ", "3", ",", " ", "4"}], "}"}], ",", 
+    " ", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", " ", "1"}], "}"}]}], "]"}], "//", 
+  "RepeatedTiming"}]], "Input",
+ CellChangeTimes->{{3.76698493885*^9, 3.7669849771216297`*^9}},
+ CellLabel->
+  "In[120]:=",ExpressionUUID->"955274f0-28ff-405e-bb9e-f754d91ad982"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.0000538503490401396`2.", ",", 
+   InterpretationBox[
+    RowBox[{
+     TagBox["Tree",
+      "SummaryHead"], "[", 
+     DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = 
+      "Ready"}, 
+      TemplateBox[{PaneSelectorBox[{False -> GridBox[{{
+              GridBox[{{
+                 RowBox[{
+                   TagBox["\"Root:\"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox["None", "SummaryItem"]}]}, {
+                 RowBox[{
+                   TagBox["\"Children:\"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox["1", "SummaryItem"]}]}}, 
+               GridBoxAlignment -> {
+                "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+               False, GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+               GridBoxSpacings -> {
+                "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+               BaseStyle -> {
+                ShowStringCharacters -> False, NumberMarks -> False, 
+                 PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+            GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+            GridBoxItemSize -> {
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+            BaselinePosition -> {1, 1}], True -> GridBox[{{
+              GridBox[{{
+                 RowBox[{
+                   TagBox["\"Root:\"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox["None", "SummaryItem"]}]}, {
+                 RowBox[{
+                   TagBox["\"Children:\"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox["1", "SummaryItem"]}]}}, 
+               GridBoxAlignment -> {
+                "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+               False, GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+               GridBoxSpacings -> {
+                "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+               BaseStyle -> {
+                ShowStringCharacters -> False, NumberMarks -> False, 
+                 PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+            GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+            GridBoxItemSize -> {
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+            BaselinePosition -> {1, 1}]}, 
+         Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+       "SummaryPanel"],
+      DynamicModuleValues:>{}], "]"}],
+    DataStructures`Tree`Tree[{{}, {{{
+        1}, {{{1}, {}}, {{2}, {}}, {{3}, {}}, {{4}, {}}, {{
+          2}, {{{3}, {{{4}, {{{5}, {}}}}}}}}}}}}],
+    Editable->False,
+    SelectWithContents->True,
+    Selectable->False]}], "}"}]], "Output",
+ CellChangeTimes->{3.766984977928891*^9},
+ CellLabel->
+  "Out[120]=",ExpressionUUID->"3693c539-8ec1-4978-b5f9-41a6eb6796ed"]
+}, Open  ]]
+}, Open  ]]
 }, Open  ]]
 },
 WindowSize->{808, 755},
@@ -1011,57 +977,77 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 227, 5, 30, "Input",ExpressionUUID->"a00f1ef8-28ad-434e-bfa3-fdedc2ff5c0a"],
-Cell[810, 29, 2349, 52, 52, "Output",ExpressionUUID->"8643e254-15e5-4770-a9c4-cdb2738ed3f5"]
-}, Open  ]],
-Cell[3174, 84, 326, 8, 30, "Input",ExpressionUUID->"ae9d6f5b-b3c6-420e-afb0-6a4a28fd0661"],
+Cell[580, 22, 165, 3, 67, "Section",ExpressionUUID->"a37a52b2-a89b-48bc-97c3-e0b87996676a"],
 Cell[CellGroupData[{
-Cell[3525, 96, 211, 4, 30, "Input",ExpressionUUID->"66bae5b6-c381-495a-86bc-7be5a1732e85"],
-Cell[3739, 102, 17549, 253, 52, "Output",ExpressionUUID->"b3cc264e-fac1-40d3-9bf7-7b69a2bf6dd8"]
-}, Open  ]],
+Cell[770, 29, 153, 3, 54, "Subsection",ExpressionUUID->"78f1e3e3-5430-428b-95ae-c120c576843a"],
+Cell[926, 34, 241, 5, 30, "Input",ExpressionUUID->"4a241c5e-a4ee-4d30-99ae-3ca34353d06b"],
 Cell[CellGroupData[{
-Cell[21325, 360, 230, 5, 30, "Input",ExpressionUUID->"d7269767-e051-4fe7-b40c-035e2cde16f0"],
-Cell[21558, 367, 2350, 51, 52, "Output",ExpressionUUID->"3b459a01-a290-4706-abb3-b1b6f52685e3"]
+Cell[1192, 43, 274, 5, 30, "Input",ExpressionUUID->"a00f1ef8-28ad-434e-bfa3-fdedc2ff5c0a"],
+Cell[1469, 50, 2390, 51, 52, "Output",ExpressionUUID->"48da7856-8645-4618-a620-be9c58811a23"]
 }, Open  ]],
-Cell[23923, 421, 395, 10, 30, "Input",ExpressionUUID->"f95acf82-c029-40db-ba67-0a05ec56db19"],
-Cell[CellGroupData[{
-Cell[24343, 435, 417, 11, 30, "Input",ExpressionUUID->"c7d47b40-918d-4a56-8d02-14fcf3aa4503"],
-Cell[24763, 448, 2715, 57, 52, "Output",ExpressionUUID->"c5ad724e-e841-4021-872c-c10af6215ab5"]
-}, Open  ]],
-Cell[27493, 508, 205, 3, 30, "Input",ExpressionUUID->"c12ff8d0-b231-4e02-ae08-8b6bb539ca04"],
-Cell[CellGroupData[{
-Cell[27723, 515, 273, 5, 30, "Input",ExpressionUUID->"d2221d68-0eaf-4a19-89f9-39d671b478dd"],
-Cell[27999, 522, 2814, 59, 62, "Output",ExpressionUUID->"6d8484c6-d23d-4652-ae9d-4bffe6f86593"]
+Cell[3874, 104, 322, 7, 30, "Input",ExpressionUUID->"ae9d6f5b-b3c6-420e-afb0-6a4a28fd0661"],
+Cell[4199, 113, 211, 4, 30, "Input",ExpressionUUID->"66bae5b6-c381-495a-86bc-7be5a1732e85"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[30850, 586, 208, 3, 30, "Input",ExpressionUUID->"195c364c-d10e-4823-91ba-7eea830865a4"],
-Cell[31061, 591, 460, 10, 24, "Message",ExpressionUUID->"c01208d4-e47d-49a9-a174-77cf09d006c8"],
-Cell[31524, 603, 4760, 94, 64, "Output",ExpressionUUID->"47d00124-206a-428d-8978-1c87dc1f6aa4"]
-}, Open  ]],
-Cell[36299, 700, 552, 14, 30, "Input",ExpressionUUID->"c3996542-e668-4c1a-890f-a17d5551ec6a"],
+Cell[4447, 122, 153, 3, 54, "Subsection",ExpressionUUID->"a158edae-2406-4c02-a3e0-0c299179f6bd"],
+Cell[4603, 127, 244, 5, 30, "Input",ExpressionUUID->"862e32a7-b5c1-43d0-abd3-8bccb17ba032"],
 Cell[CellGroupData[{
-Cell[36876, 718, 492, 10, 115, "Input",ExpressionUUID->"e9b70cb4-de96-4268-89d4-4f2771e1b2a4"],
-Cell[37371, 730, 2734, 58, 62, "Output",ExpressionUUID->"ba504745-e7b2-41b4-b4c9-fb4a0072aa1d"]
+Cell[4872, 136, 230, 5, 30, "Input",ExpressionUUID->"d7269767-e051-4fe7-b40c-035e2cde16f0"],
+Cell[5105, 143, 2350, 51, 52, "Output",ExpressionUUID->"3b459a01-a290-4706-abb3-b1b6f52685e3"]
 }, Open  ]],
+Cell[7470, 197, 395, 10, 30, "Input",ExpressionUUID->"f95acf82-c029-40db-ba67-0a05ec56db19"],
 Cell[CellGroupData[{
-Cell[40142, 793, 1275, 32, 178, "Input",ExpressionUUID->"640d8636-091f-47d9-95e5-cda56f439c18"],
-Cell[41420, 827, 340, 6, 34, "Output",ExpressionUUID->"2eb1994e-135d-46bc-9c59-4946cdb9e9fb"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[41797, 838, 280, 5, 30, "Input",ExpressionUUID->"dae7bd10-666e-4f29-95d3-edf3484ffb3b"],
-Cell[42080, 845, 2877, 61, 62, "Output",ExpressionUUID->"050b9b78-8514-4e3c-9d3f-03fc59272a86"]
+Cell[7890, 211, 417, 11, 30, "Input",ExpressionUUID->"c7d47b40-918d-4a56-8d02-14fcf3aa4503"],
+Cell[8310, 224, 2715, 57, 52, "Output",ExpressionUUID->"c5ad724e-e841-4021-872c-c10af6215ab5"]
+}, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[44994, 911, 204, 3, 30, "Input",ExpressionUUID->"a1edb3c5-aa56-4504-8582-a9ff8e4d4f4a"],
-Cell[45201, 916, 214, 4, 45, "Output",ExpressionUUID->"67c1b71b-074f-400b-84e8-220d582c1aaa"]
+Cell[11074, 287, 152, 3, 54, "Subsection",ExpressionUUID->"237c9676-7a6e-43ee-abbd-e86cadf45c53"],
+Cell[11229, 292, 211, 3, 30, "Input",ExpressionUUID->"89bd1b4e-f4ae-4c96-a7ed-7498c67a76a9"],
+Cell[CellGroupData[{
+Cell[11465, 299, 328, 7, 30, "Input",ExpressionUUID->"d2221d68-0eaf-4a19-89f9-39d671b478dd"],
+Cell[11796, 308, 2875, 61, 62, "Output",ExpressionUUID->"e4a85add-fadb-4a62-81ac-26aec7e34495"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[45452, 925, 329, 7, 30, "Input",ExpressionUUID->"c205df5b-5189-4a39-a974-f4968076c611"],
-Cell[45784, 934, 2798, 59, 62, "Output",ExpressionUUID->"84108129-482c-4355-b599-131b23d3e87b"]
+Cell[14708, 374, 264, 5, 30, "Input",ExpressionUUID->"195c364c-d10e-4823-91ba-7eea830865a4"],
+Cell[14975, 381, 381, 9, 24, "Message",ExpressionUUID->"d8f56a6f-88bc-4386-b29f-27d865fc086a"],
+Cell[15359, 392, 4603, 93, 64, "Output",ExpressionUUID->"04a48401-4c05-4fc3-aa13-815bd96e330a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19999, 490, 1309, 33, 178, "Input",ExpressionUUID->"640d8636-091f-47d9-95e5-cda56f439c18"],
+Cell[21311, 525, 391, 7, 34, "Output",ExpressionUUID->"4b0e3530-ef35-4d92-bf61-f20ad7b67acc"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21739, 537, 179, 3, 30, "Input",ExpressionUUID->"588d99d6-944d-41f5-8d5b-fef487343a0a"],
+Cell[21921, 542, 2803, 60, 62, "Output",ExpressionUUID->"c1968bdb-95b1-40ca-9461-7bf1dd8d4317"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24761, 607, 284, 6, 30, "Input",ExpressionUUID->"dae7bd10-666e-4f29-95d3-edf3484ffb3b"],
+Cell[25048, 615, 2908, 62, 62, "Output",ExpressionUUID->"e702fc2e-dec8-42d2-b676-9ec310df55b1"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27993, 682, 224, 6, 30, "Input",ExpressionUUID->"6aee1e2c-f2e1-4804-afa9-70a1f1ad454f"],
+Cell[28220, 690, 2772, 60, 62, "Output",ExpressionUUID->"3ff008b3-f72c-4f94-8a38-5ac2ce4bc43e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[31029, 755, 407, 11, 30, "Input",ExpressionUUID->"845cc9bf-6978-4ecd-8646-75d96c6b885c"],
+Cell[31439, 768, 201, 4, 34, "Output",ExpressionUUID->"fde13dbe-3a6e-4b32-986b-b8eff527d584"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[31677, 777, 328, 9, 30, "Input",ExpressionUUID->"79d28069-a540-4b82-9f36-f7d67bbdeb2f"],
+Cell[32008, 788, 231, 4, 45, "Output",ExpressionUUID->"b7cca876-3ea2-4ad0-8c94-b81bf073354e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[32276, 797, 373, 9, 30, "Input",ExpressionUUID->"5ccb7042-2e8c-49c2-9d08-d370d5baa0d2"],
+Cell[32652, 808, 3074, 65, 62, "Output",ExpressionUUID->"8d40e7e9-dc9f-4f10-baca-4d5d4bb6987f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[35763, 878, 450, 12, 30, "Input",ExpressionUUID->"955274f0-28ff-405e-bb9e-f754d91ad982"],
+Cell[36216, 892, 3050, 65, 62, "Output",ExpressionUUID->"3693c539-8ec1-4978-b5f9-41a6eb6796ed"]
+}, Open  ]]
+}, Open  ]]
 }, Open  ]]
 }
 ]
 *)
-
-(* End of internal cache information *)
 
