@@ -256,8 +256,8 @@ TrieClosest[Trie[a_], word_]:=
       t=trieFindPrefixes[a, word]
       },
     If[Length@t==2&&Length@t[[2]]==0, 
-      triePullPrefix[t], 
-      triePullPrefix/@t
+      triePullPrefix[a, t], 
+      triePullPrefix[a, #]&/@t
       ]
     ]
 
@@ -268,7 +268,7 @@ TrieClosest[Trie[a_], word_]:=
 
 
 triePullPrefix[a_, p_]:=
-  With[{t=Fold[Lookup, a, p]},
+  With[{t=Fold[Lookup, a, Flatten@p]},
     If[AssociationQ@t, newTrie[t], t]
     ]
 
@@ -283,15 +283,20 @@ trieFindPrefixes[a_, word:{_Integer, ___}]:=
   Module[{r},
     Fold[
       Function[
-        r = #[[1]][#2];, 
-        If[!AssociationQ[r],
-          Return[{#[[2]], #2}, Fold], 
-          {
-            {#[[2]], #2},
-            r
-            }
+        r = #[[1]][#2];
+        Which[
+          AssociationQ[r],
+            {
+              r,
+              {#[[2]], #2}
+              },
+          StringQ[r],
+            Return[{#[[2]], #2}, Fold], 
+          True,
+            Return[#[[2]], Fold]
           ]
         ], 
+      {a, {}},
       word
       ]
     ];

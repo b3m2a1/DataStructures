@@ -642,9 +642,14 @@ Cell[BoxData[
          RowBox[{"t", "[", 
           RowBox[{"[", "2", "]"}], "]"}]}], "\[Equal]", "0"}]}], ",", " ", 
       "\n", "      ", 
-      RowBox[{"triePullPrefix", "[", "t", "]"}], ",", " ", "\n", "      ", 
-      RowBox[{"triePullPrefix", "/@", "t"}]}], "\n", "      ", "]"}]}], "\n", 
-   "    ", "]"}]}]], \
+      RowBox[{"triePullPrefix", "[", 
+       RowBox[{"a", ",", " ", "t"}], "]"}], ",", " ", "\n", "      ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"triePullPrefix", "[", 
+         RowBox[{"a", ",", " ", "#"}], "]"}], "&"}], "/@", "t"}]}], "\n", 
+     "      ", "]"}]}], "\n", "    ", 
+   "]"}]}]], \
 "CodeInput",ExpressionUUID->"069e9a1b-6d4c-4309-84e9-a61fd3226c4e"],
 
 Cell[CellGroupData[{
@@ -661,8 +666,8 @@ Cell[BoxData[
     RowBox[{"{", 
      RowBox[{"t", "=", 
       RowBox[{"Fold", "[", 
-       RowBox[{"Lookup", ",", " ", "a", ",", " ", "p"}], "]"}]}], "}"}], ",", 
-    "\n", "  ", "  ", 
+       RowBox[{"Lookup", ",", " ", "a", ",", " ", 
+        RowBox[{"Flatten", "@", "p"}]}], "]"}]}], "}"}], ",", "\n", "    ", 
     RowBox[{"If", "[", 
      RowBox[{
       RowBox[{"AssociationQ", "@", "t"}], ",", " ", 
@@ -670,7 +675,7 @@ Cell[BoxData[
    "  ", "  ", 
    "]"}]}]], \
 "CodeInput",ExpressionUUID->"35a294f3-946b-4efd-8c4d-8144b812b4dd"]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -695,34 +700,41 @@ Cell[BoxData[{
       RowBox[{
        RowBox[{"Function", "[", "\n", "  ", "      ", 
         RowBox[{
-         RowBox[{
-          RowBox[{"r", " ", "=", " ", 
-           RowBox[{
-            RowBox[{"#", "[", 
-             RowBox[{"[", "1", "]"}], "]"}], "[", "#2", "]"}]}], ";"}], ",", 
-         " ", "\n", "        ", 
-         RowBox[{"If", "[", 
+         RowBox[{"r", " ", "=", " ", 
           RowBox[{
-           RowBox[{"!", 
-            RowBox[{"AssociationQ", "[", "r", "]"}]}], ",", "\n", 
-           "          ", 
+           RowBox[{"#", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], "[", "#2", "]"}]}], ";", "\n", 
+         "        ", 
+         RowBox[{"Which", "[", "\n", "          ", 
+          RowBox[{
+           RowBox[{"AssociationQ", "[", "r", "]"}], ",", "\n", "            ", 
+           RowBox[{"{", "\n", "              ", 
+            RowBox[{"r", ",", "\n", "              ", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], ",", " ", "#2"}], "}"}]}], 
+            "\n", "              ", "}"}], ",", "\n", "          ", 
+           RowBox[{"StringQ", "[", "r", "]"}], ",", "\n", "  ", "          ", 
+           
            RowBox[{"Return", "[", 
             RowBox[{
              RowBox[{"{", 
               RowBox[{
                RowBox[{"#", "[", 
                 RowBox[{"[", "2", "]"}], "]"}], ",", " ", "#2"}], "}"}], ",", 
-             " ", "Fold"}], "]"}], ",", " ", "\n", "  ", "  ", "      ", 
-           RowBox[{"{", "\n", "  ", "  ", "        ", 
+             " ", "Fold"}], "]"}], ",", " ", "\n", "          ", "True", ",", 
+           "\n", "            ", 
+           RowBox[{"Return", "[", 
             RowBox[{
-             RowBox[{"{", 
-              RowBox[{
-               RowBox[{"#", "[", 
-                RowBox[{"[", "2", "]"}], "]"}], ",", " ", "#2"}], "}"}], ",", 
-             "\n", "            ", "r"}], "\n", "            ", "}"}]}], "\n",
-           "          ", "]"}]}], "\n", "  ", "      ", "]"}], ",", " ", "\n",
-        "      ", "word"}], "\n", "      ", "]"}]}], "\n", "    ", "]"}]}], 
-  ";"}], "\n", 
+             RowBox[{"#", "[", 
+              RowBox[{"[", "2", "]"}], "]"}], ",", " ", "Fold"}], "]"}]}], 
+          "\n", "          ", "]"}]}], "\n", "        ", "]"}], ",", " ", 
+       "\n", "      ", 
+       RowBox[{"{", 
+        RowBox[{"a", ",", " ", 
+         RowBox[{"{", "}"}]}], "}"}], ",", "\n", "      ", "word"}], "\n", 
+      "      ", "]"}]}], "\n", "    ", "]"}]}], ";"}], "\n", 
  RowBox[{
   RowBox[{
    RowBox[{"trieFindPrefixes", "[", 
