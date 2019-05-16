@@ -38,6 +38,10 @@ Begin["`Private`"];
 (*
 	We\[CloseCurlyQuote]ll use a linked-list implementation to get efficient sub-tree-ing
 	This will feel rather like our Stack implementation, honestly... but rather than introducing pushes and pops we\[CloseCurlyQuote]ll introduce tree insertion, deletion, rearrangement, and walking
+	
+	It might be the case that this would be better done via a basic linked-Association type format where each node gets a nested list index as its key. Insertions at the bottom of the tree would then be fast, but rearrangement of nodes would be very slow...
+	
+	Probably we need many types of trees for 
 *)
 
 
@@ -359,6 +363,14 @@ treeInsert[
   pos:{__Integer}|_Integer
   ]:=
   treeInsert[head, obj, list, {data, children}, pos];
+treeInsert[
+  head_,
+  obj_,
+  list_, 
+  Tree[t_], 
+  pos:{__Integer}|_Integer
+  ]:=
+  treeInsert[head, obj, list, t, pos];
 
 
 (* ::Subsubsubsection::Closed:: *)
@@ -369,7 +381,7 @@ treeInsert[
 TreeInsert//Clear
 TreeInsert[
   n:Tree[t_], 
-  node:{data_List, children_List}|_TreeNode?TreeNodeQ, 
+  node:{data_List, children_List}|_Tree?TreeQ|_TreeNode?TreeNodeQ, 
   pos:{__Integer}|_Integer:-1
   ]:=
   With[{l=treeInsert[Tree, n, t, node, pos]},
@@ -377,7 +389,7 @@ TreeInsert[
     ];
 TreeInsert[
   n:TreeNode[d_, t_], 
-  node:{data_List, children_List}|_TreeNode?TreeNodeQ, 
+  node:{data_List, children_List}|_Tree?TreeQ|_TreeNode?TreeNodeQ, 
   pos:{__Integer}|_Integer:-1
   ]:=
   With[{l=treeInsert[TreeNode, n, {d, t}, node, pos]},
@@ -805,14 +817,6 @@ treeInsertSequence[
       c
       ]
     ];
-treeInsert[
-  head_,
-  obj_,
-  list_, 
-  TreeNode[data_List, children_List], 
-  pos:{__Integer}|_Integer
-  ]:=
-  treeInsert[head, obj, list, {data, children}, pos];
 
 
 (* ::Subsubsubsection::Closed:: *)
@@ -823,7 +827,7 @@ treeInsert[
 TreeInsertSequence//Clear
 TreeInsertSequence[
   n:Tree[t_], 
-  nodes:{({_List, _List}|_TreeNode?TreeNodeQ)..}, 
+  nodes:{{_List, _List}..}, 
   pos:{__Integer}|_Integer:-1
   ]:=
   With[{l=treeInsertSequence[Tree, n, t, nodes, pos]},
@@ -831,7 +835,7 @@ TreeInsertSequence[
     ];
 TreeInsertSequence[
   n:TreeNode[d_, t_], 
-  nodes:{({_List, _List}|_TreeNode?TreeNodeQ)..}, 
+  nodes:{{_List, _List}..}, 
   pos:{__Integer}|_Integer:-1
   ]:=
   With[{l=treeInsertSequence[TreeNode, n, {d, t}, nodes, pos]},
@@ -844,7 +848,11 @@ TreeInsertSequence[
   ]:=
   TreeInsertSequence[n, 
     Replace[data, 
-      e:Except[{_List, _List}|_TreeNode?TreeNodeQ]:>{{e}, {}},
+      {
+        Tree[t_]?TreeQ:>t,
+        TreeNode[d_, t_]?TreeNodeQ:>{d, t},
+        e:Except[{_List, _List}]:>{{e}, {}}
+        },
       1
       ], 
     pos

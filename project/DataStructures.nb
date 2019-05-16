@@ -99,6 +99,13 @@ sub-tree-ing
 \tThis will feel rather like our Stack implementation, honestly... but rather \
 than introducing pushes and pops we\[CloseCurlyQuote]ll introduce tree \
 insertion, deletion, rearrangement, and walking
+\t
+\tIt might be the case that this would be better done via a basic \
+linked-Association type format where each node gets a nested list index as \
+its key. Insertions at the bottom of the tree would then be fast, but \
+rearrangement of nodes would be very slow...
+\t
+\tProbably we need many types of trees for 
 \[RightFloor]\
 \>", "Text",
  Evaluatable->True,ExpressionUUID->"287843df-798d-4482-b5f7-0d00ade1865d"]
@@ -783,9 +790,25 @@ Cell[BoxData[{
     RowBox[{"head", ",", " ", "obj", ",", " ", "list", ",", " ", 
      RowBox[{"{", 
       RowBox[{"data", ",", " ", "children"}], "}"}], ",", " ", "pos"}], 
-    "]"}]}], ";"}]}], \
-"CodeInput",ExpressionUUID->"2a9f150b-9200-4e54-8c2d-8967793e0228"]
-}, Closed]],
+    "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"treeInsert", "[", "\n", "  ", 
+    RowBox[{
+    "head_", ",", "\n", "  ", "obj_", ",", "\n", "  ", "list_", ",", " ", 
+     "\n", "  ", 
+     RowBox[{"Tree", "[", "t_", "]"}], ",", " ", "\n", "  ", 
+     RowBox[{"pos", ":", 
+      RowBox[{
+       RowBox[{"{", "__Integer", "}"}], "|", "_Integer"}]}]}], "\n", "  ", 
+    "]"}], ":=", "\n", "  ", 
+   RowBox[{"treeInsert", "[", 
+    RowBox[{
+    "head", ",", " ", "obj", ",", " ", "list", ",", " ", "t", ",", " ", 
+     "pos"}], "]"}]}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"2a9f150b-9200-4e54-8c2d-8967793e0228"]\
+
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -804,6 +827,7 @@ Cell[BoxData[{
       RowBox[{
        RowBox[{"{", 
         RowBox[{"data_List", ",", " ", "children_List"}], "}"}], "|", 
+       RowBox[{"_Tree", "?", "TreeQ"}], "|", 
        RowBox[{"_TreeNode", "?", "TreeNodeQ"}]}]}], ",", " ", "\n", "  ", 
      RowBox[{"pos", ":", 
       RowBox[{
@@ -833,6 +857,7 @@ Cell[BoxData[{
       RowBox[{
        RowBox[{"{", 
         RowBox[{"data_List", ",", " ", "children_List"}], "}"}], "|", 
+       RowBox[{"_Tree", "?", "TreeQ"}], "|", 
        RowBox[{"_TreeNode", "?", "TreeNodeQ"}]}]}], ",", " ", "\n", "  ", 
      RowBox[{"pos", ":", 
       RowBox[{
@@ -1791,26 +1816,9 @@ Cell[BoxData[{
                  RowBox[{"p2", ",", " ", "p1", ",", " ", "obj"}], "}"}]}]}], 
               "\n", "  ", "        ", "|>"}]}], "\n", "  ", "        ", 
             "]"}]}]}], "\n", "        ", "]"}], ",", "\n", "      ", "c"}], 
-       "\n", "      ", "]"}]}]}], "\n", "    ", "]"}]}], ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"treeInsert", "[", "\n", "  ", 
-    RowBox[{
-    "head_", ",", "\n", "  ", "obj_", ",", "\n", "  ", "list_", ",", " ", 
-     "\n", "  ", 
-     RowBox[{"TreeNode", "[", 
-      RowBox[{"data_List", ",", " ", "children_List"}], "]"}], ",", " ", "\n",
-      "  ", 
-     RowBox[{"pos", ":", 
-      RowBox[{
-       RowBox[{"{", "__Integer", "}"}], "|", "_Integer"}]}]}], "\n", "  ", 
-    "]"}], ":=", "\n", "  ", 
-   RowBox[{"treeInsert", "[", 
-    RowBox[{"head", ",", " ", "obj", ",", " ", "list", ",", " ", 
-     RowBox[{"{", 
-      RowBox[{"data", ",", " ", "children"}], "}"}], ",", " ", "pos"}], 
-    "]"}]}], ";"}]}], \
-"CodeInput",ExpressionUUID->"01f2ed87-9964-47bf-8ec7-0c83c914c458"]
+       "\n", "      ", "]"}]}]}], "\n", "    ", "]"}]}], 
+  ";"}]}], "CodeInput",ExpressionUUID->"01f2ed87-9964-47bf-8ec7-0c83c914c458"]\
+
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -1829,12 +1837,9 @@ Cell[BoxData[{
      RowBox[{"nodes", ":", 
       RowBox[{"{", 
        RowBox[{
-        RowBox[{"(", 
-         RowBox[{
-          RowBox[{"{", 
-           RowBox[{"_List", ",", " ", "_List"}], "}"}], "|", 
-          RowBox[{"_TreeNode", "?", "TreeNodeQ"}]}], ")"}], ".."}], "}"}]}], 
-     ",", " ", "\n", "  ", 
+        RowBox[{"{", 
+         RowBox[{"_List", ",", " ", "_List"}], "}"}], ".."}], "}"}]}], ",", 
+     " ", "\n", "  ", 
      RowBox[{"pos", ":", 
       RowBox[{
        RowBox[{"{", "__Integer", "}"}], "|", "_Integer"}], ":", 
@@ -1862,12 +1867,9 @@ Cell[BoxData[{
      RowBox[{"nodes", ":", 
       RowBox[{"{", 
        RowBox[{
-        RowBox[{"(", 
-         RowBox[{
-          RowBox[{"{", 
-           RowBox[{"_List", ",", " ", "_List"}], "}"}], "|", 
-          RowBox[{"_TreeNode", "?", "TreeNodeQ"}]}], ")"}], ".."}], "}"}]}], 
-     ",", " ", "\n", "  ", 
+        RowBox[{"{", 
+         RowBox[{"_List", ",", " ", "_List"}], "}"}], ".."}], "}"}]}], ",", 
+     " ", "\n", "  ", 
      RowBox[{"pos", ":", 
       RowBox[{
        RowBox[{"{", "__Integer", "}"}], "|", "_Integer"}], ":", 
@@ -1901,22 +1903,34 @@ Cell[BoxData[{
    RowBox[{"n", ",", " ", "\n", "    ", 
     RowBox[{"Replace", "[", 
      RowBox[{"data", ",", " ", "\n", "      ", 
-      RowBox[{
-       RowBox[{"e", ":", 
-        RowBox[{"Except", "[", 
-         RowBox[{
-          RowBox[{"{", 
-           RowBox[{"_List", ",", " ", "_List"}], "}"}], "|", 
-          RowBox[{"_TreeNode", "?", "TreeNodeQ"}]}], "]"}]}], ":>", 
-       RowBox[{"{", 
+      RowBox[{"{", "\n", "        ", 
+       RowBox[{
         RowBox[{
-         RowBox[{"{", "e", "}"}], ",", " ", 
-         RowBox[{"{", "}"}]}], "}"}]}], ",", "\n", "      ", "1"}], "\n", 
-     "      ", "]"}], ",", " ", "\n", "    ", "pos"}], "\n", "    ", 
+         RowBox[{
+          RowBox[{"Tree", "[", "t_", "]"}], "?", "TreeQ"}], "\[RuleDelayed]", 
+         "t"}], ",", "\n", "        ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"TreeNode", "[", 
+           RowBox[{"d_", ",", " ", "t_"}], "]"}], "?", "TreeNodeQ"}], 
+         "\[RuleDelayed]", 
+         RowBox[{"{", 
+          RowBox[{"d", ",", " ", "t"}], "}"}]}], ",", "\n", "        ", 
+        RowBox[{
+         RowBox[{"e", ":", 
+          RowBox[{"Except", "[", 
+           RowBox[{"{", 
+            RowBox[{"_List", ",", " ", "_List"}], "}"}], "]"}]}], ":>", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", "e", "}"}], ",", " ", 
+           RowBox[{"{", "}"}]}], "}"}]}]}], "\n", "        ", "}"}], ",", 
+      "\n", "      ", "1"}], "\n", "      ", "]"}], ",", " ", "\n", "    ", 
+    "pos"}], "\n", "    ", 
    "]"}]}]}], \
 "CodeInput",ExpressionUUID->"525e2fff-d640-401b-ab24-a28959634387"]
 }, Open  ]]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -2129,7 +2143,7 @@ Cell[BoxData[{
    "]"}]}]}], \
 "CodeInput",ExpressionUUID->"5b99455b-bfb7-4ac4-810b-982bc875fa30"]
 }, Open  ]]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -2207,7 +2221,7 @@ Cell[BoxData[
             "|>"}]}], "\n", "        ", "]"}]}]}], "\n", "      ", "]"}]}]}], 
     "\n", "    ", "]"}]}], 
   ";"}]], "CodeInput",ExpressionUUID->"6a28752a-5db7-418d-bc9b-111277d8952e"]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
