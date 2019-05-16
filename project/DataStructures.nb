@@ -463,7 +463,7 @@ Cell[BoxData[{
   ";"}]}], "CodeInput",ExpressionUUID->"78adb6b2-7dd0-4014-b320-40a23e0412c2"]\
 
 }, Open  ]]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -596,7 +596,9 @@ Cell[BoxData[{
        "_Integer", "|", "_Span", "|", "All"}], ":", "1"}]}], "\n", "  ", 
     "]"}], ":=", "\n", "  ", 
    RowBox[{"treeData", "[", 
-    RowBox[{"Tree", ",", " ", "n", ",", " ", "t", ",", " ", "pos"}], "]"}]}], 
+    RowBox[{"TreeNode", ",", " ", "n", ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"d", ",", " ", "t"}], "}"}], ",", " ", "pos"}], "]"}]}], 
   ";"}]}], "CodeInput",ExpressionUUID->"efae545b-a502-4418-86d6-c21d3e165be5"]\
 
 }, Open  ]]
@@ -870,7 +872,7 @@ Cell[BoxData[{
    "]"}]}]}], \
 "CodeInput",ExpressionUUID->"14323b67-7af4-4ce6-babf-a9cdebb9cb2c"]
 }, Open  ]]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -1914,7 +1916,7 @@ Cell[BoxData[{
    "]"}]}]}], \
 "CodeInput",ExpressionUUID->"525e2fff-d640-401b-ab24-a28959634387"]
 }, Open  ]]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -2318,7 +2320,7 @@ Cell[BoxData[
  RowBox[{
   RowBox[{
    RowBox[{"walkTreeDF", "[", 
-    RowBox[{"node_", ",", " ", 
+    RowBox[{"root_", ",", " ", 
      RowBox[{"handlers", ":", 
       RowBox[{"{", 
        RowBox[{"body_", ",", " ", "enter_", ",", " ", "exit_"}], "}"}]}]}], 
@@ -2326,27 +2328,26 @@ Cell[BoxData[
    RowBox[{"Module", "[", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{
-       RowBox[{"children", " ", "=", " ", 
-        RowBox[{"node", "[", 
-         RowBox[{"[", "2", "]"}], "]"}]}], ",", " ", "res"}], "}"}], ",", 
+      RowBox[{"node", ",", " ", "children", ",", " ", "res"}], "}"}], ",", 
      "\n", "    ", 
      RowBox[{
       RowBox[{"node", " ", "=", " ", 
-       RowBox[{"enter", "[", "node", "]"}]}], ";", "\n", "    ", 
+       RowBox[{"enter", "[", "root", "]"}]}], ";", "\n", "    ", 
       RowBox[{"res", "=", "\n", "      ", 
        RowBox[{"body", "[", "\n", "        ", 
         RowBox[{
          RowBox[{"{", "\n", "          ", 
           RowBox[{
            RowBox[{"node", "[", 
-            RowBox[{"[", "1", "]"}], "]"}], ",", "\n", "  ", "        ", 
+            RowBox[{"[", "1", "]"}], "]"}], ",", "\n", "          ", 
            RowBox[{
             RowBox[{
-             RowBox[{"walkASTNodeDF", "[", 
+             RowBox[{"walkTreeDF", "[", 
               RowBox[{"#", ",", " ", "handlers"}], "]"}], "&"}], "/@", 
-            "children"}]}], "\n", "          ", "}"}], ",", "\n", "        ", 
-         "node"}], "\n", "        ", "]"}]}], ";", "\n", "    ", 
+            RowBox[{"node", "[", 
+             RowBox[{"[", "2", "]"}], "]"}]}]}], "\n", "          ", "}"}], 
+         ",", "\n", "        ", "node"}], "\n", "        ", "]"}]}], ";", 
+      "\n", "    ", 
       RowBox[{"exit", "[", 
        RowBox[{"res", ",", " ", "node"}], "]"}]}]}], "\n", "    ", "]"}]}], 
   ";"}]], "CodeInput",ExpressionUUID->"5ed072d1-7dfc-444f-95eb-39e1f716d07c"]
@@ -2378,35 +2379,46 @@ Cell[BoxData[
      RowBox[{
       RowBox[{"Reap", "[", "\n", "        ", 
        RowBox[{
-        RowBox[{"q", " ", "=", " ", 
-         RowBox[{"QueuePush", "[", 
-          RowBox[{"q", ",", " ", "node"}], "]"}]}], ";", "\n", "        ", 
-        RowBox[{"While", "[", 
+        RowBox[{
+         RowBox[{"q", " ", "=", " ", 
+          RowBox[{"QueuePush", "[", 
+           RowBox[{"q", ",", " ", "node"}], "]"}]}], ";", "\n", "        ", 
          RowBox[{
-          RowBox[{"!", 
-           RowBox[{"QueueEmptyQ", "[", "q", "]"}]}], ",", "\n", "          ", 
-          
-          RowBox[{
-           RowBox[{"node", " ", "=", " ", 
-            RowBox[{"QueuePop", "[", "q", "]"}]}], ";", "\n", "          ", 
-           RowBox[{"node", " ", "=", " ", 
-            RowBox[{"enter", "[", "node", "]"}]}], ";", "\n", "  ", "  ", 
-           "      ", 
-           RowBox[{"children", " ", "=", " ", 
-            RowBox[{"root", "[", "\"\<Children\>\"", "]"}]}], ";", "\n", 
-           "          ", 
-           RowBox[{"q", " ", "=", " ", 
-            RowBox[{"QueueExtend", "[", 
-             RowBox[{"q", ",", " ", "children"}], "]"}]}], ";", "\n", 
-           "          ", 
-           RowBox[{"res", " ", "=", " ", 
-            RowBox[{"body", "[", 
-             RowBox[{"node", ",", " ", "node"}], "]"}]}], ";", "\n", 
-           "          ", 
-           RowBox[{"exit", "[", 
-            RowBox[{"res", ",", " ", "node"}], "]"}], ";"}]}], "\n", 
-         "          ", "]"}], ";", "\n", "        ", "\"\<WalkTree\>\""}], 
-       "\n", "        ", "]"}], "[", 
+          RowBox[{"Reap", "[", "\n", "          ", 
+           RowBox[{
+            RowBox[{"While", "[", 
+             RowBox[{
+              RowBox[{"!", 
+               RowBox[{"QueueEmptyQ", "[", "q", "]"}]}], ",", "\n", "  ", 
+              "          ", 
+              RowBox[{
+               RowBox[{"node", " ", "=", " ", 
+                RowBox[{"QueuePop", "[", "q", "]"}]}], ";", "\n", "  ", 
+               "          ", 
+               RowBox[{"node", " ", "=", " ", 
+                RowBox[{"enter", "[", "node", "]"}]}], ";", "\n", "  ", "  ", 
+               "  ", "      ", 
+               RowBox[{"children", " ", "=", " ", 
+                RowBox[{"root", "[", "\"\<Children\>\"", "]"}]}], ";", "\n", 
+               "  ", "          ", 
+               RowBox[{"q", " ", "=", " ", 
+                RowBox[{"QueueExtend", "[", 
+                 RowBox[{"q", ",", " ", "children"}], "]"}]}], ";", "\n", 
+               "  ", "          ", 
+               RowBox[{"res", " ", "=", " ", 
+                RowBox[{"body", "[", 
+                 RowBox[{"node", ",", " ", "node"}], "]"}]}], ";", "\n", "  ",
+                "          ", 
+               RowBox[{"Sow", "[", 
+                RowBox[{
+                 RowBox[{"exit", "[", 
+                  RowBox[{"res", ",", " ", "node"}], "]"}], ",", " ", 
+                 "\"\<tmpResults\>\""}], "]"}]}]}], "\n", "            ", 
+             "]"}], ",", "\n", "          ", "\"\<tmpResults\>\""}], "\n", 
+           "          ", "]"}], "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", " ", "1"}], "]"}], "]"}]}], ",", "\n", 
+        "        ", "\"\<WalkTree\>\""}], "\n", "        ", "]"}], "[", 
       RowBox[{"[", "2", "]"}], "]"}]}], "\n", "    ", "]"}]}], 
   ";"}]], "CodeInput",ExpressionUUID->"da26db07-ab3a-4c18-9b41-fa71f3c362fe"]
 }, Open  ]],
@@ -2430,30 +2442,34 @@ Cell[BoxData[
      RowBox[{"\"\<DepthFirst\>\"", "\[Rule]", 
       RowBox[{"<|", "\n", "      ", 
        RowBox[{
-        RowBox[{
-         RowBox[{"\"\<EnterNode\>\"", "->", "#"}], "&"}], ",", "\n", "      ", 
-        RowBox[{
-         RowBox[{"\"\<ExitNode\>\"", "->", "#"}], "&"}], ",", "\n", "      ", 
-        
-        RowBox[{
-         RowBox[{"\"\<ProcessNode\>\"", "->", "#"}], "&"}]}], "\n", "      ", 
-       "|>"}]}], ",", "\n", "    ", 
+        RowBox[{"\"\<EnterNode\>\"", "->", 
+         RowBox[{"(", 
+          RowBox[{"#", "&"}], ")"}]}], ",", "\n", "      ", 
+        RowBox[{"\"\<ExitNode\>\"", "->", 
+         RowBox[{"(", 
+          RowBox[{"#", "&"}], ")"}]}], ",", "\n", "      ", 
+        RowBox[{"\"\<ProcessNode\>\"", "->", 
+         RowBox[{"(", 
+          RowBox[{"#", "&"}], ")"}]}]}], "\n", "      ", "|>"}]}], ",", "\n", 
+     "    ", 
      RowBox[{"\"\<BreadthFirst\>\"", "\[Rule]", 
       RowBox[{"<|", "\n", "      ", 
        RowBox[{
-        RowBox[{
-         RowBox[{"\"\<EnterNode\>\"", "->", "#"}], "&"}], ",", "\n", "      ", 
+        RowBox[{"\"\<EnterNode\>\"", "->", 
+         RowBox[{"(", 
+          RowBox[{"#", "&"}], ")"}]}], ",", "\n", "      ", 
         RowBox[{"\"\<ExitNode\>\"", "\[Rule]", 
          RowBox[{"(", 
           RowBox[{
            RowBox[{"Sow", "[", 
             RowBox[{"#", ",", " ", "\"\<WalkTree\>\""}], "]"}], "&"}], 
           ")"}]}], ",", "\n", "      ", 
-        RowBox[{
-         RowBox[{"\"\<ProcessNode\>\"", "->", "#"}], "&"}]}], "\n", "      ", 
-       "|>"}]}]}], "\n", "    ", "|>"}]}], 
+        RowBox[{"\"\<ProcessNode\>\"", "\[Rule]", 
+         RowBox[{"(", 
+          RowBox[{"#", "&"}], ")"}]}]}], "\n", "      ", "|>"}]}]}], "\n", 
+    "    ", "|>"}]}], 
   ";"}]], "CodeInput",ExpressionUUID->"6735dc1e-425e-4beb-881e-d11763d33ff4"]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -2526,7 +2542,7 @@ Cell[BoxData[{
        "]"}]}]}], "\n", "    ", "]"}]}], 
   ";"}]}], "CodeInput",ExpressionUUID->"f84b511f-c669-4900-9837-9d7365e9f611"]\
 
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -2657,11 +2673,11 @@ Cell[BoxData[{
              RowBox[{"Check", "[", 
               RowBox[{
                RowBox[{"TreeData", "[", "q", "]"}], ",", " ", "None", ",", 
-               " ", "\n", "                  ", 
-               RowBox[{"TreeNode", "::", "nodata"}]}], "\n", 
-              "                  ", "]"}]}]}], "\n", "            ", "}"}], 
-          ",", " ", "\n", "          ", "StandardForm"}], "\n", "          ", 
-         "]"}], ",", "\n", "        ", 
+               " ", 
+               RowBox[{"TreeNode", "::", "nodata"}]}], "]"}]}]}], "\n", 
+           "            ", "}"}], ",", " ", "\n", "          ", 
+          "StandardForm"}], "\n", "          ", "]"}], ",", "\n", "        ", 
+        
         RowBox[{"BoxForm`MakeSummaryItem", "[", "\n", "          ", 
          RowBox[{
           RowBox[{"{", "\n", "            ", 
@@ -2721,12 +2737,92 @@ Mathematica/Applications/DataStructures/.scratch/scratch.nb", "Modified" ->
 Mathematica/Applications/DataStructures/Packages/Tree/Tree.nb"}}, 
     "FileViewer" -> {"Visible" -> False}, "Toolbars" -> {"Column" -> GridBox[{{
           GridBox[{{
-             PaneBox["", ImageSize -> {0, 15}], 
+             GridBox[{{
+                StyleBox[
+                 ButtonBox[
+                 "\"Load Package\"", ButtonFunction :> 
+                  EasyIDE`Plugins`CodePackageToolbar`loadPackage[], 
+                  Appearance -> Inherited, Evaluator -> Automatic, Method -> 
+                  "Preemptive"], "ToolbarElement"], 
+                StyleBox[
+                 ButtonBox[
+                 "\"Open Package\"", ButtonFunction :> 
+                  EasyIDE`Plugins`CodePackageToolbar`openPackage[], 
+                  Appearance -> Inherited, Evaluator -> Automatic, Method -> 
+                  "Preemptive"], "ToolbarElement"], 
+                StyleBox[
+                 ActionMenuBox[
+                  ButtonBox[
+                  "\"Insert\"", ButtonFunction :> {}, Evaluator -> None, 
+                   BaseStyle -> "PluginMenu", Appearance -> Inherited, 
+                   FrameMargins -> {{10, 10}, {0, 0}}, 
+                   ImageSize -> {Automatic, 28}, Method -> "Preemptive"], {
+                  "\"Package\"" :> FrontEndExecute[
+                    FrontEnd`NotebookWrite[
+                    FrontEnd`InputNotebook[], {
+                    Cell["Package Name", "CodeSection"], 
+                    Cell[
+                    "\[LeftCeiling]\n  Package description\n\[RightFloor]", 
+                    "Text", Evaluatable -> True], 
+                    Cell[
+                    BoxData[
+                    RowBox[{
+                    RowBox[{"Begin", "[", "\"`Private`\"", "]"}], ";"}]], 
+                    "InputSection"], 
+                    Cell[
+                    BoxData[
+                    RowBox[{
+                    RowBox[{"End", "[", "]"}], ";"}]], "InputSection"], 
+                    Cell["", "SectionSeparator"]}]]}, Appearance -> None, 
+                  MenuAppearance -> "Dropdown"], "ToolbarElement"]}}, 
+              BaseStyle -> "ToolbarElementRow"], 
              ButtonBox[
-             "", BaseStyle -> "ToolbarShowButton", ButtonData -> 
+             "", BaseStyle -> "ToolbarCloseButton", ButtonData -> 
               "CodePackage"]}}, BaseStyle -> "ToolbarCell"]}}, BaseStyle -> 
-        "Toolbars"], "Tags" -> {}, 
-      "Cells" -> {"Markdown" -> None, "CodePackage" -> None}}, 
+        "Toolbars"], "Tags" -> {"CodePackage"}, 
+      "Cells" -> {"Markdown" -> None, "CodePackage" -> GridBox[{{
+            GridBox[{{
+               StyleBox[
+                ButtonBox[
+                "\"Load Package\"", ButtonFunction :> 
+                 EasyIDE`Plugins`CodePackageToolbar`loadPackage[], Appearance -> 
+                 Inherited, Evaluator -> Automatic, Method -> "Preemptive"], 
+                "ToolbarElement"], 
+               StyleBox[
+                ButtonBox[
+                "\"Open Package\"", ButtonFunction :> 
+                 EasyIDE`Plugins`CodePackageToolbar`openPackage[], Appearance -> 
+                 Inherited, Evaluator -> Automatic, Method -> "Preemptive"], 
+                "ToolbarElement"], 
+               StyleBox[
+                ActionMenuBox[
+                 ButtonBox[
+                 "\"Insert\"", ButtonFunction :> {}, Evaluator -> None, 
+                  BaseStyle -> "PluginMenu", Appearance -> Inherited, 
+                  FrameMargins -> {{10, 10}, {0, 0}}, 
+                  ImageSize -> {Automatic, 28}, Method -> "Preemptive"], {
+                 "\"Package\"" :> FrontEndExecute[
+                    FrontEnd`NotebookWrite[
+                    FrontEnd`InputNotebook[], {
+                    Cell["Package Name", "CodeSection"], 
+                    Cell[
+                    "\[LeftCeiling]\n  Package description\n\[RightFloor]", 
+                    "Text", Evaluatable -> True], 
+                    Cell[
+                    BoxData[
+                    RowBox[{
+                    RowBox[{"Begin", "[", "\"`Private`\"", "]"}], ";"}]], 
+                    "InputSection"], 
+                    Cell[
+                    BoxData[
+                    RowBox[{
+                    RowBox[{"End", "[", "]"}], ";"}]], "InputSection"], 
+                    Cell["", "SectionSeparator"]}]]}, Appearance -> None, 
+                 MenuAppearance -> "Dropdown"], "ToolbarElement"]}}, 
+             BaseStyle -> "ToolbarElementRow"], 
+            ButtonBox[
+            "", BaseStyle -> "ToolbarCloseButton", ButtonData -> 
+             "CodePackage"]}}, BaseStyle -> "ToolbarCell"]}}, 
     "Project" -> {
      "Directory" -> 
       "/Users/Mark/Documents/Wolfram \

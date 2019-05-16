@@ -272,7 +272,7 @@ TreeData[
   n:TreeNode[d_, t_], 
   pos:{___Integer, _Integer|_Span|All}|_Integer|_Span|All:1
   ]:=
-  treeData[Tree, n, t, pos];
+  treeData[TreeNode, n, {d, t}, pos];
 
 
 (* ::Subsubsection::Closed:: *)
@@ -1031,14 +1031,14 @@ We\[CloseCurlyQuote]ll provide like three events?
 
 
 
-walkTreeDF[node_, handlers:{body_, enter_, exit_}]:=  
-  Module[{children = node[[2]], res},
-    node = enter[node];
+walkTreeDF[root_, handlers:{body_, enter_, exit_}]:=  
+  Module[{node, children, res},
+    node = enter[root];
     res=
       body[
         {
           node[[1]],
-          walkASTNodeDF[#, handlers]&/@children
+          walkTreeDF[#, handlers]&/@node[[2]]
           },
         node
         ];
@@ -1061,14 +1061,17 @@ walkTreeBF[root_, handlers:{body_, enter_, exit_}]:=
         },
       Reap[
         q = QueuePush[q, node];
-        While[!QueueEmptyQ[q],
-          node = QueuePop[q];
-          node = enter[node];
-          children = root["Children"];
-          q = QueueExtend[q, children];
-          res = body[node, node];
-          exit[res, node];
-          ];
+        Reap[
+          While[!QueueEmptyQ[q],
+            node = QueuePop[q];
+            node = enter[node];
+            children = root["Children"];
+            q = QueueExtend[q, children];
+            res = body[node, node];
+            Sow[exit[res, node], "tmpResults"]
+            ],
+          "tmpResults"
+          ][[2, 1]],
         "WalkTree"
         ][[2]]
     ];
@@ -1087,14 +1090,14 @@ walkTreeBF[root_, handlers:{body_, enter_, exit_}]:=
 $TreeTraversalFunctions=
   <|
     "DepthFirst"-><|
-      "EnterNode"->#&,
-      "ExitNode"->#&,
-      "ProcessNode"->#&
+      "EnterNode"->(#&),
+      "ExitNode"->(#&),
+      "ProcessNode"->(#&)
       |>,
     "BreadthFirst"-><|
-      "EnterNode"->#&,
+      "EnterNode"->(#&),
       "ExitNode"->(Sow[#, "WalkTree"]&),
-      "ProcessNode"->#&
+      "ProcessNode"->(#&)
       |>
     |>;
 
@@ -1204,9 +1207,7 @@ Format[q_TreeNode?TreeNodeQ, StandardForm]:=
           {
             "Root:", 
               Quiet@
-                Check[TreeData[q], None, 
-                  TreeNode::nodata
-                  ]
+                Check[TreeData[q], None, TreeNode::nodata]
             }, 
           StandardForm
           ],
