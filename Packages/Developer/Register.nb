@@ -1,0 +1,306 @@
+Notebook[{Cell[CellGroupData[{Cell["RegisterDataStructure", "CodeSection"], 
+     Cell[BoxData[RowBox[{RowBox[{RowBox[{"RegisterDataStructure", "::", 
+             "usage"}], "=", 
+           "\"Handles efficient structure boiler plate\""}], ";"}]], 
+      "CodeInput"], Cell[BoxData[RowBox[
+        {RowBox[{"Begin", "[", "\"`Private`\"", "]"}], ";"}]], 
+      "InputSection"], Cell[CellGroupData[
+       {Cell["\[LeftCeiling]RegisterDataStructure\[RightFloor]", 
+         "CodeSubsection", Evaluatable -> True], 
+        Cell[CellGroupData[{Cell["\[LeftCeiling]Constructor\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[CellGroupData[
+             {Cell["\[LeftCeiling]iRegisterConstructor\[RightFloor]", 
+               "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
+                RowBox[{RowBox[{RowBox[{"iRegisterConstructor", "[", "\n", 
+                      "  ", RowBox[{"head_", ",", "\n", "  ", RowBox[
+                         {"head_", "[", "args___", "]"}], ",", "\n", "  ", 
+                        "validator_", ",", "\n", "  ", "unconstructedQ_", 
+                        ",", "\n", "  ", "dataPrepper_", ",", "\n", "  ", 
+                        "dataValidQ_"}], "\n", "  ", "]"}], ":=", "\n", "  ", 
+                    RowBox[{RowBox[{RowBox[{"head", "[", "args", "]"}], "?", 
+                        RowBox[{"(", RowBox[{"Function", "[", RowBox[{"Null", 
+                          ",", " ", RowBox[{"unconstructedQ", "@", RowBox[
+                          {"Unevaluated", "[", "#", "]"}]}], ",", " ", 
+                          "HoldFirst"}], "]"}], ")"}]}], ":=", "\n", "    ", 
+                      RowBox[{"With", "[", RowBox[{RowBox[{"{", RowBox[
+                          {"newData", "=", RowBox[{"dataPrepper", "[", 
+                          "args", "]"}]}], "}"}], ",", "\n", "      ", 
+                          RowBox[{RowBox[{"Replace", "[", RowBox[{RowBox[
+                          {"{", "newData", "}"}], ",", "\n", "        ", 
+                          RowBox[{"{", "\n", "          ", RowBox[{RowBox[
+                          {RowBox[{"{", RowBox[{"HoldComplete", "[", "d___", 
+                          "]"}], "}"}], ":>", "\n", "            ", RowBox[
+                          {"validator", "@", RowBox[{"Unevaluated", "@", 
+                          RowBox[{"head", "[", "d", "]"}]}]}]}], ",", "\n", 
+                          "          ", RowBox[{RowBox[{"{", "d___", "}"}], 
+                          ":>", "\n", "            ", RowBox[{"validator", 
+                          "@", RowBox[{"Unevaluated", "@", RowBox[{"head", 
+                          "[", "d", "]"}]}]}]}]}], "\n", "          ", 
+                          "}"}]}], "\n", "        ", "]"}], "/;", RowBox[
+                          {"dataValidQ", "[", "newData", "]"}]}]}], "\n", 
+                        "      ", "]"}]}]}], ";"}]], "CodeInput"]}, Open]], 
+           Cell[CellGroupData[
+             {Cell["\[LeftCeiling]iRegisterFastConstructor\[RightFloor]", 
+               "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
+                RowBox[{RowBox[{"iRegisterFastConstructor", "[", "\n", "  ", 
+                    RowBox[{"head_", ",", "\n", "  ", RowBox[{"head_", "[", 
+                        "args___", "]"}], ",", "\n", "  ", "validator_", ",", 
+                      "\n", "  ", "fastConstructor_"}], "\n", "  ", "]"}], 
+                  ":=", "\n", "  ", RowBox[{RowBox[{"fastConstructor", "[", 
+                      "args", "]"}], ":=", "\n", "    ", RowBox[{"validator", 
+                      "@", RowBox[{"Unevaluated", "[", RowBox[{"head", "[", 
+                          "args", "]"}], "]"}]}]}]}]], "CodeInput"]}, 
+             Open]]}, Open]], Cell[CellGroupData[
+          {Cell["\[LeftCeiling]ValidQ\[RightFloor]", "CodeSubsubsection", 
+            Evaluatable -> True], Cell[BoxData[RowBox[{RowBox[
+                {"iRegisterValidQ", "[", "\n", "  ", RowBox[{"head_", ",", 
+                   "\n", "  ", "constructedQ_", ",", "\n", "  ", "validQ_"}], 
+                 "\n", "  ", "]"}], ":=", "\n", "  ", RowBox[{"(", "\n", 
+                 "    ", RowBox[{RowBox[{RowBox[{"validQ", "[", "h_head", 
+                       "]"}], ":=", "\n", "  ", "    ", RowBox[
+                      {"constructedQ", "[", "h", "]"}]}], ";", "\n", "  ", 
+                   "  ", RowBox[{RowBox[{"validQ", "[", "___", "]"}], ":=", 
+                     "\n", "      ", "False"}], ";", "\n", "    ", 
+                   RowBox[{RowBox[{"head", "[", RowBox[{"h_head", "?", 
+                         "constructedQ"}], "]"}], ":=", "h"}], ";"}], "\n", 
+                 "    ", ")"}]}]], "CodeInput"]}, Open]], 
+        Cell[CellGroupData[{Cell["\[LeftCeiling]Destructors\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[BoxData[{RowBox[{RowBox[{RowBox[{"iRegisterDestructor", "[", 
+                    "\n", "  ", RowBox[{"head_", ",", "\n", "  ", RowBox[
+                       {"head_", "[", "argPat_", "]"}], ",", "\n", "  ", 
+                      "destructor_"}], "\n", "  ", "]"}], ":=", RowBox[
+                   {"(", "\n", "    ", RowBox[{RowBox[{"destructor", "[", 
+                        RowBox[{"head", "[", RowBox[{"p", ":", "argPat"}], 
+                          "]"}], "]"}], ":=", "p"}], "\n", "    ", ")"}]}], 
+                ";"}], "\n", RowBox[{" ", RowBox[{RowBox[{RowBox[
+                     {"iRegisterDestructor", "[", "\n", "  ", RowBox[
+                       {"head_", ",", "\n", "  ", RowBox[{"head_", "[", 
+                          "args___", "]"}], ",", "\n", "  ", "destructor_"}], 
+                      "\n", "  ", "]"}], ":=", RowBox[{"(", "\n", "    ", 
+                      RowBox[{RowBox[{"destructor", "[", RowBox[{"head", "[", 
+                          RowBox[{"p", ":", "args"}], "]"}], "]"}], ":=", 
+                        RowBox[{"{", "p", "}"}]}], "\n", "    ", ")"}]}], 
+                  ";"}]}]}], "CodeInput"]}, Open]], 
+        Cell[CellGroupData[{Cell["\[LeftCeiling]Formatting\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[BoxData[RowBox[{RowBox[{"iRegisterFormatter", "[", "\n", 
+                 "  ", RowBox[{"head_", ",", "\n", "  ", "validQ_", ",", 
+                   "\n", "  ", "icon_", ",", "\n", "  ", RowBox[
+                    {"fields_Association", "?", "AssociationQ"}], ",", "\n", 
+                   "  ", RowBox[{"belowTheFold_Association", "?", 
+                     "AssociationQ"}]}], "\n", "  ", "]"}], ":=", "\n", "  ", 
+               RowBox[{"(", "\n", "    ", RowBox[{RowBox[{RowBox[{"Format", 
+                       "[", RowBox[{RowBox[{"q_head", "?", "validQ"}], ",", 
+                         " ", "StandardForm"}], "]"}], ":=", "\n", "  ", 
+                     "  ", "  ", RowBox[{"RawBoxes", "@", "\n", "        ", 
+                       RowBox[{"BoxForm`ArrangeSummaryBox", "[", "\n", 
+                         "          ", RowBox[{"head", ",", "\n", 
+                          "          ", "q", ",", "\n", "          ", "icon", 
+                          ",", "\n", "          ", RowBox[{"KeyValueMap", 
+                          "[", "\n", "            ", RowBox[{RowBox[{RowBox[
+                          {"BoxForm`MakeSummaryItem", "[", RowBox[{RowBox[
+                          {"{", RowBox[{RowBox[{"Row", "@", RowBox[{"{", 
+                          RowBox[{"#", ",", " ", "\":\""}], "}"}]}], ",", 
+                          " ", RowBox[{"#2", "[", "q", "]"}]}], "}"}], ",", 
+                          " ", "StandardForm"}], "]"}], "&"}], ",", "\n", 
+                          "            ", "fields"}], "\n", "            ", 
+                          "]"}], ",", "\n", "          ", RowBox[
+                          {"KeyValueMap", "[", "\n", "            ", RowBox[
+                          {RowBox[{RowBox[{"BoxForm`MakeSummaryItem", "[", 
+                          RowBox[{RowBox[{"{", RowBox[{RowBox[{"Row", "@", 
+                          RowBox[{"{", RowBox[{"#", ",", " ", "\":\""}], 
+                          "}"}]}], ",", " ", RowBox[{"#2", "[", "q", "]"}]}], 
+                          "}"}], ",", " ", "StandardForm"}], "]"}], "&"}], 
+                          ",", "\n", "            ", "belowTheFold"}], "\n", 
+                          "            ", "]"}], ",", "\n", "          ", 
+                          "StandardForm"}], "\n", "          ", "]"}]}]}], 
+                   ";", "\n", "    ", RowBox[{RowBox[{"Format", "[", 
+                       RowBox[{RowBox[{"q_head", "?", "validQ"}], ",", " ", 
+                         "TextForm"}], "]"}], ":=", "\n", "  ", "  ", "  ", 
+                     "\"StackQueue[<>]\""}], ";"}], "\n", "    ", ")"}]}]], 
+            "CodeInput"]}, Open]], Cell[CellGroupData[
+          {Cell["\[LeftCeiling]RegisterDataStructure\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[CellGroupData[
+             {Cell["\[LeftCeiling]RegisterDataStructure\[RightFloor]", 
+               "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
+                {RowBox[{RowBox[{RowBox[{"Options", "[", 
+                       "RegisterDataStructure", "]"}], "=", "\n", "  ", 
+                     RowBox[{"{", "\n", "    ", RowBox[{RowBox[{"\"Atomic\"", 
+                          "\[Rule]", "True"}], ",", "\n", "    ", RowBox[
+                          {"\"Formatted\"", "\[Rule]", "Automatic"}], ",", 
+                         "\n", "    ", RowBox[{"\"FormattingRules\"", 
+                          "\[Rule]", RowBox[{"<|", "\n", "      ", RowBox[
+                          {RowBox[{"\"Icon\"", "\[Rule]", "None"}], ",", 
+                          "\n", "      ", RowBox[{"\"DisplayedFields\"", 
+                          "\[Rule]", RowBox[{"<|", RowBox[{"\"Size\"", 
+                          "\[Rule]", RowBox[{"(", RowBox[{RowBox[{"Quantity", 
+                          "[", RowBox[{RowBox[{"ByteCount", "[", "#", "]"}], 
+                          ",", " ", "\"Bytes\""}], "]"}], "&"}], ")"}]}], 
+                          "|>"}]}], ",", "\n", "      ", RowBox[
+                          {"\"HiddenFields\"", "\[Rule]", RowBox[{"<|", 
+                          "|>"}]}]}], "\n", "      ", "|>"}]}], ",", "\n", 
+                         "    ", RowBox[{"\"DataPrepper\"", "\[Rule]", 
+                          "Automatic"}], ",", "\n", "    ", RowBox[
+                          {"\"DataValidator\"", "\[Rule]", "Automatic"}], 
+                         ",", "\n", "    ", RowBox[{"\"Destructor\"", 
+                          "\[Rule]", "Automatic"}], ",", "\n", "    ", 
+                         RowBox[{"\"Validator\"", "\[Rule]", "Automatic"}], 
+                         ",", "\n", "    ", RowBox[{"\"FastConstructor\"", 
+                          "\[Rule]", "Automatic"}], ",", "\n", "    ", 
+                         RowBox[{"\"Protect\"", "\[Rule]", "False"}]}], "\n", 
+                       "    ", "}"}]}], ";"}], "\n", RowBox[
+                  {RowBox[{"RegisterDataStructure", "[", "\n", "  ", 
+                     RowBox[{"head_Symbol", ",", "\n", "  ", RowBox[{"pat", 
+                         ":", RowBox[{"(", RowBox[{"head_", "[", "args___", 
+                          "]"}], ")"}]}], ",", "\n", "  ", RowBox[{"ops", 
+                         ":", RowBox[{"OptionsPattern", "[", "]"}]}]}], "\n", 
+                     "  ", "]"}], ":=", "\n", "  ", RowBox[{"Module", "[", 
+                     "\n", "    ", RowBox[{RowBox[{"{", "\n", "      ", 
+                         RowBox[{"validator", ",", "\n", "      ", 
+                          "unconstructedQ", ",", "\n", "      ", 
+                          "constructedQ", ",", "\n", "      ", "validQ", ",", 
+                          "\n", "      ", "destructor", ",", "\n", "      ", 
+                          "fastConstruct", ",", "\n", "      ", "prepper", 
+                          ",", "\n", "      ", "dataValidQ", ",", "\n", 
+                          "      ", "format", ",", "\n", "      ", "frs"}], 
+                         "\n", "      ", "}"}], ",", "\n", "    ", RowBox[
+                        {RowBox[{"Unprotect", "[", "head", "]"}], ";", "\n", 
+                         "    ", RowBox[{"ClearAll", "[", "head", "]"}], ";", 
+                         "\n", "    ", RowBox[{"If", "[", RowBox[{RowBox[
+                          {"TrueQ", "@", RowBox[{"OptionValue", "[", 
+                          "\"Atomic\"", "]"}]}], ",", "\n", "      ", RowBox[
+                          {RowBox[{"unconstructedQ", " ", "=", " ", 
+                          "System`Private`EntryQ"}], ";", "\n", "      ", 
+                          RowBox[{"validator", " ", "=", " ", 
+                          "System`Private`SetNoEntry"}], ";", "\n", "      ", 
+                          RowBox[{"constructedQ", " ", "=", " ", 
+                          "System`Private`NoEntryQ"}]}], ",", "\n", "      ", 
+                          RowBox[{RowBox[{"unconstructedQ", " ", "=", " ", 
+                          "System`Private`ValidQ"}], ";", "\n", "      ", 
+                          RowBox[{"validator", " ", "=", " ", 
+                          "System`Private`SetValid"}], ";", "\n", "      ", 
+                          RowBox[{"constructedQ", " ", "=", " ", 
+                          "System`Private`NotValidQ"}], ";"}]}], "\n", 
+                          "      ", "]"}], ";", "\n", "    ", RowBox[
+                          {"prepper", " ", "=", " ", RowBox[{"OptionValue", 
+                          "[", "\"DataPrepper\"", "]"}]}], ";", "\n", "    ", 
+                         RowBox[{"If", "[", RowBox[{RowBox[{"prepper", "===", 
+                          "Automatic"}], ",", " ", RowBox[{"prepper", "=", 
+                          "HoldComplete"}]}], "]"}], ";", "\n", "    ", 
+                         RowBox[{"dataValidQ", " ", "=", " ", RowBox[
+                          {"OptionValue", "[", "\"DataValidator\"", "]"}]}], 
+                         ";", "\n", "    ", RowBox[{"If", "[", RowBox[
+                          {RowBox[{"dataValidQ", "===", "Automatic"}], ",", 
+                          " ", RowBox[{"dataValidQ", "=", RowBox[{"(", RowBox[
+                          {"True", "&"}], ")"}]}]}], "]"}], ";", "\n", 
+                         "    ", RowBox[{"iRegisterConstructor", "[", "\n", 
+                          "      ", RowBox[{"head", ",", "\n", "      ", 
+                          "pat", ",", "\n", "      ", "validator", ",", "\n", 
+                          "      ", "unconstructedQ", ",", "\n", "      ", 
+                          "prepper", ",", "\n", "      ", "dataValidQ"}], 
+                          "\n", "      ", "]"}], ";", "\n", "    ", RowBox[
+                          {"fastConstruct", " ", "=", " ", RowBox[
+                          {"OptionValue", "[", "\"FastConstructor\"", 
+                          "]"}]}], ";", "\n", "    ", RowBox[{"If", "[", 
+                          RowBox[{RowBox[{"fastConstruct", "===", 
+                          "Automatic"}], ",", " ", "\n", "      ", RowBox[
+                          {"fastConstruct", " ", "=", " ", "\n", "        ", 
+                          RowBox[{"Symbol", "[", RowBox[{RowBox[{"Context", 
+                          "[", "head", "]"}], "<>", RowBox[{"SymbolName", 
+                          "[", "head", "]"}], "<>", "\"`New\""}], "]"}]}]}], 
+                          "\n", "      ", "]"}], ";", "\n", "    ", RowBox[
+                          {"If", "[", RowBox[{RowBox[{"fastConstruct", "=!=", 
+                          "None"}], ",", "\n", "      ", RowBox[
+                          {"iRegisterFastConstructor", "[", "\n", "        ", 
+                          RowBox[{"head", ",", "\n", "  ", "      ", "pat", 
+                          ",", "\n", "  ", "      ", "validator", ",", "\n", 
+                          "        ", "fastConstruct"}], "\n", "        ", 
+                          "]"}]}], "\n", "      ", "]"}], ";", "\n", "    ", 
+                         RowBox[{"validQ", " ", "=", " ", RowBox[
+                          {"OptionValue", "[", "\"Validator\"", "]"}]}], ";", 
+                         "\n", "    ", RowBox[{"If", "[", RowBox[{RowBox[
+                          {"validQ", "===", "Automatic"}], ",", " ", "\n", 
+                          "      ", RowBox[{"validQ", " ", "=", " ", "\n", 
+                          "        ", RowBox[{"Symbol", "[", RowBox[{RowBox[
+                          {"Context", "[", "head", "]"}], "<>", RowBox[
+                          {"SymbolName", "[", "head", "]"}], "<>", 
+                          "\"`ValidQ\""}], "]"}]}]}], "\n", "      ", "]"}], 
+                         ";", "\n", "    ", RowBox[{"If", "[", RowBox[
+                          {RowBox[{"validQ", "=!=", "None"}], ",", "\n", 
+                          "      ", RowBox[{"iRegisterValidQ", "[", "\n", 
+                          "        ", RowBox[{"head", ",", "\n", "        ", 
+                          "constructedQ", ",", "\n", "        ", "validQ"}], 
+                          "\n", "        ", "]"}]}], "\n", "      ", "]"}], 
+                         ";", "\n", "    ", RowBox[{"destructor", " ", "=", 
+                          " ", RowBox[{"OptionValue", "[", "\"Destructor\"", 
+                          "]"}]}], ";", "\n", "    ", RowBox[{"If", "[", 
+                          RowBox[{RowBox[{"destructor", "===", "Automatic"}], 
+                          ",", " ", "\n", "      ", RowBox[{"destructor", 
+                          " ", "=", " ", "\n", "        ", RowBox[{"Symbol", 
+                          "[", RowBox[{RowBox[{"Context", "[", "head", "]"}], 
+                          "<>", RowBox[{"SymbolName", "[", "head", "]"}], 
+                          "<>", "\"`Data\""}], "]"}]}]}], "\n", "      ", 
+                          "]"}], ";", "\n", "    ", RowBox[{"If", "[", 
+                          RowBox[{RowBox[{"destructor", "=!=", "None"}], ",", 
+                          "\n", "      ", RowBox[{"iRegisterDestructor", "[", 
+                          "\n", "        ", RowBox[{"head", ",", "\n", 
+                          "        ", "pat", ",", "\n", "        ", 
+                          "destructor"}], "\n", "        ", "]"}]}], "\n", 
+                          "      ", "]"}], ";", "\n", "    ", RowBox[
+                          {"format", " ", "=", " ", RowBox[{"OptionValue", 
+                          "[", "\"Formatted\"", "]"}]}], ";", "\n", "    ", 
+                         RowBox[{"frs", " ", "=", " ", RowBox[{"OptionValue", 
+                          "[", "\"FormattingRules\"", "]"}]}], ";", "\n", 
+                         "    ", RowBox[{"Which", "[", "\n", "      ", 
+                          RowBox[{RowBox[{"TrueQ", "[", "format", "]"}], ",", 
+                          " ", "\n", "        ", RowBox[{"frs", "=", RowBox[
+                          {"Association", "@", RowBox[{"If", "[", RowBox[
+                          {RowBox[{"!", RowBox[{"(", RowBox[{RowBox[
+                          {"OptionQ", "[", "frs", "]"}], "||", RowBox[
+                          {"AssociationQ", "[", "frs", "]"}]}], ")"}]}], ",", 
+                          " ", RowBox[{"<|", "|>"}], ",", " ", "frs"}], 
+                          "]"}]}]}], ",", "\n", "      ", RowBox[{"format", 
+                          "=!=", "Automatic"}], ",", "\n", "        ", 
+                          RowBox[{"frs", "=", "None"}]}], "\n", "      ", 
+                          "]"}], ";", "\n", "    ", RowBox[{"If", "[", 
+                          RowBox[{RowBox[{"AssociationQ", "[", "frs", "]"}], 
+                          ",", "\n", "      ", RowBox[{"iRegisterFormatter", 
+                          "[", "\n", "        ", RowBox[{"head", ",", "\n", 
+                          "        ", "validQ", ",", "\n", "        ", RowBox[
+                          {"Lookup", "[", RowBox[{"frs", ",", " ", 
+                          "\"Icon\"", ",", " ", "None"}], "]"}], ",", "\n", 
+                          "        ", RowBox[{RowBox[{RowBox[{"If", "[", 
+                          RowBox[{RowBox[{"!", RowBox[{"AssociationQ", "[", 
+                          "#", "]"}]}], ",", " ", RowBox[{"<|", "|>"}], ",", 
+                          " ", "#"}], "]"}], "&"}], "@", "\n", "          ", 
+                          RowBox[{"Association", "@", RowBox[{"Lookup", "[", 
+                          RowBox[{"frs", ",", " ", "\"DisplayedFields\"", 
+                          ",", " ", RowBox[{"<|", "|>"}]}], "]"}]}]}], ",", 
+                          "\n", "        ", RowBox[{RowBox[{RowBox[{"If", 
+                          "[", RowBox[{RowBox[{"!", RowBox[{"AssociationQ", 
+                          "[", "#", "]"}]}], ",", " ", RowBox[{"<|", "|>"}], 
+                          ",", " ", "#"}], "]"}], "&"}], "@", "\n", 
+                          "          ", RowBox[{"Association", "@", RowBox[
+                          {"Lookup", "[", RowBox[{"frs", ",", " ", 
+                          "\"HiddenFields\"", ",", " ", RowBox[{"<|", 
+                          "|>"}]}], "]"}]}]}]}], "\n", "        ", "]"}]}], 
+                          "\n", "      ", "]"}], ";", "\n", "    ", RowBox[
+                          {"If", "[", RowBox[{RowBox[{"OptionValue", "[", 
+                          "\"Protect\"", "]"}], ",", " ", RowBox[{"Protect", 
+                          "[", "head", "]"}]}], "]"}], ";", "\n", "    ", 
+                         "head"}]}], "\n", "    ", "]"}]}]}], "CodeInput"]}, 
+             Open]]}, Open]]}, Open]], 
+     Cell[BoxData[RowBox[{RowBox[{"End", "[", "]"}], ";"}]], 
+      "InputSection"]}, Open]], Cell["", "SectionSeparator"]}, 
+ WindowSize -> {808, 755}, WindowMargins -> {{316, Automatic}, 
+   {Automatic, 50}}, TaggingRules -> 
+  {"UUIDButtons" -> 
+    {"Active" -> {"Button-89ffd2c3-ec41-4179-a9b1-8e28670bca2c" -> False, 
+       "Button-ca46e5e0-4fd1-47e8-8cf6-72998922b757" -> False, 
+       "Button-a6d68254-3684-4d32-83fc-e5ef6f443930" -> False}}}, 
+ FrontEndVersion -> "12.0 for Mac OS X x86 (64-bit) (April 8, 2019)", 
+ StyleDefinitions -> FrontEnd`FileName[{"BTools"}, "CodePackage.nb", 
+   CharacterEncoding -> "UTF-8"]]
