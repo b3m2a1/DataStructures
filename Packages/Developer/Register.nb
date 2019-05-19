@@ -18,29 +18,29 @@ Notebook[{Cell[CellGroupData[{Cell["RegisterDataStructure", "CodeSection"],
                         "validator_", ",", "\n", "  ", "unconstructedQ_", 
                         ",", "\n", "  ", "dataPrepper_", ",", "\n", "  ", 
                         "dataValidQ_"}], "\n", "  ", "]"}], ":=", "\n", "  ", 
-                    RowBox[{RowBox[{RowBox[{"head", "[", "args", "]"}], "?", 
-                        RowBox[{"(", RowBox[{"Function", "[", RowBox[{"Null", 
-                          ",", " ", RowBox[{"unconstructedQ", "@", RowBox[
-                          {"Unevaluated", "[", "#", "]"}]}], ",", " ", 
-                          "HoldFirst"}], "]"}], ")"}]}], ":=", "\n", "    ", 
-                      RowBox[{"With", "[", RowBox[{RowBox[{"{", RowBox[
-                          {"newData", "=", RowBox[{"dataPrepper", "[", 
-                          "args", "]"}]}], "}"}], ",", "\n", "      ", 
-                          RowBox[{RowBox[{"Replace", "[", RowBox[{RowBox[
-                          {"{", "newData", "}"}], ",", "\n", "        ", 
-                          RowBox[{"{", "\n", "          ", RowBox[{RowBox[
-                          {RowBox[{"{", RowBox[{"HoldComplete", "[", "d___", 
-                          "]"}], "}"}], ":>", "\n", "            ", RowBox[
+                    RowBox[{RowBox[{RowBox[{"head", "[", RowBox[{"a", ":", 
+                          "args"}], "]"}], "?", RowBox[{"(", RowBox[
+                          {"Function", "[", RowBox[{"Null", ",", " ", RowBox[
+                          {"unconstructedQ", "@", RowBox[{"Unevaluated", "[", 
+                          "#", "]"}]}], ",", " ", "HoldFirst"}], "]"}], 
+                          ")"}]}], ":=", "\n", "    ", RowBox[{"With", "[", 
+                        RowBox[{RowBox[{"{", RowBox[{"newData", "=", RowBox[
+                          {"dataPrepper", "[", "a", "]"}]}], "}"}], ",", 
+                          "\n", "      ", RowBox[{RowBox[{"Replace", "[", 
+                          RowBox[{RowBox[{"{", "newData", "}"}], ",", "\n", 
+                          "        ", RowBox[{"{", "\n", "          ", RowBox[
+                          {RowBox[{RowBox[{"{", RowBox[{"HoldComplete", "[", 
+                          "d___", "]"}], "}"}], ":>", "\n", "            ", 
+                          RowBox[{"validator", "@", RowBox[{"Unevaluated", 
+                          "@", RowBox[{"head", "[", "d", "]"}]}]}]}], ",", 
+                          "\n", "          ", RowBox[{RowBox[{"{", "d___", 
+                          "}"}], ":>", "\n", "            ", RowBox[
                           {"validator", "@", RowBox[{"Unevaluated", "@", 
-                          RowBox[{"head", "[", "d", "]"}]}]}]}], ",", "\n", 
-                          "          ", RowBox[{RowBox[{"{", "d___", "}"}], 
-                          ":>", "\n", "            ", RowBox[{"validator", 
-                          "@", RowBox[{"Unevaluated", "@", RowBox[{"head", 
-                          "[", "d", "]"}]}]}]}]}], "\n", "          ", 
-                          "}"}]}], "\n", "        ", "]"}], "/;", RowBox[
-                          {"dataValidQ", "[", "newData", "]"}]}]}], "\n", 
-                        "      ", "]"}]}]}], ";"}]], "CodeInput"]}, Open]], 
-           Cell[CellGroupData[
+                          RowBox[{"head", "[", "d", "]"}]}]}]}]}], "\n", 
+                          "          ", "}"}]}], "\n", "        ", "]"}], 
+                          "/;", RowBox[{"dataValidQ", "[", "newData", 
+                          "]"}]}]}], "\n", "      ", "]"}]}]}], ";"}]], 
+               "CodeInput"]}, Open]], Cell[CellGroupData[
              {Cell["\[LeftCeiling]iRegisterFastConstructor\[RightFloor]", 
                "CodeSubsubsubsection", Evaluatable -> True], Cell[BoxData[
                 RowBox[{RowBox[{"iRegisterFastConstructor", "[", "\n", "  ", 
@@ -48,23 +48,23 @@ Notebook[{Cell[CellGroupData[{Cell["RegisterDataStructure", "CodeSection"],
                         "args___", "]"}], ",", "\n", "  ", "validator_", ",", 
                       "\n", "  ", "fastConstructor_"}], "\n", "  ", "]"}], 
                   ":=", "\n", "  ", RowBox[{RowBox[{"fastConstructor", "[", 
-                      "args", "]"}], ":=", "\n", "    ", RowBox[{"validator", 
-                      "@", RowBox[{"Unevaluated", "[", RowBox[{"head", "[", 
-                          "args", "]"}], "]"}]}]}]}]], "CodeInput"]}, 
-             Open]]}, Open]], Cell[CellGroupData[
-          {Cell["\[LeftCeiling]ValidQ\[RightFloor]", "CodeSubsubsection", 
-            Evaluatable -> True], Cell[BoxData[RowBox[{RowBox[
-                {"iRegisterValidQ", "[", "\n", "  ", RowBox[{"head_", ",", 
-                   "\n", "  ", "constructedQ_", ",", "\n", "  ", "validQ_"}], 
-                 "\n", "  ", "]"}], ":=", "\n", "  ", RowBox[{"(", "\n", 
-                 "    ", RowBox[{RowBox[{RowBox[{"validQ", "[", "h_head", 
-                       "]"}], ":=", "\n", "  ", "    ", RowBox[
-                      {"constructedQ", "[", "h", "]"}]}], ";", "\n", "  ", 
-                   "  ", RowBox[{RowBox[{"validQ", "[", "___", "]"}], ":=", 
-                     "\n", "      ", "False"}], ";", "\n", "    ", 
-                   RowBox[{RowBox[{"head", "[", RowBox[{"h_head", "?", 
-                         "constructedQ"}], "]"}], ":=", "h"}], ";"}], "\n", 
-                 "    ", ")"}]}]], "CodeInput"]}, Open]], 
+                      RowBox[{"a", ":", "args"}], "]"}], ":=", "\n", "    ", 
+                    RowBox[{"validator", "@", RowBox[{"Unevaluated", "[", 
+                        RowBox[{"head", "[", "a", "]"}], "]"}]}]}]}]], 
+               "CodeInput"]}, Open]]}, Open]], 
+        Cell[CellGroupData[{Cell["\[LeftCeiling]ValidQ\[RightFloor]", 
+            "CodeSubsubsection", Evaluatable -> True], 
+           Cell[BoxData[RowBox[{RowBox[{"iRegisterValidQ", "[", "\n", "  ", 
+                 RowBox[{"head_", ",", "\n", "  ", "constructedQ_", ",", 
+                   "\n", "  ", "validQ_"}], "\n", "  ", "]"}], ":=", "\n", 
+               "  ", RowBox[{"(", "\n", "    ", RowBox[{RowBox[
+                    {RowBox[{"validQ", "[", "h_head", "]"}], ":=", "\n", 
+                     "  ", "    ", RowBox[{"constructedQ", "[", "h", "]"}]}], 
+                   ";", "\n", "  ", "  ", RowBox[{RowBox[{"validQ", "[", 
+                       "___", "]"}], ":=", "\n", "      ", "False"}], ";", 
+                   "\n", "    ", RowBox[{RowBox[{"head", "[", RowBox[
+                        {"h_head", "?", "constructedQ"}], "]"}], ":=", "h"}], 
+                   ";"}], "\n", "    ", ")"}]}]], "CodeInput"]}, Open]], 
         Cell[CellGroupData[{Cell["\[LeftCeiling]Destructors\[RightFloor]", 
             "CodeSubsubsection", Evaluatable -> True], 
            Cell[BoxData[{RowBox[{RowBox[{RowBox[{"iRegisterDestructor", "[", 

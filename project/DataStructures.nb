@@ -2,35 +2,35 @@ Notebook[{
 
 Cell[CellGroupData[{
 Cell["RegisterDataStructure", \
-"CodeSection",ExpressionUUID->"d7181ada-58ed-48ef-8979-e586141588f1"],
+"CodeSection",ExpressionUUID->"ff3de21e-c8dd-4e83-b835-8ae0d9827a26"],
 
 Cell[BoxData[
  RowBox[{
   RowBox[{
    RowBox[{"RegisterDataStructure", "::", "usage"}], "=", 
    "\"\<Handles efficient structure boiler plate\>\""}], 
-  ";"}]], "CodeInput",ExpressionUUID->"737c1181-778c-42a6-9331-8858be1032f8"],
+  ";"}]], "CodeInput",ExpressionUUID->"4f1b8e0a-8efa-4ef3-a38a-0ee4b9353fce"],
 
 Cell[BoxData[
  RowBox[{
   RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], 
-  ";"}]], "InputSection",ExpressionUUID->"3df8056d-7be4-46d2-b72f-\
-56a87472b9a0"],
+  ";"}]], "InputSection",ExpressionUUID->"806a4a8a-5bfa-469f-890e-\
+89ae3572c2a6"],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]RegisterDataStructure\[RightFloor]", "CodeSubsection",
- Evaluatable->True,ExpressionUUID->"9a31c9d7-4ba6-4f0c-b512-2d00574001d1"],
+ Evaluatable->True,ExpressionUUID->"48a10e83-e9d2-428d-98c1-5a9949971e63"],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]Constructor\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"1047cddf-47fd-4cdc-87ac-d5494265a621"],
+ Evaluatable->True,ExpressionUUID->"8b884f24-dfa3-4ea6-b7e0-60f3e6a522b5"],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]iRegisterConstructor\[RightFloor]", "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"7ba03307-4c4d-4ad2-9f26-e035f89c4832"],
+ Evaluatable->True,ExpressionUUID->"6c12ce9f-843e-4782-93f1-ad8baaa0ee31"],
 
 Cell[BoxData[
  RowBox[{
@@ -42,7 +42,8 @@ Cell[BoxData[
       "\n", "  ", "dataValidQ_"}], "\n", "  ", "]"}], ":=", "\n", "  ", 
    RowBox[{
     RowBox[{
-     RowBox[{"head", "[", "args", "]"}], "?", 
+     RowBox[{"head", "[", 
+      RowBox[{"a", ":", "args"}], "]"}], "?", 
      RowBox[{"(", 
       RowBox[{"Function", "[", 
        RowBox[{"Null", ",", " ", 
@@ -53,8 +54,8 @@ Cell[BoxData[
      RowBox[{
       RowBox[{"{", 
        RowBox[{"newData", "=", 
-        RowBox[{"dataPrepper", "[", "args", "]"}]}], "}"}], ",", "\n", 
-      "      ", 
+        RowBox[{"dataPrepper", "[", "a", "]"}]}], "}"}], ",", "\n", "      ", 
+      
       RowBox[{
        RowBox[{"Replace", "[", 
         RowBox[{
@@ -77,14 +78,14 @@ Cell[BoxData[
           "}"}]}], "\n", "        ", "]"}], "/;", 
        RowBox[{"dataValidQ", "[", "newData", "]"}]}]}], "\n", "      ", 
      "]"}]}]}], 
-  ";"}]], "CodeInput",ExpressionUUID->"6bfcfa09-521f-4456-865a-54825ed58bbb"]
+  ";"}]], "CodeInput",ExpressionUUID->"096d89fd-5372-4b15-9c7e-052f58cab5a3"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]iRegisterFastConstructor\[RightFloor]", \
 "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"08f17d83-f756-43f9-8053-097f965c1c7c"],
+ Evaluatable->True,ExpressionUUID->"1369ef4c-9b48-4fab-9976-bbe046f47e2b"],
 
 Cell[BoxData[
  RowBox[{
@@ -94,19 +95,20 @@ Cell[BoxData[
     ",", "\n", "  ", "fastConstructor_"}], "\n", "  ", "]"}], ":=", "\n", 
   "  ", 
   RowBox[{
-   RowBox[{"fastConstructor", "[", "args", "]"}], ":=", "\n", "    ", 
+   RowBox[{"fastConstructor", "[", 
+    RowBox[{"a", ":", "args"}], "]"}], ":=", "\n", "    ", 
    RowBox[{"validator", "@", 
     RowBox[{"Unevaluated", "[", 
-     RowBox[{"head", "[", "args", "]"}], 
+     RowBox[{"head", "[", "a", "]"}], 
      "]"}]}]}]}]], \
-"CodeInput",ExpressionUUID->"1c7c6806-958b-4e58-a7d1-d963b5479f47"]
+"CodeInput",ExpressionUUID->"4038f27d-4b8a-4b29-bd96-6a786187d662"]
 }, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]ValidQ\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"fa3d5a79-cabc-4d65-9548-0e2daf5918ea"],
+ Evaluatable->True,ExpressionUUID->"22695544-2ab4-4a8a-bb22-d2fcb31b42a4"],
 
 Cell[BoxData[
  RowBox[{
@@ -127,13 +129,13 @@ Cell[BoxData[
       RowBox[{"h_head", "?", "constructedQ"}], "]"}], ":=", "h"}], ";"}], 
    "\n", "    ", 
    ")"}]}]], \
-"CodeInput",ExpressionUUID->"4a13c8ae-55ab-448f-b66a-9e7e401f7965"]
+"CodeInput",ExpressionUUID->"2e71454c-947c-42db-b82b-ef0688b45fb0"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]Destructors\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"c7e5dc1b-2263-4a6c-968a-1b76b2c561c5"],
+ Evaluatable->True,ExpressionUUID->"0fb73744-90c2-4347-bd1e-ee4e176f383b"],
 
 Cell[BoxData[{
  RowBox[{
@@ -162,13 +164,13 @@ Cell[BoxData[{
         RowBox[{"p", ":", "args"}], "]"}], "]"}], ":=", 
       RowBox[{"{", "p", "}"}]}], "\n", "    ", ")"}]}], 
    ";"}]}]}], \
-"CodeInput",ExpressionUUID->"cb3a5296-1203-4830-9c6e-48fb587bd0c1"]
+"CodeInput",ExpressionUUID->"68e432d8-e5a4-43d7-88fa-7d2f94f75613"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]Formatting\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"742440e0-8d5e-4c20-abad-36edff90d75f"],
+ Evaluatable->True,ExpressionUUID->"fb1fbae2-4d4d-40ad-893d-e061f3e235b2"],
 
 Cell[BoxData[
  RowBox[{
@@ -225,19 +227,19 @@ Cell[BoxData[
        RowBox[{"q_head", "?", "validQ"}], ",", " ", "TextForm"}], "]"}], ":=",
       "\n", "  ", "  ", "  ", "\"\<StackQueue[<>]\>\""}], ";"}], "\n", "    ",
     ")"}]}]], \
-"CodeInput",ExpressionUUID->"7abb0024-8203-4a15-a538-aabe3a2ad38d"]
+"CodeInput",ExpressionUUID->"a30297e6-bf09-4994-8e1a-2a6edc785d1f"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]RegisterDataStructure\[RightFloor]", "CodeSubsubsection",
- Evaluatable->True,ExpressionUUID->"b1b92dae-c206-41c0-900f-d0d79470b2d0"],
+ Evaluatable->True,ExpressionUUID->"0b353511-939e-47a3-b38f-bf3c4c697b52"],
 
 Cell[CellGroupData[{
 
 Cell["\[LeftCeiling]RegisterDataStructure\[RightFloor]", \
 "CodeSubsubsubsection",
- Evaluatable->True,ExpressionUUID->"8bb18952-d477-40e4-9809-573e29b48c56"],
+ Evaluatable->True,ExpressionUUID->"be10470a-f993-43de-a2a0-f95345935013"],
 
 Cell[BoxData[{
  RowBox[{
@@ -463,7 +465,7 @@ Cell[BoxData[{
        RowBox[{"Protect", "[", "head", "]"}]}], "]"}], ";", "\n", "    ", 
      "head"}]}], "\n", "    ", 
    "]"}]}]}], \
-"CodeInput",ExpressionUUID->"4eae894c-7bbb-4d8f-8b46-6104530f9132"]
+"CodeInput",ExpressionUUID->"b0243740-3fe1-49d0-b4ee-1744c7e2f8c3"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
@@ -471,12 +473,12 @@ Cell[BoxData[{
 Cell[BoxData[
  RowBox[{
   RowBox[{"End", "[", "]"}], 
-  ";"}]], "InputSection",ExpressionUUID->"a4858e81-4aa0-4db0-b92f-\
-e68f3938c5dc"]
+  ";"}]], "InputSection",ExpressionUUID->"3e461227-03b4-4179-aea8-\
+9b95681bb30e"]
 }, Open  ]],
 
-Cell["", "SectionSeparator",ExpressionUUID->"7907f859-aaf8-410d-8fa6-\
-0624022cacf3"]
+Cell["", "SectionSeparator",ExpressionUUID->"82e0d899-2b49-4a88-9084-\
+9e8c2f2b6315"]
 },
 NotebookEventActions->{{"MenuCommand", "Save"} :> 
   EasyIDE`Notebooks`Manipulation`IDESave[
@@ -495,7 +497,7 @@ TaggingRules->{
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
 Mathematica/Applications/DataStructures/.scratch/scratch.nb", "Modified" -> 
-        True}, "Tree" -> {
+        False}, "Tree" -> {
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
 Mathematica/Applications/DataStructures/Packages/Tree/Tree.nb", "Modified" -> 
@@ -514,8 +516,9 @@ Mathematica/Applications/DataStructures/Packages/Queue/Queue.nb", "Modified" ->
         False}, "Register" -> {
        "File" -> 
         "/Users/Mark/Documents/Wolfram \
-Mathematica/Applications/DataStructures/Packages/Developer/Register.nb"}}, 
-    "FileViewer" -> {"Visible" -> False}, "Toolbars" -> {"Column" -> GridBox[{{
+Mathematica/Applications/DataStructures/Packages/Developer/Register.nb", 
+        "Modified" -> False}}, "FileViewer" -> {"Visible" -> False}, 
+    "Toolbars" -> {"Column" -> GridBox[{{
           GridBox[{{
              GridBox[{{
                 StyleBox[

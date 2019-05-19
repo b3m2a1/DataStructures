@@ -31,8 +31,8 @@ iRegisterConstructor[
   dataPrepper_,
   dataValidQ_
   ]:=
-  head[args]?(Function[Null, unconstructedQ@Unevaluated[#], HoldFirst]):=
-    With[{newData=dataPrepper[args]},
+  head[a:args]?(Function[Null, unconstructedQ@Unevaluated[#], HoldFirst]):=
+    With[{newData=dataPrepper[a]},
       Replace[{newData},
         {
           {HoldComplete[d___]}:>
@@ -55,8 +55,8 @@ iRegisterFastConstructor[
   validator_,
   fastConstructor_
   ]:=
-  fastConstructor[args]:=
-    validator@Unevaluated[head[args]]
+  fastConstructor[a:args]:=
+    validator@Unevaluated[head[a]]
 
 
 (* ::Subsubsection::Closed:: *)
