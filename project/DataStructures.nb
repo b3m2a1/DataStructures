@@ -10,40 +10,35 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      5284,        136]
-NotebookOptionsPosition[      1759,         48]
-NotebookOutlinePosition[      5332,        138]
-CellTagsIndexPosition[      5289,        135]
+NotebookDataLength[      5076,        131]
+NotebookOptionsPosition[      1550,         43]
+NotebookOutlinePosition[      5125,        133]
+CellTagsIndexPosition[      5082,        130]
 WindowTitle->EasyIDE: DataStructures
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 Cell[BoxData[
- RowBox[{
-  RowBox[{"(*", " ", 
-   RowBox[{"Created", " ", "with", " ", "the", " ", "Wolfram", " ", 
-    RowBox[{"Language", " ", ":", " ", 
-     RowBox[{"www", ".", "wolfram", ".", "com"}]}]}], " ", "*)"}], "\n", 
-  RowBox[{"{", "\n", "  ", 
-   RowBox[{
-    RowBox[{"\"\<RemovePaths\>\"", " ", "->", " ", 
-     RowBox[{"{", "\n", "    ", 
-      RowBox[{
-      "\"\<Private\>\"", ",", " ", "\n", "    ", "\"\<project\>\"", ",", " ", 
-       "\n", "    ", "\"\<GitHub\>\"", ",", " ", "\n", "    ", "\"\<.git\>\"",
-        ",", " ", "\n", "    ", "\"\<.scratch\>\""}], "\n", "    ", "}"}]}], 
-    ",", " ", "\n", "  ", 
-    RowBox[{"\"\<RemovePatterns\>\"", " ", "->", " ", 
-     RowBox[{"{", "\n", "    ", 
-      RowBox[{
-      "\"\<Packages/*.nb\>\"", ",", " ", "\n", "    ", 
-       "\"\<Packages/*/*.nb\>\"", ",", " ", "\n", "    ", 
-       "\"\<Packages/*/*/*.nb\>\"", ",", " ", "\n", "    ", 
-       "\"\<.DS_Store\>\"", ",", " ", "\"\<.gitignore\>\""}], "\n", "    ", 
-      "}"}]}]}], "\n", "  ", "}"}]}]], "Code",
- CellChangeTimes->{{3.767299442937233*^9, 
-  3.767299475510826*^9}},ExpressionUUID->"e3aea7c4-a8cd-4d02-87de-\
+ RowBox[{"{", "\n", "  ", 
+  RowBox[{
+   RowBox[{"\"\<RemovePaths\>\"", " ", "->", " ", 
+    RowBox[{"{", "\n", "    ", 
+     RowBox[{
+     "\"\<Private\>\"", ",", " ", "\n", "    ", "\"\<project\>\"", ",", " ", 
+      "\n", "    ", "\"\<GitHub\>\"", ",", " ", "\n", "    ", "\"\<.git\>\"", 
+      ",", " ", "\n", "    ", "\"\<.scratch\>\""}], "\n", "    ", "}"}]}], 
+   ",", " ", "\n", "  ", 
+   RowBox[{"\"\<RemovePatterns\>\"", " ", "->", " ", 
+    RowBox[{"{", "\n", "    ", 
+     RowBox[{
+     "\"\<Packages/*.nb\>\"", ",", " ", "\n", "    ", 
+      "\"\<Packages/*/*.nb\>\"", ",", " ", "\n", "    ", 
+      "\"\<Packages/*/*/*.nb\>\"", ",", " ", "\n", "    ", 
+      "\"\<.DS_Store\>\"", ",", " ", "\"\<.gitignore\>\""}], "\n", "    ", 
+     "}"}]}]}], "\n", "  ", "}"}]], "Code",
+ CellChangeTimes->{{3.767299442937233*^9, 3.767299475510826*^9}, 
+   3.7673003221434193`*^9},ExpressionUUID->"e3aea7c4-a8cd-4d02-87de-\
 efedf5663b31"]
 },
 NotebookEventActions->{{"MenuCommand", "Save"} :> 
@@ -53,7 +48,7 @@ NotebookEventActions->{{"MenuCommand", "Save"} :>
    EasyIDE`Notebooks`Manipulation`EnsureNotebookUpdated[
      EvaluationNotebook[]]), PassEventsDown -> True, EvaluationOrder -> After},
 WindowSize->{808, 755},
-WindowMargins->{{61, Automatic}, {Automatic, 0}},
+WindowMargins->{{Automatic, 125}, {Automatic, 44}},
 WindowTitle->"EasyIDE: DataStructures",
 TaggingRules->{
  "IndentCharacter" -> "  ", 
@@ -137,7 +132,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[595, 21, 1160, 25, 365, "Code",ExpressionUUID->"e3aea7c4-a8cd-4d02-87de-efedf5663b31"]
+Cell[595, 21, 951, 20, 344, "Code",ExpressionUUID->"e3aea7c4-a8cd-4d02-87de-efedf5663b31"]
 }
 ]
 *)
